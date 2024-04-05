@@ -49,6 +49,9 @@
 		3072D6DE2BC037CE00381BDF /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6DD2BC037CE00381BDF /* SearchViewModel.swift */; };
 		3072D6E02BC03C3400381BDF /* SearchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6DF2BC03C3400381BDF /* SearchCellView.swift */; };
 		3072D6E32BC03C8400381BDF /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6E22BC03C8400381BDF /* SearchListView.swift */; };
+		3072D6E52BC060B600381BDF /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6E42BC060B600381BDF /* TabViewController.swift */; };
+		3072D6EA2BC06A7C00381BDF /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6E92BC06A7C00381BDF /* SettingsCoordinator.swift */; };
+		3072D6EC2BC06AC900381BDF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6EB2BC06AC900381BDF /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +118,9 @@
 		3072D6DD2BC037CE00381BDF /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		3072D6DF2BC03C3400381BDF /* SearchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellView.swift; sourceTree = "<group>"; };
 		3072D6E22BC03C8400381BDF /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
+		3072D6E42BC060B600381BDF /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		3072D6E92BC06A7C00381BDF /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		3072D6EB2BC06AC900381BDF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,8 +297,10 @@
 		3072C89E2BC0006A00381BDF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3072D6E62BC06A5500381BDF /* Settings */,
 				3072D6D82BC0336800381BDF /* Search */,
 				3072C89F2BC0007100381BDF /* Base */,
+				3072D6E42BC060B600381BDF /* TabViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -392,6 +400,31 @@
 				3072D6DF2BC03C3400381BDF /* SearchCellView.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		3072D6E62BC06A5500381BDF /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3072D6E72BC06A5D00381BDF /* Coordinator */,
+				3072D6E82BC06A6700381BDF /* Views */,
+				3072D6EB2BC06AC900381BDF /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		3072D6E72BC06A5D00381BDF /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				3072D6E92BC06A7C00381BDF /* SettingsCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		3072D6E82BC06A6700381BDF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -531,9 +564,11 @@
 				3072C89C2BBFFFC700381BDF /* Colors.swift in Sources */,
 				3072C8912BBFFFC100381BDF /* Float+Extensions.swift in Sources */,
 				3072D6CE2BC008DC00381BDF /* Publisher+SingleOutput.swift in Sources */,
+				3072D6EC2BC06AC900381BDF /* SettingsViewController.swift in Sources */,
 				3072D6C92BC007CD00381BDF /* TalmideoCoordinator.swift in Sources */,
 				3072C88D2BBFFFC100381BDF /* UIColor+Extensions.swift in Sources */,
 				3072C88B2BBFFFC100381BDF /* String+Extensions.swift in Sources */,
+				3072D6EA2BC06A7C00381BDF /* SettingsCoordinator.swift in Sources */,
 				3072D6C52BC0071600381BDF /* MappedCoordinator.swift in Sources */,
 				3072D6C42BC0071600381BDF /* AnyCoordinator.swift in Sources */,
 				3072C8792BBFFFA600381BDF /* Router.swift in Sources */,
@@ -550,6 +585,7 @@
 				3072D6D12BC00D3500381BDF /* SQLiteDataDatabase.swift in Sources */,
 				3072C8382BBFFB9C00381BDF /* AppDelegate.swift in Sources */,
 				3072D6D42BC0168800381BDF /* WordModel.swift in Sources */,
+				3072D6E52BC060B600381BDF /* TabViewController.swift in Sources */,
 				3072D6CD2BC008DC00381BDF /* CombineAsyncStreamBridge.swift in Sources */,
 				3072C8892BBFFFC100381BDF /* Int+Extensions.swift in Sources */,
 				3072C83A2BBFFB9C00381BDF /* SceneDelegate.swift in Sources */,

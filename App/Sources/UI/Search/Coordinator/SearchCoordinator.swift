@@ -11,7 +11,9 @@ class SearchCoordinator: Coordinator<Void> {
         self.router = router
         database = SQLiteDataDatabase(name: Constants.Dictionary,
                                       tableName: Constants.WordDataTable)
+        viewController = SearchViewController(model: model)
         super.init()
+        viewController?.searchDelegate = self
     }
 
     private func search(_ value: String) {
@@ -27,20 +29,16 @@ class SearchCoordinator: Coordinator<Void> {
         }
     }
 
-    private func launch() {
-        let vc = SearchViewController(model: model)
-        viewController = vc
-        viewController?.searchDelegate = self
-        router?.willRouteWith(vc)
-    }
-
     override func start() {
         super.start()
-        launch()
     }
 
     private enum Config {
         static let columns: [String] = ["meaning_ru", "meaning_en"]
+    }
+
+    public func exportViewController() -> BaseViewController {
+        return viewController ?? BaseViewController()
     }
 }
 

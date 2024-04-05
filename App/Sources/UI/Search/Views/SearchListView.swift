@@ -19,6 +19,8 @@ class SearchListView: UIView {
 
     private func setupScrollView() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsVerticalScrollIndicator = false
+
         addSubview(scrollView)
 
         NSLayoutConstraint.activate([

@@ -31,4 +31,8 @@ extension Router: BaseViewControllerDelegate {
     func willRouteWith(_ vc: UIViewController) {
         navigationController.pushViewController(vc, animated: true)
     }
+
+    func willRouteTab(_ vc: UITabBarController) {
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

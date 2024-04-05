@@ -64,7 +64,10 @@ class SearchViewController: BaseViewController {
 
         NSLayoutConstraint.activate([
             searchList.topAnchor.constraint(equalTo: searchHeader.bottomAnchor, constant: Config.searchListPaddingTop),
-            searchList.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            searchList.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -Config.searchListPaddingTop
+            ),
             searchList.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Config.searchListPadding),
             searchList.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Config.searchListPadding)
         ])
