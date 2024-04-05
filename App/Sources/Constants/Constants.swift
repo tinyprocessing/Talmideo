@@ -8,5 +8,6 @@ enum Constants {
     static let DefaultAnimationDuration = 0.3
 
     static let Dictionary = "word_index"
+    static let DictionaryTranslator = "dictionary"
     static let WordDataTable = "worddata"
 }

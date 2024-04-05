@@ -29,12 +29,32 @@ class SearchCoordinator: Coordinator<Void> {
         }
     }
 
+    private func demo() {
+        let array = ["לִהְיוֹת", "לֶאֱהוֹב", "אַהֲבָה", "לִלְמוֹד", "שֶׁמֶשׁ", "חַמָּנִית"]
+        var result = SearchViewModel(result: [])
+        array.forEach { word in
+            let query: (String, [Any?]) = database?.query.prepare(.search(
+                columns: Config.columns,
+                value: word,
+                limit: 50
+            )) ?? ("", [])
+            if let response = database?.search(query) {
+                let words: [WordModel] = response.compactMap { WordModel.from(dictionary: $0) }
+                words.forEach { value in
+                    result.result.append(value)
+                }
+            }
+        }
+        model.send(result)
+    }
+
     override func start() {
+        demo()
         super.start()
     }
 
     private enum Config {
-        static let columns: [String] = ["meaning_ru", "meaning_en"]
+        static let columns: [String] = ["initial_form", "meaning_ru", "meaning_en"]
     }
 
     public func exportViewController() -> BaseViewController {
@@ -45,7 +65,14 @@ class SearchCoordinator: Coordinator<Void> {
 extension SearchCoordinator: SearchViewControllerDelegate {
     func searchBar(textDidChange searchText: String) {
         if !searchText.isEmpty { search(searchText) } else {
-            model.send(SearchViewModel(result: []))
+            demo()
         }
     }
+
+    func navigation(id: Int) {
+        let coordinator = WordCoordinator(router: router, id: id)
+        coordinator?.start()
+    }
+
+    func close() {}
 }

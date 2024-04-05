@@ -3,6 +3,8 @@ import UIKit
 
 protocol SearchViewControllerDelegate: AnyObject {
     func searchBar(textDidChange searchText: String)
+    func navigation(id: Int)
+    func close()
 }
 
 class SearchViewController: BaseViewController {
@@ -20,6 +22,7 @@ class SearchViewController: BaseViewController {
 
     private lazy var searchList: SearchListView = {
         let view = SearchListView()
+        view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -76,9 +79,9 @@ class SearchViewController: BaseViewController {
     // MARK: Actions
 
     private func update() {
-        var array: [(String, String)] = []
+        var array: [(Int, String, String)] = []
         model.value.result.forEach { word in
-            array.append((word.meaningRu, word.form))
+            array.append((word.id, word.meaningEn, word.form))
         }
         searchList.refreshWithData(array)
     }
@@ -94,5 +97,11 @@ class SearchViewController: BaseViewController {
 extension SearchViewController: SearchHeaderDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchDelegate?.searchBar(textDidChange: searchText)
+    }
+}
+
+extension SearchViewController: SearchListViewDelegate {
+    func selected(id: Int) {
+        searchDelegate?.navigation(id: id)
     }
 }

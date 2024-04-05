@@ -1,9 +1,15 @@
 import Foundation
 import UIKit
 
+protocol SearchListViewDelegate: AnyObject {
+    func selected(id: Int)
+}
+
 class SearchListView: UIView {
     private let scrollView = UIScrollView()
     private let stackView = UIStackView()
+
+    weak var delegate: SearchListViewDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,13 +55,17 @@ class SearchListView: UIView {
         ])
     }
 
-    func refreshWithData(_ data: [(String, String)]) {
+    func refreshWithData(_ data: [(Int, String, String)]) {
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
 
         for item in data {
             let cell = SearchCellView()
-            cell.leftLabel.text = item.0
-            cell.rightLabel.text = item.1
+            cell.id = item.0
+            cell.leftLabel.text = item.1
+            cell.rightLabel.text = item.2
+            cell.callback = { [weak self] id in
+                self?.delegate?.selected(id: id)
+            }
             stackView.addArrangedSubview(cell)
         }
 

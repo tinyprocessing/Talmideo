@@ -52,6 +52,10 @@
 		3072D6E52BC060B600381BDF /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6E42BC060B600381BDF /* TabViewController.swift */; };
 		3072D6EA2BC06A7C00381BDF /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6E92BC06A7C00381BDF /* SettingsCoordinator.swift */; };
 		3072D6EC2BC06AC900381BDF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6EB2BC06AC900381BDF /* SettingsViewController.swift */; };
+		3072D6F12BC0779E00381BDF /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6F02BC0779E00381BDF /* BookmarksViewController.swift */; };
+		3072D6F32BC077AB00381BDF /* BookmarksCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6F22BC077AB00381BDF /* BookmarksCoordinator.swift */; };
+		3072D6F82BC078AF00381BDF /* WordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6F72BC078AF00381BDF /* WordCoordinator.swift */; };
+		3072D6FA2BC078BC00381BDF /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6F92BC078BC00381BDF /* WordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +125,10 @@
 		3072D6E42BC060B600381BDF /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		3072D6E92BC06A7C00381BDF /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		3072D6EB2BC06AC900381BDF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3072D6F02BC0779E00381BDF /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
+		3072D6F22BC077AB00381BDF /* BookmarksCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksCoordinator.swift; sourceTree = "<group>"; };
+		3072D6F72BC078AF00381BDF /* WordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCoordinator.swift; sourceTree = "<group>"; };
+		3072D6F92BC078BC00381BDF /* WordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +305,8 @@
 		3072C89E2BC0006A00381BDF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3072D6F42BC0788600381BDF /* Word */,
+				3072D6ED2BC0777400381BDF /* Bookmarks */,
 				3072D6E62BC06A5500381BDF /* Settings */,
 				3072D6D82BC0336800381BDF /* Search */,
 				3072C89F2BC0007100381BDF /* Base */,
@@ -423,6 +433,56 @@
 		3072D6E82BC06A6700381BDF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3072D6ED2BC0777400381BDF /* Bookmarks */ = {
+			isa = PBXGroup;
+			children = (
+				3072D6EF2BC0778E00381BDF /* Views */,
+				3072D6EE2BC0778000381BDF /* Coordinator */,
+				3072D6F02BC0779E00381BDF /* BookmarksViewController.swift */,
+			);
+			path = Bookmarks;
+			sourceTree = "<group>";
+		};
+		3072D6EE2BC0778000381BDF /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				3072D6F22BC077AB00381BDF /* BookmarksCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		3072D6EF2BC0778E00381BDF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3072D6F42BC0788600381BDF /* Word */ = {
+			isa = PBXGroup;
+			children = (
+				3072D6F52BC0789500381BDF /* Coordinator */,
+				3072D6F62BC0789D00381BDF /* Views */,
+			);
+			path = Word;
+			sourceTree = "<group>";
+		};
+		3072D6F52BC0789500381BDF /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				3072D6F72BC078AF00381BDF /* WordCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		3072D6F62BC0789D00381BDF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3072D6F92BC078BC00381BDF /* WordViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -564,7 +624,9 @@
 				3072C89C2BBFFFC700381BDF /* Colors.swift in Sources */,
 				3072C8912BBFFFC100381BDF /* Float+Extensions.swift in Sources */,
 				3072D6CE2BC008DC00381BDF /* Publisher+SingleOutput.swift in Sources */,
+				3072D6F32BC077AB00381BDF /* BookmarksCoordinator.swift in Sources */,
 				3072D6EC2BC06AC900381BDF /* SettingsViewController.swift in Sources */,
+				3072D6F12BC0779E00381BDF /* BookmarksViewController.swift in Sources */,
 				3072D6C92BC007CD00381BDF /* TalmideoCoordinator.swift in Sources */,
 				3072C88D2BBFFFC100381BDF /* UIColor+Extensions.swift in Sources */,
 				3072C88B2BBFFFC100381BDF /* String+Extensions.swift in Sources */,
@@ -579,6 +641,7 @@
 				3072C8762BBFFFA600381BDF /* NetworkService.swift in Sources */,
 				3072D6E02BC03C3400381BDF /* SearchCellView.swift in Sources */,
 				3072C83C2BBFFB9C00381BDF /* SearchViewController.swift in Sources */,
+				3072D6F82BC078AF00381BDF /* WordCoordinator.swift in Sources */,
 				3072C89B2BBFFFC700381BDF /* Constants.swift in Sources */,
 				3072D6E32BC03C8400381BDF /* SearchListView.swift in Sources */,
 				3072C88C2BBFFFC100381BDF /* UIView+Extension.swift in Sources */,
@@ -586,6 +649,7 @@
 				3072C8382BBFFB9C00381BDF /* AppDelegate.swift in Sources */,
 				3072D6D42BC0168800381BDF /* WordModel.swift in Sources */,
 				3072D6E52BC060B600381BDF /* TabViewController.swift in Sources */,
+				3072D6FA2BC078BC00381BDF /* WordViewController.swift in Sources */,
 				3072D6CD2BC008DC00381BDF /* CombineAsyncStreamBridge.swift in Sources */,
 				3072C8892BBFFFC100381BDF /* Int+Extensions.swift in Sources */,
 				3072C83A2BBFFB9C00381BDF /* SceneDelegate.swift in Sources */,

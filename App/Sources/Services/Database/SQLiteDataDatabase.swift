@@ -116,7 +116,7 @@ extension SQLiteDataDatabase {
             var db: OpaquePointer?
             if let url = Bundle.main.url(forResource: name, withExtension: "db") {
                 if sqlite3_open(url.path, &db) == SQLITE_OK {
-                    print("Successfully opened connection to database at \(url)")
+                    print("Successfully opened connection to database at \(name)")
                 } else {
                     print("Unable to open database. Verify that you created the directory correctly")
                 }
