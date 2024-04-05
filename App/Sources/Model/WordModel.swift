@@ -1,28 +1,64 @@
 import Foundation
 
-public struct WordModel: Decodable {
-    public var id: Int
-    public var form: String
-    public var meaningRu: String
-    public var meaningEn: String
+struct WordModel: Codable {
+    let binyan: String?
+    let forms: Forms?
+    let gender: String?
+    let initialForm: InitialForm?
+    let meaning: Meaning?
+    let mishkal, partOfSpeech: String?
+    let root: [String]?
 
-    public init(id: Int, form: String, meaningRu: String, meaningEn: String) {
-        self.id = id
-        self.form = form
-        self.meaningRu = meaningRu
-        self.meaningEn = meaningEn
+    enum CodingKeys: String, CodingKey {
+        case binyan, forms, gender
+        case initialForm = "initial_form"
+        case meaning, mishkal
+        case partOfSpeech = "part_of_speech"
+        case root
     }
 }
 
-extension WordModel {
-    static func from(dictionary: [String: Any?]) -> WordModel? {
-        guard let id = dictionary["id"] as? Int,
-              let form = dictionary["initial_form"] as? String,
-              let meaningRu = dictionary["meaning_ru"] as? String,
-              let meaningEn = dictionary["meaning_en"] as? String
-        else {
-            return nil
-        }
-        return WordModel(id: id, form: form, meaningRu: meaningRu, meaningEn: meaningEn)
+struct Forms: Codable {
+    let main: Main?
+    let pPronoun, sPronoun: [String: InitialForm]?
+    let smichut: Main?
+    let future, imperative, passiveFuture, passivePast: [String: InitialForm]?
+    let passivePresent: Present?
+    let past: [String: InitialForm]?
+    let present: Present?
+
+    enum CodingKeys: String, CodingKey {
+        case main
+        case pPronoun = "p+pronoun"
+        case sPronoun = "s+pronoun"
+        case smichut
+        case future, imperative
+        case passiveFuture = "passive-future"
+        case passivePast = "passive-past"
+        case passivePresent = "passive-present"
+        case past, present
     }
+}
+
+struct Main: Codable {
+    let p, s: InitialForm?
+}
+
+struct InitialForm: Codable {
+    let transcriptionEn, transcriptionEs, transcriptionRu, value: String?
+
+    enum CodingKeys: String, CodingKey {
+        case transcriptionEn = "transcription_en"
+        case transcriptionEs = "transcription_es"
+        case transcriptionRu = "transcription_ru"
+        case value
+    }
+}
+
+struct Meaning: Codable {
+    let en, es, ru: String?
+}
+
+struct Present: Codable {
+    let fp, fs, mp, ms: InitialForm?
 }

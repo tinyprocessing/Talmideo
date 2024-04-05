@@ -23,7 +23,7 @@ class SearchCoordinator: Coordinator<Void> {
             limit: 50
         )) ?? ("", [])
         if let result = database?.search(query) {
-            let words: [WordModel] = result.compactMap { WordModel.from(dictionary: $0) }
+            let words: [SearchWordModel] = result.compactMap { SearchWordModel.from(dictionary: $0) }
             let result = SearchViewModel(result: words)
             model.send(result)
         }
@@ -39,7 +39,7 @@ class SearchCoordinator: Coordinator<Void> {
                 limit: 50
             )) ?? ("", [])
             if let response = database?.search(query) {
-                let words: [WordModel] = response.compactMap { WordModel.from(dictionary: $0) }
+                let words: [SearchWordModel] = response.compactMap { SearchWordModel.from(dictionary: $0) }
                 words.forEach { value in
                     result.result.append(value)
                 }
@@ -68,6 +68,8 @@ extension SearchCoordinator: SearchViewControllerDelegate {
             demo()
         }
     }
+
+    // TODO: Move to one layer up
 
     func navigation(id: Int) {
         let coordinator = WordCoordinator(router: router, id: id)

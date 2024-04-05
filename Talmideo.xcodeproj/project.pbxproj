@@ -43,7 +43,7 @@
 		3072D6CD2BC008DC00381BDF /* CombineAsyncStreamBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6CB2BC008DC00381BDF /* CombineAsyncStreamBridge.swift */; };
 		3072D6CE2BC008DC00381BDF /* Publisher+SingleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6CC2BC008DC00381BDF /* Publisher+SingleOutput.swift */; };
 		3072D6D12BC00D3500381BDF /* SQLiteDataDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6D02BC00D3500381BDF /* SQLiteDataDatabase.swift */; };
-		3072D6D42BC0168800381BDF /* WordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6D32BC0168800381BDF /* WordModel.swift */; };
+		3072D6D42BC0168800381BDF /* SearchWordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6D32BC0168800381BDF /* SearchWordModel.swift */; };
 		3072D6D72BC02ADD00381BDF /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6D62BC02ADC00381BDF /* SearchHeaderView.swift */; };
 		3072D6DB2BC0339800381BDF /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6DA2BC0339800381BDF /* SearchCoordinator.swift */; };
 		3072D6DE2BC037CE00381BDF /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6DD2BC037CE00381BDF /* SearchViewModel.swift */; };
@@ -56,6 +56,7 @@
 		3072D6F32BC077AB00381BDF /* BookmarksCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6F22BC077AB00381BDF /* BookmarksCoordinator.swift */; };
 		3072D6F82BC078AF00381BDF /* WordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6F72BC078AF00381BDF /* WordCoordinator.swift */; };
 		3072D6FA2BC078BC00381BDF /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6F92BC078BC00381BDF /* WordViewController.swift */; };
+		3072D6FC2BC0899000381BDF /* WordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6FB2BC0899000381BDF /* WordModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,7 +117,7 @@
 		3072D6CB2BC008DC00381BDF /* CombineAsyncStreamBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineAsyncStreamBridge.swift; sourceTree = "<group>"; };
 		3072D6CC2BC008DC00381BDF /* Publisher+SingleOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+SingleOutput.swift"; sourceTree = "<group>"; };
 		3072D6D02BC00D3500381BDF /* SQLiteDataDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDataDatabase.swift; sourceTree = "<group>"; };
-		3072D6D32BC0168800381BDF /* WordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordModel.swift; sourceTree = "<group>"; };
+		3072D6D32BC0168800381BDF /* SearchWordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWordModel.swift; sourceTree = "<group>"; };
 		3072D6D62BC02ADC00381BDF /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		3072D6DA2BC0339800381BDF /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		3072D6DD2BC037CE00381BDF /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -129,6 +130,7 @@
 		3072D6F22BC077AB00381BDF /* BookmarksCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksCoordinator.swift; sourceTree = "<group>"; };
 		3072D6F72BC078AF00381BDF /* WordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCoordinator.swift; sourceTree = "<group>"; };
 		3072D6F92BC078BC00381BDF /* WordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
+		3072D6FB2BC0899000381BDF /* WordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -363,7 +365,8 @@
 			isa = PBXGroup;
 			children = (
 				3072D6DC2BC037C000381BDF /* ViewModel */,
-				3072D6D32BC0168800381BDF /* WordModel.swift */,
+				3072D6D32BC0168800381BDF /* SearchWordModel.swift */,
+				3072D6FB2BC0899000381BDF /* WordModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -647,13 +650,14 @@
 				3072C88C2BBFFFC100381BDF /* UIView+Extension.swift in Sources */,
 				3072D6D12BC00D3500381BDF /* SQLiteDataDatabase.swift in Sources */,
 				3072C8382BBFFB9C00381BDF /* AppDelegate.swift in Sources */,
-				3072D6D42BC0168800381BDF /* WordModel.swift in Sources */,
+				3072D6D42BC0168800381BDF /* SearchWordModel.swift in Sources */,
 				3072D6E52BC060B600381BDF /* TabViewController.swift in Sources */,
 				3072D6FA2BC078BC00381BDF /* WordViewController.swift in Sources */,
 				3072D6CD2BC008DC00381BDF /* CombineAsyncStreamBridge.swift in Sources */,
 				3072C8892BBFFFC100381BDF /* Int+Extensions.swift in Sources */,
 				3072C83A2BBFFB9C00381BDF /* SceneDelegate.swift in Sources */,
 				3072C89A2BBFFFC700381BDF /* Localized.swift in Sources */,
+				3072D6FC2BC0899000381BDF /* WordModel.swift in Sources */,
 				3072D6C32BC0071600381BDF /* Coordinatable.swift in Sources */,
 				3072C8922BBFFFC100381BDF /* Comparable+Extensions.swift in Sources */,
 				3072C8A12BC0007100381BDF /* BaseViewController.swift in Sources */,

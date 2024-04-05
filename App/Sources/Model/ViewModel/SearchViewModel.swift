@@ -1,9 +1,9 @@
 import Foundation
 
 public struct SearchViewModel: Decodable {
-    public var result: [WordModel] = []
+    public var result: [SearchWordModel] = []
 
-    public init(result: [WordModel]) {
+    public init(result: [SearchWordModel]) {
         self.result = result
     }
 }

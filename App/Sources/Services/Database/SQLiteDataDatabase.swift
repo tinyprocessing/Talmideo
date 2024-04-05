@@ -17,6 +17,7 @@ final class SQLiteDataDatabase: DataDatabase {
 
         enum QueryType {
             case search(columns: [String], value: String, limit: Int?)
+            case word(value: Int)
         }
 
         func prepare(_ queryType: QueryType) -> (String, [Any?]) {
@@ -29,6 +30,8 @@ final class SQLiteDataDatabase: DataDatabase {
                     query += " LIMIT \(limit)"
                 }
                 return (query, values)
+            case .word(let value):
+                return ("SELECT * FROM \(tableName) WHERE id = \(value)", [])
             }
         }
     }
