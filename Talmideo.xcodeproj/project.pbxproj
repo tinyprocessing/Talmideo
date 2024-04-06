@@ -58,6 +58,8 @@
 		3072D6FA2BC078BC00381BDF /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6F92BC078BC00381BDF /* WordViewController.swift */; };
 		3072D6FC2BC0899000381BDF /* WordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6FB2BC0899000381BDF /* WordModel.swift */; };
 		3072D6FE2BC133B100381BDF /* WordHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6FD2BC133B100381BDF /* WordHeaderView.swift */; };
+		3072D7002BC18B2800381BDF /* WordDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6FF2BC18B2800381BDF /* WordDataView.swift */; };
+		3072D7022BC1ACD000381BDF /* WordDataRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D7012BC1ACD000381BDF /* WordDataRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +135,8 @@
 		3072D6F92BC078BC00381BDF /* WordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
 		3072D6FB2BC0899000381BDF /* WordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordModel.swift; sourceTree = "<group>"; };
 		3072D6FD2BC133B100381BDF /* WordHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordHeaderView.swift; sourceTree = "<group>"; };
+		3072D6FF2BC18B2800381BDF /* WordDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDataView.swift; sourceTree = "<group>"; };
+		3072D7012BC1ACD000381BDF /* WordDataRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDataRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -489,6 +493,8 @@
 			isa = PBXGroup;
 			children = (
 				3072D6FD2BC133B100381BDF /* WordHeaderView.swift */,
+				3072D6FF2BC18B2800381BDF /* WordDataView.swift */,
+				3072D7012BC1ACD000381BDF /* WordDataRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -626,6 +632,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3072D6DE2BC037CE00381BDF /* SearchViewModel.swift in Sources */,
+				3072D7022BC1ACD000381BDF /* WordDataRowView.swift in Sources */,
 				3072C87A2BBFFFA600381BDF /* Route.swift in Sources */,
 				3072C89C2BBFFFC700381BDF /* Colors.swift in Sources */,
 				3072C8912BBFFFC100381BDF /* Float+Extensions.swift in Sources */,
@@ -636,6 +643,7 @@
 				3072D6C92BC007CD00381BDF /* TalmideoCoordinator.swift in Sources */,
 				3072C88D2BBFFFC100381BDF /* UIColor+Extensions.swift in Sources */,
 				3072C88B2BBFFFC100381BDF /* String+Extensions.swift in Sources */,
+				3072D7002BC18B2800381BDF /* WordDataView.swift in Sources */,
 				3072D6FE2BC133B100381BDF /* WordHeaderView.swift in Sources */,
 				3072D6EA2BC06A7C00381BDF /* SettingsCoordinator.swift in Sources */,
 				3072D6C52BC0071600381BDF /* MappedCoordinator.swift in Sources */,

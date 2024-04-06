@@ -65,7 +65,7 @@ class SearchHeaderView: UIView {
 
     private enum Config {
         static let searchBarPaddingTop: CGFloat = 60
-        static let searchBarPadding: CGFloat = 20
+        static let searchBarPadding: CGFloat = 30
         static let searchBarPlaceholder = "Search"
         static let backgroundViewPadding: CGFloat = 16
         static let backgroundColor = UIColor(hex: "B4DDD3")

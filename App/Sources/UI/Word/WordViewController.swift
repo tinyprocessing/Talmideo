@@ -106,6 +106,40 @@ class WordViewController: BaseViewController {
 
     private func update() {
         wordHeaderView.update(model.value)
+
+        stackView.arrangedSubviews.forEach { view in
+            if let view = view as? WordDataView {
+                view.removeFromSuperview()
+            }
+        }
+
+        if model.value.partOfSpeech == "V" {
+            if let present = model.value.forms?.present {
+                addPresentView(for: present)
+            }
+            if let passivePresent = model.value.forms?.passivePresent {
+                addPassivePresentView(for: passivePresent)
+            }
+        }
+    }
+
+    private func addPresentView(for present: Present) {
+        let view = createWordDataView()
+        view.update(.present(value: present))
+    }
+
+    private func addPassivePresentView(for passivePresent: Present) {
+        let view = createWordDataView()
+        view.update(.passivePresent(value: passivePresent))
+    }
+
+    private func createWordDataView() -> WordDataView {
+        let view = WordDataView()
+        stackView.addArrangedSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.widthAnchor.constraint(equalTo: stackView.widthAnchor, constant: -30).isActive = true
+        view.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
+        return view
     }
 
     @objc private func backButtonTapped() {

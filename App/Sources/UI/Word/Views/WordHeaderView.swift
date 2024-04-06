@@ -64,8 +64,7 @@ class WordHeaderView: UIView {
         configure()
     }
 
-    private func configure() {
-        backgroundColor = .white
+    private func configure() { backgroundColor = .white
         layer.cornerRadius = 20
 
         NSLayoutConstraint.activate([
@@ -78,6 +77,8 @@ class WordHeaderView: UIView {
             meaningLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             meaningLabel.centerXAnchor.constraint(equalTo: titleLabel.centerXAnchor),
             meaningLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 5),
+            meaningLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            meaningLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             rootLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             rootLabel.trailingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 20),
             rootLabel.heightAnchor.constraint(equalToConstant: 20),
@@ -89,10 +90,10 @@ class WordHeaderView: UIView {
     public func update(_ model: WordModel) {
         if let form = model.initialForm {
             titleLabel.text = form.value
-            if let light = highlightCharacterAfterSymbol(form.transcriptionRu ?? "", symbol: "`") {
+            if let light = (form.transcriptionEn ?? "").highlightCharacterAfterSymbol(symbol: "`") {
                 subtitleLabel.attributedText = light
             } else {
-                subtitleLabel.text = form.transcriptionRu
+                subtitleLabel.text = form.transcriptionEn
             }
         }
         if let meaning = model.meaning {
@@ -100,15 +101,15 @@ class WordHeaderView: UIView {
                 let genderDescription: String
                 switch gender {
                 case "M":
-                    genderDescription = "мужской род"
+                    genderDescription = "masculine"
                 case "F":
-                    genderDescription = "женский род"
+                    genderDescription = "feminine"
                 default:
                     genderDescription = ""
                 }
-                meaningLabel.text = "\(meaning.ru ?? "") (\(genderDescription))"
+                meaningLabel.text = "\(meaning.en ?? "") (\(genderDescription))"
             } else {
-                meaningLabel.text = meaning.ru
+                meaningLabel.text = meaning.en
             }
         }
         if let root = model.root {
@@ -116,33 +117,6 @@ class WordHeaderView: UIView {
         }
         print(model)
         setNeedsLayout()
-    }
-
-    private func highlightCharacterAfterSymbol(_ inputString: String, symbol: Character) -> NSAttributedString? {
-        guard inputString.range(of: String(symbol)) != nil else {
-            return nil
-        }
-
-        if let firstIndex = inputString.firstIndex(of: symbol) {
-            let char = inputString.index(after: firstIndex)
-            guard inputString.indices.contains(char) else {
-                return nil
-            }
-            let attributedString = NSMutableAttributedString(string: inputString)
-
-            let redAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.red]
-            attributedString.addAttributes(
-                redAttributes,
-                range: NSRange(location: inputString.distance(from: inputString.startIndex, to: char), length: 1)
-            )
-
-            let index: Int = inputString.distance(from: inputString.startIndex, to: firstIndex)
-            attributedString.deleteCharacters(in: NSRange(location: index, length: 1))
-
-            return attributedString
-        }
-
-        return nil
     }
 
     private func concatenateStrings(_ strings: [String]) -> String {
