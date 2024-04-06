@@ -57,6 +57,7 @@
 		3072D6F82BC078AF00381BDF /* WordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6F72BC078AF00381BDF /* WordCoordinator.swift */; };
 		3072D6FA2BC078BC00381BDF /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6F92BC078BC00381BDF /* WordViewController.swift */; };
 		3072D6FC2BC0899000381BDF /* WordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6FB2BC0899000381BDF /* WordModel.swift */; };
+		3072D6FE2BC133B100381BDF /* WordHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6FD2BC133B100381BDF /* WordHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		3072D6F72BC078AF00381BDF /* WordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCoordinator.swift; sourceTree = "<group>"; };
 		3072D6F92BC078BC00381BDF /* WordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
 		3072D6FB2BC0899000381BDF /* WordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordModel.swift; sourceTree = "<group>"; };
+		3072D6FD2BC133B100381BDF /* WordHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -470,6 +472,7 @@
 			children = (
 				3072D6F52BC0789500381BDF /* Coordinator */,
 				3072D6F62BC0789D00381BDF /* Views */,
+				3072D6F92BC078BC00381BDF /* WordViewController.swift */,
 			);
 			path = Word;
 			sourceTree = "<group>";
@@ -485,7 +488,7 @@
 		3072D6F62BC0789D00381BDF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3072D6F92BC078BC00381BDF /* WordViewController.swift */,
+				3072D6FD2BC133B100381BDF /* WordHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				3072D6C92BC007CD00381BDF /* TalmideoCoordinator.swift in Sources */,
 				3072C88D2BBFFFC100381BDF /* UIColor+Extensions.swift in Sources */,
 				3072C88B2BBFFFC100381BDF /* String+Extensions.swift in Sources */,
+				3072D6FE2BC133B100381BDF /* WordHeaderView.swift in Sources */,
 				3072D6EA2BC06A7C00381BDF /* SettingsCoordinator.swift in Sources */,
 				3072D6C52BC0071600381BDF /* MappedCoordinator.swift in Sources */,
 				3072D6C42BC0071600381BDF /* AnyCoordinator.swift in Sources */,

@@ -1,20 +1,18 @@
 import Combine
 import Foundation
 
-class WordCoordinator: Coordinator<Void> {
-    private let router: Router?
+class WordCoordinator: Coordinator<Void> { private let router: Router?
     private var viewController: WordViewController?
     private let database: SQLiteDataDatabase?
-    private let id: Int
+    private var id = 0
+    private var model: CurrentValueSubject<WordModel, Never> = .init(WordModel())
 
-    init?(router: Router?, id: Int) {
+    init?(router: Router?) {
         self.router = router
-        self.id = id
         database = SQLiteDataDatabase(name: Constants.DictionaryTranslator,
                                       tableName: Constants.WordData)
-        viewController = WordViewController()
+        viewController = WordViewController(model: model)
         super.init()
-        configure()
     }
 
     private func configure() {
@@ -24,8 +22,8 @@ class WordCoordinator: Coordinator<Void> {
                 if let data = value["data"] as? String {
                     if let jsonData = data.data(using: .utf8) {
                         do {
-                            let wordModel = try JSONDecoder().decode(WordModel.self, from: jsonData)
-                            print(wordModel)
+                            let model = try JSONDecoder().decode(WordModel.self, from: jsonData)
+                            self.model.send(model)
                         } catch {
                             print("Error decoding JSON: \(error)")
                         }
@@ -36,8 +34,13 @@ class WordCoordinator: Coordinator<Void> {
     }
 
     override func start() {
-        router?.willRouteWith(viewController ?? BaseViewController())
-        router?.navigationController.navigationBar.isHidden = true
         super.start()
+    }
+
+    public func update(id: Int) {
+        self.id = id
+        router?.navigationController.navigationBar.isHidden = true
+        router?.willRouteWith(viewController ?? BaseViewController())
+        configure()
     }
 }

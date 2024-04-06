@@ -6,6 +6,7 @@ class SearchCoordinator: Coordinator<Void> {
     private var viewController: SearchViewController?
     private let database: SQLiteDataDatabase?
     private var model: CurrentValueSubject<SearchViewModel, Never> = .init(SearchViewModel(result: []))
+    private var wordCoordinator: WordCoordinator?
 
     init?(router: Router) {
         self.router = router
@@ -49,6 +50,8 @@ class SearchCoordinator: Coordinator<Void> {
     }
 
     override func start() {
+        wordCoordinator = WordCoordinator(router: router)
+        wordCoordinator?.start()
         demo()
         super.start()
     }
@@ -69,11 +72,8 @@ extension SearchCoordinator: SearchViewControllerDelegate {
         }
     }
 
-    // TODO: Move to one layer up
-
-    func navigation(id: Int) {
-        let coordinator = WordCoordinator(router: router, id: id)
-        coordinator?.start()
+    func didSelectItem(id: Int) {
+        wordCoordinator?.update(id: id)
     }
 
     func close() {}

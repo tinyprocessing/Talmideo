@@ -16,6 +16,26 @@ struct WordModel: Codable {
         case partOfSpeech = "part_of_speech"
         case root
     }
+
+    init(
+        binyan: String? = nil,
+        forms: Forms? = nil,
+        gender: String? = nil,
+        initialForm: InitialForm? = nil,
+        meaning: Meaning? = nil,
+        mishkal: String? = nil,
+        partOfSpeech: String? = nil,
+        root: [String]? = nil
+    ) {
+        self.binyan = binyan
+        self.forms = forms
+        self.gender = gender
+        self.initialForm = initialForm
+        self.meaning = meaning
+        self.mishkal = mishkal
+        self.partOfSpeech = partOfSpeech
+        self.root = root
+    }
 }
 
 struct Forms: Codable {

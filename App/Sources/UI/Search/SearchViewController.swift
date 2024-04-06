@@ -3,7 +3,7 @@ import UIKit
 
 protocol SearchViewControllerDelegate: AnyObject {
     func searchBar(textDidChange searchText: String)
-    func navigation(id: Int)
+    func didSelectItem(id: Int)
     func close()
 }
 
@@ -102,6 +102,6 @@ extension SearchViewController: SearchHeaderDelegate {
 
 extension SearchViewController: SearchListViewDelegate {
     func selected(id: Int) {
-        searchDelegate?.navigation(id: id)
+        searchDelegate?.didSelectItem(id: id)
     }
 }
