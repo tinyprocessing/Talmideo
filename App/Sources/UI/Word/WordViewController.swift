@@ -115,22 +115,22 @@ class WordViewController: BaseViewController {
 
         if model.value.partOfSpeech == "V" {
             if let present = model.value.forms?.present {
-                addPresentView(for: present)
+                let view = createWordDataView()
+                view.update(.present(value: present))
             }
             if let passivePresent = model.value.forms?.passivePresent {
-                addPassivePresentView(for: passivePresent)
+                let view = createWordDataView()
+                view.update(.passivePresent(value: passivePresent))
+            }
+            if let past = model.value.forms?.past {
+                let view = createWordDataView()
+                view.update(.past(value: past))
+            }
+            if let future = model.value.forms?.future {
+                let view = createWordDataView()
+                view.update(.future(value: future))
             }
         }
-    }
-
-    private func addPresentView(for present: Present) {
-        let view = createWordDataView()
-        view.update(.present(value: present))
-    }
-
-    private func addPassivePresentView(for passivePresent: Present) {
-        let view = createWordDataView()
-        view.update(.passivePresent(value: passivePresent))
     }
 
     private func createWordDataView() -> WordDataView {

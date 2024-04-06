@@ -117,10 +117,6 @@ class WordDataRowView: UIView {
         leftBlockStackView.addArrangedSubview(leftTransliterationLabel)
 
         leftLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        leftLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        leftLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        leftBlockStackView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        leftBlockStackView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 
         let leftStackView = UIStackView()
         leftStackView.axis = .horizontal
@@ -139,10 +135,6 @@ class WordDataRowView: UIView {
         rightBlockStackView.addArrangedSubview(rightTransliterationLabel)
 
         rightLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        rightLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        rightLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        rightBlockStackView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        rightBlockStackView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 
         let rightStackView = UIStackView()
         rightStackView.axis = .horizontal
