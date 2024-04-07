@@ -61,7 +61,7 @@ struct Forms: Codable {
 }
 
 struct Main: Codable {
-    let p, s: InitialForm?
+    let p, s, fp, fs, mp, ms: InitialForm?
 }
 
 struct InitialForm: Codable {

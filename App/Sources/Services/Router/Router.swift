@@ -5,6 +5,7 @@ class Router {
     let navigationController = UINavigationController()
 
     init(baseRoute: RouteType) {
+        navigationController.navigationBar.isHidden = true
         navigationController.navigationBar.tintColor = .white
         navigationController.navigationBar.largeTitleTextAttributes = [
             .foregroundColor: Colors.BackgroundColor

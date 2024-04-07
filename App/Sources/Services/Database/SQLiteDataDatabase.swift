@@ -18,6 +18,7 @@ final class SQLiteDataDatabase: DataDatabase {
         enum QueryType {
             case search(columns: [String], value: String, limit: Int?)
             case word(value: Int)
+            case index(columns: [String], value: String, limit: Int?)
         }
 
         func prepare(_ queryType: QueryType) -> (String, [Any?]) {
@@ -32,6 +33,17 @@ final class SQLiteDataDatabase: DataDatabase {
                 return (query, values)
             case .word(let value):
                 return ("SELECT * FROM \(tableName) WHERE id = \(value)", [])
+            case .index(let columns, let value, let limit):
+                var query = """
+                SELECT t.id, t.token, t.position, t.word_data_id, w.initial_form, w.meaning_en, w.meaning_ru, w.meaning_es
+                FROM token t
+                JOIN worddata w ON t.word_data_id = w.id
+                WHERE t.token LIKE ? ORDER BY t.position
+                """
+                if let limit = limit {
+                    query += " LIMIT \(limit)"
+                }
+                return (query, ["%\(value)%"])
             }
         }
     }
@@ -64,6 +76,7 @@ final class SQLiteDataDatabase: DataDatabase {
             ) == SQLITE_OK {
                 for (index, value) in queryValues.enumerated() {
                     if let stringValue = value as? String {
+                        print("came here to make bind of values")
                         let bindResult = sqlite3_bind_text(
                             stmt,
                             Int32(index + 1),

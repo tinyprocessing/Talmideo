@@ -18,7 +18,7 @@ class SearchCoordinator: Coordinator<Void> {
     }
 
     private func search(_ value: String) {
-        let query: (String, [Any?]) = database?.query.prepare(.search(
+        let query: (String, [Any?]) = database?.query.prepare(.index(
             columns: Config.columns,
             value: value,
             limit: 50
@@ -31,10 +31,10 @@ class SearchCoordinator: Coordinator<Void> {
     }
 
     private func demo() {
-        let array = ["לִהְיוֹת", "לֶאֱהוֹב", "אַהֲבָה", "לִלְמוֹד", "שֶׁמֶשׁ", "חַמָּנִית"]
+        let array = ["happy", "to be", "to work", "love"]
         var result = SearchViewModel(result: [])
         array.forEach { word in
-            let query: (String, [Any?]) = database?.query.prepare(.search(
+            let query: (String, [Any?]) = database?.query.prepare(.index(
                 columns: Config.columns,
                 value: word,
                 limit: 50

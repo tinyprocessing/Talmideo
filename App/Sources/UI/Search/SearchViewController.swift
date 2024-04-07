@@ -13,6 +13,13 @@ class SearchViewController: BaseViewController {
     private var model: CurrentValueSubject<SearchViewModel, Never>
     private var cancellables = Set<AnyCancellable>()
 
+    private lazy var safeAreaView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(hex: "B4DDD3")
+        return view
+    }()
+
     private lazy var searchHeader: SearchHeaderView = {
         let view = SearchHeaderView()
         view.delegate = self
@@ -49,6 +56,7 @@ class SearchViewController: BaseViewController {
         view.backgroundColor = Config.backgroundColor
         view.addSubview(searchHeader)
         view.addSubview(searchList)
+        view.addSubview(safeAreaView)
 
         model
             .receive(on: DispatchQueue.main)
@@ -59,17 +67,21 @@ class SearchViewController: BaseViewController {
             .store(in: &cancellables)
 
         NSLayoutConstraint.activate([
-            searchHeader.topAnchor.constraint(equalTo: view.topAnchor),
+            searchHeader.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             searchHeader.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             searchHeader.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            searchHeader.heightAnchor.constraint(equalToConstant: Config.searchHeaderHeight)
+            searchHeader.heightAnchor.constraint(equalToConstant: Config.searchHeaderHeight),
+
+            safeAreaView.topAnchor.constraint(equalTo: view.topAnchor),
+            safeAreaView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            safeAreaView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            safeAreaView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
         NSLayoutConstraint.activate([
             searchList.topAnchor.constraint(equalTo: searchHeader.bottomAnchor, constant: Config.searchListPaddingTop),
             searchList.bottomAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                constant: -Config.searchListPaddingTop
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor
             ),
             searchList.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Config.searchListPadding),
             searchList.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Config.searchListPadding)
@@ -88,7 +100,7 @@ class SearchViewController: BaseViewController {
 
     private enum Config {
         static let backgroundColor = UIColor(hex: "F5F8FA")
-        static let searchHeaderHeight: CGFloat = 150
+        static let searchHeaderHeight: CGFloat = 120
         static let searchListPadding: CGFloat = 10
         static let searchListPaddingTop: CGFloat = 20
     }

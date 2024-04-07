@@ -32,6 +32,8 @@ class WordDataView: UIView {
         case imperative(value: [String: InitialForm])
         case passiveFuture(value: [String: InitialForm])
         case passivePast(value: [String: InitialForm])
+        case noun(value: Main, gender: String)
+        case adjective(value: Main)
     }
 
     override init(frame: CGRect) {
@@ -78,7 +80,7 @@ class WordDataView: UIView {
             tenses(value)
         case .future(let value):
             titleLabel.text = Config.future
-            tenses(value)
+            tenses(value, true)
         case .imperative(let value):
             titleLabel.text = Config.imperative
             tenses(value)
@@ -88,6 +90,62 @@ class WordDataView: UIView {
         case .passivePast(let value):
             titleLabel.text = Config.passivePast
             tenses(value)
+        case .noun(let value, let gender):
+            titleLabel.text = Config.noun
+            noun(value, gender)
+        case .adjective(let value):
+            titleLabel.text = Config.adjective
+            adjective(value)
+        }
+    }
+
+    fileprivate func adjective(_ value: Main) {
+        let forms = [(value.mp, "אנחנו\nאתם\nהם", value.ms, "אני\nאתה\nהוא"),
+                     (value.fp, "אנחנו\nאתן\nהן", value.fs, "אני\nאת\nהיא")]
+
+        for (leftValue, leftForms, rightValue, rightForms) in forms {
+            guard let leftValue = leftValue, let rightValue = rightValue else {
+                continue
+            }
+
+            let rowView = WordDataRowView(left: .init(value: leftValue.value ?? "",
+                                                      forms: leftForms,
+                                                      transliteration: leftValue.transcriptionEn ?? ""),
+                                          right: .init(value: rightValue.value ?? "",
+                                                       forms: rightForms,
+                                                       transliteration: rightValue.transcriptionEn ?? ""))
+            stackView.addArrangedSubview(rowView)
+        }
+
+        NSLayoutConstraint.activate([
+            heightAnchor.constraint(equalToConstant: 220)
+        ])
+    }
+
+    fileprivate func noun(_ value: Main, _ gender: String) {
+        var forms = [
+            (value.p, value.s, Config.treeMP, Config.treeMS)
+        ]
+        if gender == "F" {
+            forms = [
+                (value.p, value.s, Config.treeSP, Config.treeFS)
+            ]
+        }
+        for (leftValue, rightValue, leftForms, rightForms) in forms {
+            guard let leftValue = leftValue, let rightValue = rightValue else {
+                continue
+            }
+
+            let rowView = WordDataRowView(left: .init(value: leftValue.value ?? "",
+                                                      forms: leftForms,
+                                                      transliteration: leftValue.transcriptionEn ?? ""),
+                                          right: .init(value: rightValue.value ?? "",
+                                                       forms: rightForms,
+                                                       transliteration: rightValue.transcriptionEn ?? ""))
+            stackView.addArrangedSubview(rowView)
+            NSLayoutConstraint.activate([
+                heightAnchor.constraint(equalToConstant: 135)
+            ])
         }
     }
 
@@ -116,12 +174,22 @@ class WordDataView: UIView {
         ])
     }
 
-    fileprivate func tenses(_ value: [String: InitialForm]) {
-        let forms = [("1p", Config.oneP, "1s", Config.oneS),
+    fileprivate func tenses(_ value: [String: InitialForm], _ isFuture: Bool = false) {
+        var forms = [("1p", Config.oneP, "1s", Config.oneS),
                      ("2mp", Config.twoMP, "2ms", Config.twoMS),
                      ("2fp", Config.twoFP, "2fs", Config.twoFS),
                      ("3p", Config.treeSP, "3ms", Config.treeMS),
                      ("3p", Config.treeMP, "3fs", Config.treeFS)]
+
+        if isFuture {
+            forms = [
+                ("1p", Config.oneP, "1s", Config.oneS),
+                ("2mp", Config.twoMP, "2ms", Config.twoMS),
+                ("2fp", Config.twoFP, "2fs", Config.twoFS),
+                ("3fp", Config.treeSP, "3ms", Config.treeMS),
+                ("3mp", Config.treeMP, "3fs", Config.treeFS)
+            ]
+        }
 
         for (leftKey, leftForms, rightKey, rightForms) in forms {
             let leftValue = value[leftKey]?.value ?? ""
@@ -150,6 +218,8 @@ class WordDataView: UIView {
         static let imperative = "Imperative"
         static let passiveFuture = "Passive Future"
         static let passivePast = "Passive Past"
+        static let noun = "Noun"
+        static let adjective = "Adjective"
 
         static let oneP = "אנחנו"
         static let oneS = "אני"

@@ -13,6 +13,7 @@ class WordCoordinator: Coordinator<Void> { private let router: Router?
                                       tableName: Constants.WordData)
         viewController = WordViewController(model: model)
         super.init()
+        viewController?.wordDelegate = self
     }
 
     private func configure() {
@@ -43,4 +44,8 @@ class WordCoordinator: Coordinator<Void> { private let router: Router?
         router?.willRouteWith(viewController ?? BaseViewController())
         configure()
     }
+}
+
+extension WordCoordinator: WordViewDelegate {
+    func close() {}
 }

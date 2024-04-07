@@ -16,7 +16,7 @@ public struct SearchWordModel: Decodable {
 
 extension SearchWordModel {
     static func from(dictionary: [String: Any?]) -> SearchWordModel? {
-        guard let id = dictionary["id"] as? Int,
+        guard let id = dictionary["word_data_id"] as? Int,
               let form = dictionary["initial_form"] as? String,
               let meaningRu = dictionary["meaning_ru"] as? String,
               let meaningEn = dictionary["meaning_en"] as? String

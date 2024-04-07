@@ -1,7 +1,13 @@
 import Combine
 import UIKit
 
+protocol WordViewDelegate: AnyObject {
+    func close()
+}
+
 class WordViewController: BaseViewController {
+    var wordDelegate: WordViewDelegate?
+
     private var model: CurrentValueSubject<WordModel, Never>
     private var cancellables = Set<AnyCancellable>()
 
@@ -131,6 +137,18 @@ class WordViewController: BaseViewController {
                 view.update(.future(value: future))
             }
         }
+        if model.value.partOfSpeech == "N" {
+            if let main = model.value.forms?.main {
+                let view = createWordDataView()
+                view.update(.noun(value: main, gender: model.value.gender ?? "M"))
+            }
+        }
+        if model.value.partOfSpeech == "A" {
+            if let adjective = model.value.forms?.main {
+                let view = createWordDataView()
+                view.update(.adjective(value: adjective))
+            }
+        }
     }
 
     private func createWordDataView() -> WordDataView {
@@ -144,6 +162,7 @@ class WordViewController: BaseViewController {
 
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+        wordDelegate?.close()
     }
 
     private enum Config {

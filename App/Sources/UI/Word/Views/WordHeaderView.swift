@@ -88,6 +88,7 @@ class WordHeaderView: UIView {
     }
 
     public func update(_ model: WordModel) {
+        rootLabel.text = ""
         if let form = model.initialForm {
             titleLabel.text = form.value
             if let light = (form.transcriptionEn ?? "").highlightCharacterAfterSymbol(symbol: "`") {
@@ -101,9 +102,9 @@ class WordHeaderView: UIView {
                 let genderDescription: String
                 switch gender {
                 case "M":
-                    genderDescription = "masculine"
+                    genderDescription = Config.masculine
                 case "F":
-                    genderDescription = "feminine"
+                    genderDescription = Config.feminine
                 default:
                     genderDescription = ""
                 }
@@ -115,7 +116,6 @@ class WordHeaderView: UIView {
         if let root = model.root {
             rootLabel.text = concatenateStrings(root)
         }
-        print(model)
         setNeedsLayout()
     }
 
@@ -125,5 +125,7 @@ class WordHeaderView: UIView {
 
     private enum Config {
         static let title = ""
+        static let masculine = "masculine"
+        static let feminine = "feminine"
     }
 }

@@ -44,7 +44,9 @@ class SearchListView: UIView {
         stackView.distribution = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
+        scrollView.keyboardDismissMode = .onDrag
         scrollView.addSubview(stackView)
+        scrollView.alwaysBounceVertical = true
 
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),

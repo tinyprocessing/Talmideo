@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		303D46A32BC2BF5E00A57E09 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */; };
 		3072C8382BBFFB9C00381BDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072C8372BBFFB9C00381BDF /* AppDelegate.swift */; };
 		3072C83A2BBFFB9C00381BDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072C8392BBFFB9C00381BDF /* SceneDelegate.swift */; };
 		3072C83C2BBFFB9C00381BDF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072C83B2BBFFB9C00381BDF /* SearchViewController.swift */; };
@@ -80,6 +81,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
 		3072C8342BBFFB9C00381BDF /* Talmideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Talmideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3072C8372BBFFB9C00381BDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3072C8392BBFFB9C00381BDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				3072C8862BBFFFC100381BDF /* UserDefaults+Extension.swift */,
 				3072C8872BBFFFC100381BDF /* Float+Extensions.swift */,
 				3072C8882BBFFFC100381BDF /* Comparable+Extensions.swift */,
+				303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				3072D6E52BC060B600381BDF /* TabViewController.swift in Sources */,
 				3072D6FA2BC078BC00381BDF /* WordViewController.swift in Sources */,
 				3072D6CD2BC008DC00381BDF /* CombineAsyncStreamBridge.swift in Sources */,
+				303D46A32BC2BF5E00A57E09 /* UISearchBar+Extensions.swift in Sources */,
 				3072C8892BBFFFC100381BDF /* Int+Extensions.swift in Sources */,
 				3072C83A2BBFFB9C00381BDF /* SceneDelegate.swift in Sources */,
 				3072C89A2BBFFFC700381BDF /* Localized.swift in Sources */,
