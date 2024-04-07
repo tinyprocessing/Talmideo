@@ -12,6 +12,7 @@ class SearchViewController: BaseViewController {
 
     private var model: CurrentValueSubject<SearchViewModel, Never>
     private var cancellables = Set<AnyCancellable>()
+    public let bookmarks: BookmarkManager?
 
     private lazy var safeAreaView: UIView = {
         let view = UIView()
@@ -34,9 +35,14 @@ class SearchViewController: BaseViewController {
         return view
     }()
 
-    init(searchDelegate: SearchViewControllerDelegate? = nil, model: CurrentValueSubject<SearchViewModel, Never>) {
+    init(
+        searchDelegate: SearchViewControllerDelegate? = nil,
+        model: CurrentValueSubject<SearchViewModel, Never>,
+        bookmarks: BookmarkManager
+    ) {
         self.searchDelegate = searchDelegate
         self.model = model
+        self.bookmarks = bookmarks
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -91,9 +97,9 @@ class SearchViewController: BaseViewController {
     // MARK: Actions
 
     private func update() {
-        var array: [(Int, String, String)] = []
+        var array: [(Int, String, String, Bool)] = []
         model.value.result.forEach { word in
-            array.append((word.id, word.meaningEn, word.form))
+            array.append((word.id, word.meaning, word.form, false))
         }
         searchList.refreshWithData(array)
     }

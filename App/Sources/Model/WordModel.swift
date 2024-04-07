@@ -8,6 +8,7 @@ struct WordModel: Codable {
     let meaning: Meaning?
     let mishkal, partOfSpeech: String?
     let root: [String]?
+    var isBookmarked = false
 
     enum CodingKeys: String, CodingKey {
         case binyan, forms, gender
@@ -66,6 +67,12 @@ struct Main: Codable {
 
 struct InitialForm: Codable {
     let transcriptionEn, transcriptionEs, transcriptionRu, value: String?
+    public var transcription: String {
+        guard let appLanguage = Locale.preferredLanguages.first, appLanguage.hasPrefix("ru") else {
+            return transcriptionEn ?? ""
+        }
+        return transcriptionRu ?? ""
+    }
 
     enum CodingKeys: String, CodingKey {
         case transcriptionEn = "transcription_en"

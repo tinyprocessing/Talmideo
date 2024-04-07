@@ -6,6 +6,7 @@ class WordCoordinator: Coordinator<Void> { private let router: Router?
     private let database: SQLiteDataDatabase?
     private var id = 0
     private var model: CurrentValueSubject<WordModel, Never> = .init(WordModel())
+    private let bookmarks = BookmarkManager()
 
     init?(router: Router?) {
         self.router = router
@@ -23,7 +24,8 @@ class WordCoordinator: Coordinator<Void> { private let router: Router?
                 if let data = value["data"] as? String {
                     if let jsonData = data.data(using: .utf8) {
                         do {
-                            let model = try JSONDecoder().decode(WordModel.self, from: jsonData)
+                            var model = try JSONDecoder().decode(WordModel.self, from: jsonData)
+                            model.isBookmarked = bookmarks.isBookmarked(id)
                             self.model.send(model)
                         } catch {
                             print("Error decoding JSON: \(error)")
@@ -40,6 +42,8 @@ class WordCoordinator: Coordinator<Void> { private let router: Router?
 
     public func update(id: Int) {
         self.id = id
+        viewController = WordViewController(model: model)
+        viewController?.wordDelegate = self
         router?.navigationController.navigationBar.isHidden = true
         router?.willRouteWith(viewController ?? BaseViewController())
         configure()
@@ -47,5 +51,16 @@ class WordCoordinator: Coordinator<Void> { private let router: Router?
 }
 
 extension WordCoordinator: WordViewDelegate {
-    func close() {}
+    func close() {
+        viewController?.delegate = nil
+        viewController = nil
+    }
+
+    func bookmark(_ model: WordModel) {
+        if bookmarks.isBookmarked(id) {
+            bookmarks.removeBookmark(id)
+        } else {
+            bookmarks.addBookmark(id)
+        }
+    }
 }

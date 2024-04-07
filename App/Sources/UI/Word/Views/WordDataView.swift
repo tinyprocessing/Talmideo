@@ -110,10 +110,10 @@ class WordDataView: UIView {
 
             let rowView = WordDataRowView(left: .init(value: leftValue.value ?? "",
                                                       forms: leftForms,
-                                                      transliteration: leftValue.transcriptionEn ?? ""),
+                                                      transliteration: leftValue.transcription),
                                           right: .init(value: rightValue.value ?? "",
                                                        forms: rightForms,
-                                                       transliteration: rightValue.transcriptionEn ?? ""))
+                                                       transliteration: rightValue.transcription))
             stackView.addArrangedSubview(rowView)
         }
 
@@ -132,16 +132,12 @@ class WordDataView: UIView {
             ]
         }
         for (leftValue, rightValue, leftForms, rightForms) in forms {
-            guard let leftValue = leftValue, let rightValue = rightValue else {
-                continue
-            }
-
-            let rowView = WordDataRowView(left: .init(value: leftValue.value ?? "",
+            let rowView = WordDataRowView(left: .init(value: leftValue?.value ?? "-",
                                                       forms: leftForms,
-                                                      transliteration: leftValue.transcriptionEn ?? ""),
-                                          right: .init(value: rightValue.value ?? "",
+                                                      transliteration: leftValue?.transcription ?? "-"),
+                                          right: .init(value: rightValue?.value ?? "-",
                                                        forms: rightForms,
-                                                       transliteration: rightValue.transcriptionEn ?? ""))
+                                                       transliteration: rightValue?.transcription ?? "-"))
             stackView.addArrangedSubview(rowView)
             NSLayoutConstraint.activate([
                 heightAnchor.constraint(equalToConstant: 135)
@@ -162,10 +158,10 @@ class WordDataView: UIView {
 
             let rowView = WordDataRowView(left: .init(value: leftValue.value ?? "",
                                                       forms: leftForms,
-                                                      transliteration: leftValue.transcriptionEn ?? ""),
+                                                      transliteration: leftValue.transcription),
                                           right: .init(value: rightValue.value ?? "",
                                                        forms: rightForms,
-                                                       transliteration: rightValue.transcriptionEn ?? ""))
+                                                       transliteration: rightValue.transcription))
             stackView.addArrangedSubview(rowView)
         }
 
@@ -193,9 +189,9 @@ class WordDataView: UIView {
 
         for (leftKey, leftForms, rightKey, rightForms) in forms {
             let leftValue = value[leftKey]?.value ?? ""
-            let leftTransliteration = value[leftKey]?.transcriptionEn ?? ""
+            let leftTransliteration = value[leftKey]?.transcription ?? ""
             let rightValue = value[rightKey]?.value ?? ""
-            let rightTransliteration = value[rightKey]?.transcriptionEn ?? ""
+            let rightTransliteration = value[rightKey]?.transcription ?? ""
 
             let rowView = WordDataRowView(
                 left: .init(value: leftValue, forms: leftForms, transliteration: leftTransliteration),

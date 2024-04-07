@@ -91,10 +91,10 @@ class WordHeaderView: UIView {
         rootLabel.text = ""
         if let form = model.initialForm {
             titleLabel.text = form.value
-            if let light = (form.transcriptionEn ?? "").highlightCharacterAfterSymbol(symbol: "`") {
+            if let light = (form.transcription).highlightCharacterAfterSymbol(symbol: "`") {
                 subtitleLabel.attributedText = light
             } else {
-                subtitleLabel.text = form.transcriptionEn
+                subtitleLabel.text = form.transcription
             }
         }
         if let meaning = model.meaning {

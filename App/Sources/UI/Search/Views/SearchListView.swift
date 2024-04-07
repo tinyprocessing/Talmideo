@@ -57,7 +57,7 @@ class SearchListView: UIView {
         ])
     }
 
-    func refreshWithData(_ data: [(Int, String, String)]) {
+    func refreshWithData(_ data: [(Int, String, String, Bool)]) {
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
 
         for item in data {

@@ -7,12 +7,13 @@ class SearchCoordinator: Coordinator<Void> {
     private let database: SQLiteDataDatabase?
     private var model: CurrentValueSubject<SearchViewModel, Never> = .init(SearchViewModel(result: []))
     private var wordCoordinator: WordCoordinator?
+    private let bookmarks = BookmarkManager()
 
     init?(router: Router) {
         self.router = router
         database = SQLiteDataDatabase(name: Constants.Dictionary,
                                       tableName: Constants.WordDataTable)
-        viewController = SearchViewController(model: model)
+        viewController = SearchViewController(model: model, bookmarks: bookmarks)
         super.init()
         viewController?.searchDelegate = self
     }
@@ -24,51 +25,70 @@ class SearchCoordinator: Coordinator<Void> {
             limit: 50
         )) ?? ("", [])
         if let result = database?.search(query) {
-            let words: [SearchWordModel] = result.compactMap { SearchWordModel.from(dictionary: $0) }
-            let result = SearchViewModel(result: words)
-            model.send(result)
+            let words = result.compactMap { SearchWordModel.from(dictionary: $0) }
+            let viewModel = SearchViewModel(result: Array(Set(words)))
+            model.send(viewModel)
         }
     }
 
-    private func demo() {
-        let array = ["happy", "to be", "to work", "love"]
-        var result = SearchViewModel(result: [])
-        array.forEach { word in
-            let query: (String, [Any?]) = database?.query.prepare(.index(
-                columns: Config.columns,
-                value: word,
-                limit: 50
-            )) ?? ("", [])
+    private func processSearchResults(isBookmarks: Bool = false) {
+//        let idArray: [Int] = isBookmarks ?
+//            (bookmarks.getAllBookmarkedIDs().isEmpty ? generateRandomIntegers() : bookmarks.getAllBookmarkedIDs()) :
+//            generateRandomIntegers()
+        let idArray: [Int] = generateRandomIntegers()
+
+        var searchResultModel = SearchViewModel(result: [])
+
+        idArray.forEach { id in
+            let query: (String, [Any?]) = prepareQueryForID(id)
+
             if let response = database?.search(query) {
-                let words: [SearchWordModel] = response.compactMap { SearchWordModel.from(dictionary: $0) }
-                words.forEach { value in
-                    result.result.append(value)
+                let words = response.compactMap { SearchWordModel.from(dictionary: $0) }
+                Array(Set(words)).forEach { word in
+                    searchResultModel.result.append(word)
                 }
             }
         }
-        model.send(result)
+
+        model.send(searchResultModel)
+    }
+
+    private func prepareQueryForID(_ id: Int) -> (String, [Any?]) {
+        return database?.query.prepare(.id(
+            value: "\(id)",
+            limit: 50
+        )) ?? ("", [])
     }
 
     override func start() {
         wordCoordinator = WordCoordinator(router: router)
         wordCoordinator?.start()
-        demo()
+        processSearchResults(isBookmarks: true)
         super.start()
-    }
-
-    private enum Config {
-        static let columns: [String] = ["initial_form", "meaning_ru", "meaning_en"]
     }
 
     public func exportViewController() -> BaseViewController {
         return viewController ?? BaseViewController()
+    }
+
+    private func generateRandomIntegers() -> [Int] {
+        var randomIntegers = [Int]()
+        for _ in 0..<20 {
+            let randomInt = Int.random(in: 0...9142)
+            randomIntegers.append(randomInt)
+        }
+        return randomIntegers
+    }
+
+    private enum Config {
+        static let columns: [String] = ["initial_form", "meaning_ru", "meaning_en"]
     }
 }
 
 extension SearchCoordinator: SearchViewControllerDelegate {
     func searchBar(textDidChange searchText: String) {
         if !searchText.isEmpty { search(searchText) } else {
-            demo()
+            processSearchResults(isBookmarks: true)
         }
     }
 

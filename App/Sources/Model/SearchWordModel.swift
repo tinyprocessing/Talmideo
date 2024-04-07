@@ -1,10 +1,18 @@
 import Foundation
 
-public struct SearchWordModel: Decodable {
+public struct SearchWordModel: Hashable, Decodable {
     public var id: Int
     public var form: String
-    public var meaningRu: String
-    public var meaningEn: String
+    public var isBookmarked = false
+
+    private var meaningRu: String
+    private var meaningEn: String
+    public var meaning: String {
+        guard let appLanguage = Locale.preferredLanguages.first, appLanguage.hasPrefix("ru") else {
+            return meaningEn
+        }
+        return meaningRu
+    }
 
     public init(id: Int, form: String, meaningRu: String, meaningEn: String) {
         self.id = id

@@ -3,6 +3,7 @@ import UIKit
 
 protocol WordViewDelegate: AnyObject {
     func close()
+    func bookmark(_ model: WordModel)
 }
 
 class WordViewController: BaseViewController {
@@ -21,6 +22,17 @@ class WordViewController: BaseViewController {
         button.backgroundColor = Config.buttonColor
         button.layer.cornerRadius = 15
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    private lazy var bookmarkButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(Config.iconStar, for: .normal)
+        button.tintColor = .white
+        button.backgroundColor = Config.buttonColor
+        button.layer.cornerRadius = 15
+        button.addTarget(self, action: #selector(bookmarkButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -58,12 +70,18 @@ class WordViewController: BaseViewController {
             .store(in: &cancellables)
 
         view.addSubview(backButton)
+        view.addSubview(bookmarkButton)
 
         NSLayoutConstraint.activate([
             backButton.widthAnchor.constraint(equalToConstant: 30),
             backButton.heightAnchor.constraint(equalToConstant: 30),
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
-            backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16)
+            backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+
+            bookmarkButton.widthAnchor.constraint(equalToConstant: 30),
+            bookmarkButton.heightAnchor.constraint(equalToConstant: 30),
+            bookmarkButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            bookmarkButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
         ])
 
         setupScrollView()
@@ -113,6 +131,10 @@ class WordViewController: BaseViewController {
     private func update() {
         wordHeaderView.update(model.value)
 
+        if model.value.isBookmarked {
+            bookmarkButton.setImage(Config.iconStarFill, for: .normal)
+        }
+
         stackView.arrangedSubviews.forEach { view in
             if let view = view as? WordDataView {
                 view.removeFromSuperview()
@@ -149,6 +171,7 @@ class WordViewController: BaseViewController {
                 view.update(.adjective(value: adjective))
             }
         }
+        scrollView.setContentOffset(CGPoint.zero, animated: false)
     }
 
     private func createWordDataView() -> WordDataView {
@@ -165,12 +188,31 @@ class WordViewController: BaseViewController {
         wordDelegate?.close()
     }
 
+    @objc private func bookmarkButtonTapped() {
+        if bookmarkButton.imageView?.image == Config.iconStar {
+            bookmarkButton.setImage(Config.iconStarFill, for: .normal)
+        } else {
+            bookmarkButton.setImage(Config.iconStar, for: .normal)
+        }
+        wordDelegate?.bookmark(model.value)
+    }
+
     private enum Config {
         static let backgroundColor = UIColor(hex: "F5F8FA")
         static let buttonColor = UIColor(hex: "FFC75A")
         static var iconBack: UIImage {
             let config = UIImage.SymbolConfiguration(pointSize: 14, weight: .regular, scale: .default)
             return UIImage(systemName: "chevron.left", withConfiguration: config) ?? UIImage()
+        }
+
+        static var iconStar: UIImage {
+            let config = UIImage.SymbolConfiguration(pointSize: 14, weight: .regular, scale: .default)
+            return UIImage(systemName: "star", withConfiguration: config) ?? UIImage()
+        }
+
+        static var iconStarFill: UIImage {
+            let config = UIImage.SymbolConfiguration(pointSize: 14, weight: .regular, scale: .default)
+            return UIImage(systemName: "star.fill", withConfiguration: config) ?? UIImage()
         }
     }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		303D46A32BC2BF5E00A57E09 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */; };
+		303D46A62BC2EDFB00A57E09 /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D46A52BC2EDFB00A57E09 /* BookmarkManager.swift */; };
 		3072C8382BBFFB9C00381BDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072C8372BBFFB9C00381BDF /* AppDelegate.swift */; };
 		3072C83A2BBFFB9C00381BDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072C8392BBFFB9C00381BDF /* SceneDelegate.swift */; };
 		3072C83C2BBFFB9C00381BDF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072C83B2BBFFB9C00381BDF /* SearchViewController.swift */; };
@@ -82,6 +83,7 @@
 
 /* Begin PBXFileReference section */
 		303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
+		303D46A52BC2EDFB00A57E09 /* BookmarkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkManager.swift; sourceTree = "<group>"; };
 		3072C8342BBFFB9C00381BDF /* Talmideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Talmideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3072C8372BBFFB9C00381BDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3072C8392BBFFB9C00381BDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +168,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		303D46A42BC2EDEA00A57E09 /* Bookmarks */ = {
+			isa = PBXGroup;
+			children = (
+				303D46A52BC2EDFB00A57E09 /* BookmarkManager.swift */,
+			);
+			path = Bookmarks;
+			sourceTree = "<group>";
+		};
 		3072C82B2BBFFB9B00381BDF = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +261,7 @@
 		3072C86A2BBFFFA600381BDF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				303D46A42BC2EDEA00A57E09 /* Bookmarks */,
 				3072D6CF2BC00C6400381BDF /* Database */,
 				3072C86D2BBFFFA600381BDF /* Network */,
 				3072C8722BBFFFA600381BDF /* Router */,
@@ -639,6 +650,7 @@
 				3072C87A2BBFFFA600381BDF /* Route.swift in Sources */,
 				3072C89C2BBFFFC700381BDF /* Colors.swift in Sources */,
 				3072C8912BBFFFC100381BDF /* Float+Extensions.swift in Sources */,
+				303D46A62BC2EDFB00A57E09 /* BookmarkManager.swift in Sources */,
 				3072D6CE2BC008DC00381BDF /* Publisher+SingleOutput.swift in Sources */,
 				3072D6F32BC077AB00381BDF /* BookmarksCoordinator.swift in Sources */,
 				3072D6EC2BC06AC900381BDF /* SettingsViewController.swift in Sources */,
