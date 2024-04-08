@@ -27,6 +27,7 @@ class WordDataRowView: UIView {
         label.font = .systemFont(ofSize: 18, weight: .medium)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.opacity = 0
         return label
     }()
 
@@ -36,6 +37,7 @@ class WordDataRowView: UIView {
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.opacity = 0
         return label
     }()
 
@@ -46,6 +48,7 @@ class WordDataRowView: UIView {
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textColor = .secondaryLabel.withAlphaComponent(0.7)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.opacity = 0
         return label
     }()
 
@@ -55,6 +58,7 @@ class WordDataRowView: UIView {
         label.font = .systemFont(ofSize: 18, weight: .medium)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.opacity = 0
         return label
     }()
 
@@ -64,6 +68,7 @@ class WordDataRowView: UIView {
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.opacity = 0
         return label
     }()
 
@@ -76,26 +81,43 @@ class WordDataRowView: UIView {
     init(left: Item, right: Item) {
         super.init(frame: .zero)
         setupViews()
-        leftLabel.text = left.forms
-        leftValueLabel.text = left.value
-        if let text = left.transliteration.highlightCharacterAfterSymbol(symbol: "`") {
-            leftTransliterationLabel.attributedText = text
-        } else {
-            leftTransliterationLabel.text = left.transliteration
-        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            guard let self = self else { return }
+            leftLabel.text = left.forms
+            leftValueLabel.text = left.value
+            if let text = left.transliteration.highlightCharacterAfterSymbol(symbol: "`") {
+                leftTransliterationLabel.attributedText = text
+            } else {
+                leftTransliterationLabel.text = left.transliteration
+            }
+            animateOpacity(for: leftLabel)
+            animateOpacity(for: leftValueLabel)
+            animateOpacity(for: leftTransliterationLabel)
 
-        rightLabel.text = right.forms
-        rightValueLabel.text = right.value
-        if let text = right.transliteration.highlightCharacterAfterSymbol(symbol: "`") {
-            rightTransliterationLabel.attributedText = text
-        } else {
-            rightTransliterationLabel.text = right.transliteration
+            rightLabel.text = right.forms
+            rightValueLabel.text = right.value
+            if let text = right.transliteration.highlightCharacterAfterSymbol(symbol: "`") {
+                rightTransliterationLabel.attributedText = text
+            } else {
+                rightTransliterationLabel.text = right.transliteration
+            }
+
+            animateOpacity(for: rightLabel)
+            animateOpacity(for: rightValueLabel)
+            animateOpacity(for: rightTransliterationLabel)
         }
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupViews()
+    }
+
+    private func animateOpacity(for view: UIView) {
+        view.layer.opacity = 0
+        UIView.animate(withDuration: 0.5) {
+            view.layer.opacity = 1
+        }
     }
 
     private func setupViews() {

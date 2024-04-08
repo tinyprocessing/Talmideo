@@ -5,6 +5,7 @@ protocol SearchViewControllerDelegate: AnyObject {
     func searchBar(textDidChange searchText: String)
     func didSelectItem(id: Int)
     func close()
+    func bookmarkTap(isOn: Bool)
 }
 
 class SearchViewController: BaseViewController {
@@ -115,6 +116,10 @@ class SearchViewController: BaseViewController {
 extension SearchViewController: SearchHeaderDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchDelegate?.searchBar(textDidChange: searchText)
+    }
+
+    func bookmarkTap(isOn: Bool) {
+        searchDelegate?.bookmarkTap(isOn: isOn)
     }
 }
 

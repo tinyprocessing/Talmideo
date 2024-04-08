@@ -5,7 +5,7 @@ class TalmideoCoordinator: Coordinator<Void> {
     private let router: Router
     private var searchCoordinator: SearchCoordinator?
     private var settingsCoordinator: SettingsCoordinator?
-    private var bookmarksCoordinator: BookmarksCoordinator?
+    private var exploreCoordinator: ExploreCoordinator?
 
     private var tabViewController: TabViewController?
 
@@ -18,11 +18,11 @@ class TalmideoCoordinator: Coordinator<Void> {
     private func launchTM() {
         searchCoordinator = SearchCoordinator(router: router)
         settingsCoordinator = SettingsCoordinator(router: router)
-        bookmarksCoordinator = BookmarksCoordinator(router: router)
+        exploreCoordinator = ExploreCoordinator(router: router)
 
         searchCoordinator?.start()
         settingsCoordinator?.start()
-        bookmarksCoordinator?.start()
+        exploreCoordinator?.start()
 
         configureVCs()
     }
@@ -35,9 +35,9 @@ class TalmideoCoordinator: Coordinator<Void> {
                                           tag: 0)
             array.append(controller)
         }
-        if let controller = bookmarksCoordinator?.exportViewController() {
-            controller.tabBarItem = .init(title: Config.bookmarks,
-                                          image: Config.imageBookmarks,
+        if let controller = exploreCoordinator?.exportViewController() {
+            controller.tabBarItem = .init(title: Config.explore,
+                                          image: Config.imageExplore,
                                           tag: 1)
             array.append(controller)
         }
@@ -59,7 +59,7 @@ class TalmideoCoordinator: Coordinator<Void> {
     private enum Config {
         static let search = "Search"
         static let settings = "Settings"
-        static let bookmarks = "Bookmarks"
+        static let explore = "Explore"
         static var imageSearch: UIImage {
             let config = UIImage.SymbolConfiguration(pointSize: 16, weight: .regular, scale: .default)
             return UIImage(systemName: "magnifyingglass", withConfiguration: config) ?? UIImage()
@@ -70,9 +70,9 @@ class TalmideoCoordinator: Coordinator<Void> {
             return UIImage(systemName: "gearshape", withConfiguration: config) ?? UIImage()
         }
 
-        static var imageBookmarks: UIImage {
+        static var imageExplore: UIImage {
             let config = UIImage.SymbolConfiguration(pointSize: 16, weight: .regular, scale: .default)
-            return UIImage(systemName: "book", withConfiguration: config) ?? UIImage()
+            return UIImage(systemName: "square.grid.2x2", withConfiguration: config) ?? UIImage()
         }
     }
 }

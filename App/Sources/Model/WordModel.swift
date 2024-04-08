@@ -84,6 +84,12 @@ struct InitialForm: Codable {
 
 struct Meaning: Codable {
     let en, es, ru: String?
+    public var locale: String {
+        guard let appLanguage = Locale.preferredLanguages.first, appLanguage.hasPrefix("ru") else {
+            return en ?? ""
+        }
+        return ru ?? ""
+    }
 }
 
 struct Present: Codable {

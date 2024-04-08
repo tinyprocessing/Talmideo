@@ -17,8 +17,10 @@ final class SQLiteDataDatabase: DataDatabase {
 
         enum QueryType {
             case search(columns: [String], value: String, limit: Int?)
+            // Custom queries
+            // TODO: Change this somehow to be Generic
             case word(value: Int)
-            case index(columns: [String], value: String, limit: Int?)
+            case index(value: String, limit: Int?)
             case id(value: String, limit: Int?)
         }
 
@@ -34,7 +36,7 @@ final class SQLiteDataDatabase: DataDatabase {
                 return (query, values)
             case .word(let value):
                 return ("SELECT * FROM \(tableName) WHERE id = \(value)", [])
-            case .index(let columns, let value, let limit):
+            case .index(let value, let limit):
                 var query = """
                 SELECT t.word_data_id, t.id, t.token, t.position, w.initial_form, w.meaning_en, w.meaning_ru, w.meaning_es
                 FROM token t

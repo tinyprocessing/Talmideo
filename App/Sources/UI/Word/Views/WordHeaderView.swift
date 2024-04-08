@@ -108,9 +108,9 @@ class WordHeaderView: UIView {
                 default:
                     genderDescription = ""
                 }
-                meaningLabel.text = "\(meaning.en ?? "") (\(genderDescription))"
+                meaningLabel.text = "\(meaning.locale) (\(genderDescription))"
             } else {
-                meaningLabel.text = meaning.en
+                meaningLabel.text = meaning.locale
             }
         }
         if let root = model.root {

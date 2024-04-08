@@ -1,13 +1,13 @@
 import Combine
 import Foundation
 
-class BookmarksCoordinator: Coordinator<Void> {
+class ExploreCoordinator: Coordinator<Void> {
     private let router: Router?
-    private var viewController: SettingsViewController?
+    private var viewController: ExploreViewController?
 
     init?(router: Router) {
         self.router = router
-        viewController = SettingsViewController()
+        viewController = ExploreViewController()
         super.init()
     }
 

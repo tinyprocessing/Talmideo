@@ -3,6 +3,7 @@ import UIKit
 
 protocol SearchHeaderDelegate: AnyObject {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+    func bookmarkTap(isOn: Bool)
 }
 
 class SearchHeaderView: UIView {
@@ -43,6 +44,17 @@ class SearchHeaderView: UIView {
         return view
     }()
 
+    private lazy var bookmarkButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(Config.iconStar, for: .normal)
+        button.tintColor = .white
+        button.backgroundColor = Config.buttonColor
+        button.layer.cornerRadius = 15
+        button.addTarget(self, action: #selector(bookmarkButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -57,6 +69,7 @@ class SearchHeaderView: UIView {
         addSubview(backgroundView)
         backgroundView.addSubview(imageView)
         backgroundView.addSubview(searchBar)
+        backgroundView.addSubview(bookmarkButton)
         setupConstraints()
     }
 
@@ -81,8 +94,32 @@ class SearchHeaderView: UIView {
             searchBar.trailingAnchor.constraint(
                 equalTo: backgroundView.trailingAnchor,
                 constant: -Config.searchBarPadding
-            )
+            ),
+            bookmarkButton.widthAnchor.constraint(equalToConstant: 30),
+            bookmarkButton.heightAnchor.constraint(equalToConstant: 30),
+            bookmarkButton.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
+            bookmarkButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -16)
         ])
+    }
+
+    @objc private func bookmarkButtonTapped() {
+        if bookmarkButton.imageView?.image == Config.iconStar {
+            bookmarkButton.setImage(Config.iconStarFill, for: .normal)
+            searchBar.text = ""
+            toggleSearchBarAvailability(false)
+            delegate?.bookmarkTap(isOn: true)
+        } else {
+            bookmarkButton.setImage(Config.iconStar, for: .normal)
+            toggleSearchBarAvailability(true)
+            delegate?.bookmarkTap(isOn: false)
+        }
+    }
+
+    private func toggleSearchBarAvailability(_ isEnabled: Bool) {
+        UIView.animate(withDuration: 0.3) {
+            self.searchBar.alpha = isEnabled ? 1.0 : 0.5
+            self.searchBar.isUserInteractionEnabled = isEnabled
+        }
     }
 
     private enum Config {
@@ -91,6 +128,16 @@ class SearchHeaderView: UIView {
         static let searchBarPlaceholder = "Search"
         static let backgroundViewPadding: CGFloat = 16
         static let backgroundColor = UIColor(hex: "B4DDD3")
+        static let buttonColor = UIColor.secondaryLabel.withAlphaComponent(0.2)
+        static var iconStar: UIImage {
+            let config = UIImage.SymbolConfiguration(pointSize: 14, weight: .regular, scale: .default)
+            return UIImage(systemName: "star", withConfiguration: config) ?? UIImage()
+        }
+
+        static var iconStarFill: UIImage {
+            let config = UIImage.SymbolConfiguration(pointSize: 14, weight: .regular, scale: .default)
+            return UIImage(systemName: "star.fill", withConfiguration: config) ?? UIImage()
+        }
     }
 }
 

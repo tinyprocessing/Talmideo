@@ -8,6 +8,7 @@ class SearchCoordinator: Coordinator<Void> {
     private var model: CurrentValueSubject<SearchViewModel, Never> = .init(SearchViewModel(result: []))
     private var wordCoordinator: WordCoordinator?
     private let bookmarks = BookmarkManager()
+    private var bookmarksFilter = false
 
     init?(router: Router) {
         self.router = router
@@ -20,7 +21,6 @@ class SearchCoordinator: Coordinator<Void> {
 
     private func search(_ value: String) {
         let query: (String, [Any?]) = database?.query.prepare(.index(
-            columns: Config.columns,
             value: value,
             limit: 50
         )) ?? ("", [])
@@ -32,10 +32,7 @@ class SearchCoordinator: Coordinator<Void> {
     }
 
     private func processSearchResults(isBookmarks: Bool = false) {
-//        let idArray: [Int] = isBookmarks ?
-//            (bookmarks.getAllBookmarkedIDs().isEmpty ? generateRandomIntegers() : bookmarks.getAllBookmarkedIDs()) :
-//            generateRandomIntegers()
-        let idArray: [Int] = generateRandomIntegers()
+        let idArray: [Int] = isBookmarks ? bookmarks.getAllBookmarkedIDs() : generateRandomIntegers()
 
         var searchResultModel = SearchViewModel(result: [])
 
@@ -63,7 +60,7 @@ class SearchCoordinator: Coordinator<Void> {
     override func start() {
         wordCoordinator = WordCoordinator(router: router)
         wordCoordinator?.start()
-        processSearchResults(isBookmarks: true)
+        processSearchResults(isBookmarks: bookmarksFilter)
         super.start()
     }
 
@@ -88,12 +85,17 @@ class SearchCoordinator: Coordinator<Void> {
 extension SearchCoordinator: SearchViewControllerDelegate {
     func searchBar(textDidChange searchText: String) {
         if !searchText.isEmpty { search(searchText) } else {
-            processSearchResults(isBookmarks: true)
+            processSearchResults(isBookmarks: bookmarksFilter)
         }
     }
 
     func didSelectItem(id: Int) {
         wordCoordinator?.update(id: id)
+    }
+
+    func bookmarkTap(isOn: Bool) {
+        bookmarksFilter = isOn
+        processSearchResults(isBookmarks: isOn)
     }
 
     func close() {}
