@@ -1,5 +1,4 @@
 import Combine
-import Shuffle
 import UIKit
 
 protocol CardViewControllerDelegate: AnyObject {
@@ -21,6 +20,23 @@ class CardViewController: BaseViewController {
         button.backgroundColor = Config.buttonColor
         button.layer.cornerRadius = 15
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    private lazy var nextButton: ActionButton = {
+        let button = ActionButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        button.setImage(Config.nextBack, for: .normal)
+        button.setImage(Config.nextBack, for: .selected)
+        button.setImage(Config.nextBack, for: .highlighted)
+        button.tintColor = .white
+        button.layer.shadowColor = Config.buttonColor.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 2)
+        button.layer.shadowRadius = 6
+        button.layer.shadowOpacity = 0.7
+        button.backgroundColor = Config.buttonColor
+        button.layer.cornerRadius = 25
+        button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -54,6 +70,8 @@ class CardViewController: BaseViewController {
     private func layoutCardStackView() {
         view.addSubview(backButton)
         view.addSubview(cardStack)
+        view.addSubview(nextButton)
+
         cardStack.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -64,10 +82,14 @@ class CardViewController: BaseViewController {
         ])
 
         NSLayoutConstraint.activate([
-            cardStack.topAnchor.constraint(equalTo: backButton.bottomAnchor),
-            cardStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            cardStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            cardStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+            nextButton.heightAnchor.constraint(equalToConstant: 50),
+            nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            nextButton.widthAnchor.constraint(equalToConstant: 50),
+            nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            cardStack.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 20),
+            cardStack.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -20),
+            cardStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            cardStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
 
@@ -91,6 +113,10 @@ class CardViewController: BaseViewController {
         navigationController?.popViewController(animated: true)
     }
 
+    @objc private func nextButtonTapped() {
+        cardStack.swipe(.left, animated: true)
+    }
+
     private enum Config {
         static let backgroundColor = UIColor(hex: "F5F8FA")
         static let buttonColor = UIColor(hex: "FFC75A")
@@ -98,11 +124,16 @@ class CardViewController: BaseViewController {
             let config = UIImage.SymbolConfiguration(pointSize: 14, weight: .regular, scale: .default)
             return UIImage(systemName: "chevron.left", withConfiguration: config) ?? UIImage()
         }
+
+        static var nextBack: UIImage {
+            let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .regular, scale: .default)
+            return UIImage(systemName: "arrow.right", withConfiguration: config) ?? UIImage()
+        }
     }
 }
 
 extension CardViewController: SwipeCardStackDataSource, SwipeCardStackDelegate {
-    func cardStack(_ cardStack: Shuffle.SwipeCardStack, cardForIndexAt index: Int) -> Shuffle.SwipeCard {
+    func cardStack(_ cardStack: SwipeCardStack, cardForIndexAt index: Int) -> SwipeCard {
         let card = SwipeCard()
         card.swipeDirections = [.left, .up, .right]
         let model = cards[index]
@@ -110,7 +141,7 @@ extension CardViewController: SwipeCardStackDataSource, SwipeCardStackDelegate {
         return card
     }
 
-    func numberOfCards(in cardStack: Shuffle.SwipeCardStack) -> Int {
+    func numberOfCards(in cardStack: SwipeCardStack) -> Int {
         return cards.count
     }
 

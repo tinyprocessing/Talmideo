@@ -66,8 +66,27 @@
 		30E5C0A22BC4176B0032D7B3 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C0A12BC4176B0032D7B3 /* UIButton+Extensions.swift */; };
 		30E5C41D2BC41E7D0032D7B3 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C41C2BC41E7D0032D7B3 /* CardViewController.swift */; };
 		30E5C41F2BC41E9B0032D7B3 /* CardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C41E2BC41E9B0032D7B3 /* CardCoordinator.swift */; };
-		30E5C4222BC425130032D7B3 /* Shuffle in Frameworks */ = {isa = PBXBuildFile; productRef = 30E5C4212BC425130032D7B3 /* Shuffle */; };
 		30E5C4242BC427320032D7B3 /* CardOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C4232BC427320032D7B3 /* CardOverlayView.swift */; };
+		30E5C43D2BC469DA0032D7B3 /* CardAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C4272BC469DA0032D7B3 /* CardAnimationOptions.swift */; };
+		30E5C43E2BC469DA0032D7B3 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C4282BC469DA0032D7B3 /* SwipeView.swift */; };
+		30E5C43F2BC469DA0032D7B3 /* CardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C4292BC469DA0032D7B3 /* CardAnimator.swift */; };
+		30E5C4402BC469DA0032D7B3 /* SwipeCardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C42A2BC469DA0032D7B3 /* SwipeCardDelegate.swift */; };
+		30E5C4412BC469DA0032D7B3 /* SwipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C42B2BC469DA0032D7B3 /* SwipeCard.swift */; };
+		30E5C4422BC469DA0032D7B3 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C42D2BC469DA0032D7B3 /* Array+Extensions.swift */; };
+		30E5C4432BC469DA0032D7B3 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C42E2BC469DA0032D7B3 /* CGVector+Extensions.swift */; };
+		30E5C4442BC469DA0032D7B3 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C42F2BC469DA0032D7B3 /* UIView+Extensions.swift */; };
+		30E5C4452BC469DA0032D7B3 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C4302BC469DA0032D7B3 /* StringUtils.swift */; };
+		30E5C4462BC469DA0032D7B3 /* PanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C4312BC469DA0032D7B3 /* PanGestureRecognizer.swift */; };
+		30E5C4472BC469DA0032D7B3 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C4322BC469DA0032D7B3 /* Animator.swift */; };
+		30E5C4482BC469DA0032D7B3 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C4332BC469DA0032D7B3 /* CGPoint+Extensions.swift */; };
+		30E5C4492BC469DA0032D7B3 /* TapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C4342BC469DA0032D7B3 /* TapGestureRecognizer.swift */; };
+		30E5C44A2BC469DA0032D7B3 /* SwipeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C4352BC469DA0032D7B3 /* SwipeDirection.swift */; };
+		30E5C44B2BC469DA0032D7B3 /* SwipeCardStackDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C4372BC469DA0032D7B3 /* SwipeCardStackDataSource.swift */; };
+		30E5C44C2BC469DA0032D7B3 /* CardStackAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C4382BC469DA0032D7B3 /* CardStackAnimationOptions.swift */; };
+		30E5C44D2BC469DA0032D7B3 /* CardStackAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C4392BC469DA0032D7B3 /* CardStackAnimator.swift */; };
+		30E5C44E2BC469DA0032D7B3 /* SwipeCardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C43A2BC469DA0032D7B3 /* SwipeCardStack.swift */; };
+		30E5C44F2BC469DA0032D7B3 /* SwipeCardStackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C43B2BC469DA0032D7B3 /* SwipeCardStackDelegate.swift */; };
+		30E5C4502BC469DA0032D7B3 /* CardStackStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C43C2BC469DA0032D7B3 /* CardStackStateManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +171,26 @@
 		30E5C41C2BC41E7D0032D7B3 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		30E5C41E2BC41E9B0032D7B3 /* CardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCoordinator.swift; sourceTree = "<group>"; };
 		30E5C4232BC427320032D7B3 /* CardOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOverlayView.swift; sourceTree = "<group>"; };
+		30E5C4272BC469DA0032D7B3 /* CardAnimationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardAnimationOptions.swift; sourceTree = "<group>"; };
+		30E5C4282BC469DA0032D7B3 /* SwipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
+		30E5C4292BC469DA0032D7B3 /* CardAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardAnimator.swift; sourceTree = "<group>"; };
+		30E5C42A2BC469DA0032D7B3 /* SwipeCardDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeCardDelegate.swift; sourceTree = "<group>"; };
+		30E5C42B2BC469DA0032D7B3 /* SwipeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeCard.swift; sourceTree = "<group>"; };
+		30E5C42D2BC469DA0032D7B3 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		30E5C42E2BC469DA0032D7B3 /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
+		30E5C42F2BC469DA0032D7B3 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		30E5C4302BC469DA0032D7B3 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		30E5C4312BC469DA0032D7B3 /* PanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanGestureRecognizer.swift; sourceTree = "<group>"; };
+		30E5C4322BC469DA0032D7B3 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		30E5C4332BC469DA0032D7B3 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
+		30E5C4342BC469DA0032D7B3 /* TapGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizer.swift; sourceTree = "<group>"; };
+		30E5C4352BC469DA0032D7B3 /* SwipeDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeDirection.swift; sourceTree = "<group>"; };
+		30E5C4372BC469DA0032D7B3 /* SwipeCardStackDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeCardStackDataSource.swift; sourceTree = "<group>"; };
+		30E5C4382BC469DA0032D7B3 /* CardStackAnimationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStackAnimationOptions.swift; sourceTree = "<group>"; };
+		30E5C4392BC469DA0032D7B3 /* CardStackAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStackAnimator.swift; sourceTree = "<group>"; };
+		30E5C43A2BC469DA0032D7B3 /* SwipeCardStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeCardStack.swift; sourceTree = "<group>"; };
+		30E5C43B2BC469DA0032D7B3 /* SwipeCardStackDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeCardStackDelegate.swift; sourceTree = "<group>"; };
+		30E5C43C2BC469DA0032D7B3 /* CardStackStateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStackStateManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +198,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30E5C4222BC425130032D7B3 /* Shuffle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +311,7 @@
 		3072C86A2BBFFFA600381BDF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				30E5C4252BC469C20032D7B3 /* Shuffle */,
 				303D46A42BC2EDEA00A57E09 /* Bookmarks */,
 				3072D6CF2BC00C6400381BDF /* Database */,
 				3072C86D2BBFFFA600381BDF /* Network */,
@@ -530,6 +569,57 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		30E5C4252BC469C20032D7B3 /* Shuffle */ = {
+			isa = PBXGroup;
+			children = (
+				30E5C42C2BC469DA0032D7B3 /* Internal */,
+				30E5C4262BC469DA0032D7B3 /* SwipeCard */,
+				30E5C4362BC469DA0032D7B3 /* SwipeCardStack */,
+				30E5C4352BC469DA0032D7B3 /* SwipeDirection.swift */,
+			);
+			path = Shuffle;
+			sourceTree = "<group>";
+		};
+		30E5C4262BC469DA0032D7B3 /* SwipeCard */ = {
+			isa = PBXGroup;
+			children = (
+				30E5C4272BC469DA0032D7B3 /* CardAnimationOptions.swift */,
+				30E5C4282BC469DA0032D7B3 /* SwipeView.swift */,
+				30E5C4292BC469DA0032D7B3 /* CardAnimator.swift */,
+				30E5C42A2BC469DA0032D7B3 /* SwipeCardDelegate.swift */,
+				30E5C42B2BC469DA0032D7B3 /* SwipeCard.swift */,
+			);
+			path = SwipeCard;
+			sourceTree = "<group>";
+		};
+		30E5C42C2BC469DA0032D7B3 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				30E5C42D2BC469DA0032D7B3 /* Array+Extensions.swift */,
+				30E5C42E2BC469DA0032D7B3 /* CGVector+Extensions.swift */,
+				30E5C42F2BC469DA0032D7B3 /* UIView+Extensions.swift */,
+				30E5C4302BC469DA0032D7B3 /* StringUtils.swift */,
+				30E5C4312BC469DA0032D7B3 /* PanGestureRecognizer.swift */,
+				30E5C4322BC469DA0032D7B3 /* Animator.swift */,
+				30E5C4332BC469DA0032D7B3 /* CGPoint+Extensions.swift */,
+				30E5C4342BC469DA0032D7B3 /* TapGestureRecognizer.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		30E5C4362BC469DA0032D7B3 /* SwipeCardStack */ = {
+			isa = PBXGroup;
+			children = (
+				30E5C4372BC469DA0032D7B3 /* SwipeCardStackDataSource.swift */,
+				30E5C4382BC469DA0032D7B3 /* CardStackAnimationOptions.swift */,
+				30E5C4392BC469DA0032D7B3 /* CardStackAnimator.swift */,
+				30E5C43A2BC469DA0032D7B3 /* SwipeCardStack.swift */,
+				30E5C43B2BC469DA0032D7B3 /* SwipeCardStackDelegate.swift */,
+				30E5C43C2BC469DA0032D7B3 /* CardStackStateManager.swift */,
+			);
+			path = SwipeCardStack;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -547,7 +637,6 @@
 			);
 			name = Talmideo;
 			packageProductDependencies = (
-				30E5C4212BC425130032D7B3 /* Shuffle */,
 			);
 			productName = hebrew;
 			productReference = 3072C8342BBFFB9C00381BDF /* Talmideo.app */;
@@ -622,7 +711,6 @@
 			);
 			mainGroup = 3072C82B2BBFFB9B00381BDF;
 			packageReferences = (
-				30E5C4202BC425130032D7B3 /* XCRemoteSwiftPackageReference "Shuffle" */,
 			);
 			productRefGroup = 3072C8352BBFFB9C00381BDF /* Products */;
 			projectDirPath = "";
@@ -668,23 +756,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30E5C44B2BC469DA0032D7B3 /* SwipeCardStackDataSource.swift in Sources */,
 				3072D6DE2BC037CE00381BDF /* SearchViewModel.swift in Sources */,
 				3072D7022BC1ACD000381BDF /* WordDataRowView.swift in Sources */,
 				3072C87A2BBFFFA600381BDF /* Route.swift in Sources */,
+				30E5C4502BC469DA0032D7B3 /* CardStackStateManager.swift in Sources */,
+				30E5C4422BC469DA0032D7B3 /* Array+Extensions.swift in Sources */,
 				3072C89C2BBFFFC700381BDF /* Colors.swift in Sources */,
 				3072C8912BBFFFC100381BDF /* Float+Extensions.swift in Sources */,
 				303D46A62BC2EDFB00A57E09 /* BookmarkManager.swift in Sources */,
 				3072D6CE2BC008DC00381BDF /* Publisher+SingleOutput.swift in Sources */,
 				3072D6F32BC077AB00381BDF /* ExploreCoordinator.swift in Sources */,
 				30E5C41D2BC41E7D0032D7B3 /* CardViewController.swift in Sources */,
+				30E5C4402BC469DA0032D7B3 /* SwipeCardDelegate.swift in Sources */,
+				30E5C44C2BC469DA0032D7B3 /* CardStackAnimationOptions.swift in Sources */,
 				3072D6EC2BC06AC900381BDF /* SettingsViewController.swift in Sources */,
 				3072D6F12BC0779E00381BDF /* ExploreViewController.swift in Sources */,
 				3072D6C92BC007CD00381BDF /* TalmideoCoordinator.swift in Sources */,
 				3072C88D2BBFFFC100381BDF /* UIColor+Extensions.swift in Sources */,
+				30E5C43E2BC469DA0032D7B3 /* SwipeView.swift in Sources */,
+				30E5C4452BC469DA0032D7B3 /* StringUtils.swift in Sources */,
+				30E5C4442BC469DA0032D7B3 /* UIView+Extensions.swift in Sources */,
 				3072C88B2BBFFFC100381BDF /* String+Extensions.swift in Sources */,
 				30E5C0A22BC4176B0032D7B3 /* UIButton+Extensions.swift in Sources */,
 				3072D7002BC18B2800381BDF /* WordDataView.swift in Sources */,
 				3072D6FE2BC133B100381BDF /* WordHeaderView.swift in Sources */,
+				30E5C4432BC469DA0032D7B3 /* CGVector+Extensions.swift in Sources */,
 				3072D6EA2BC06A7C00381BDF /* SettingsCoordinator.swift in Sources */,
 				30E5C41F2BC41E9B0032D7B3 /* CardCoordinator.swift in Sources */,
 				3072D6C52BC0071600381BDF /* MappedCoordinator.swift in Sources */,
@@ -694,13 +791,19 @@
 				3072C88A2BBFFFC100381BDF /* UIViewController+Extensions.swift in Sources */,
 				3072D6DB2BC0339800381BDF /* SearchCoordinator.swift in Sources */,
 				3072C88F2BBFFFC100381BDF /* UIStackView+Extension.swift in Sources */,
+				30E5C44F2BC469DA0032D7B3 /* SwipeCardStackDelegate.swift in Sources */,
 				3072C8762BBFFFA600381BDF /* NetworkService.swift in Sources */,
 				3072D6E02BC03C3400381BDF /* SearchCellView.swift in Sources */,
 				3072C83C2BBFFB9C00381BDF /* SearchViewController.swift in Sources */,
 				3072D6F82BC078AF00381BDF /* WordCoordinator.swift in Sources */,
+				30E5C4472BC469DA0032D7B3 /* Animator.swift in Sources */,
 				3072C89B2BBFFFC700381BDF /* Constants.swift in Sources */,
 				3072D6E32BC03C8400381BDF /* SearchListView.swift in Sources */,
+				30E5C44D2BC469DA0032D7B3 /* CardStackAnimator.swift in Sources */,
 				3072C88C2BBFFFC100381BDF /* UIView+Extension.swift in Sources */,
+				30E5C43F2BC469DA0032D7B3 /* CardAnimator.swift in Sources */,
+				30E5C4462BC469DA0032D7B3 /* PanGestureRecognizer.swift in Sources */,
+				30E5C4412BC469DA0032D7B3 /* SwipeCard.swift in Sources */,
 				3072D6D12BC00D3500381BDF /* SQLiteDataDatabase.swift in Sources */,
 				3072C8382BBFFB9C00381BDF /* AppDelegate.swift in Sources */,
 				3072D6D42BC0168800381BDF /* SearchWordModel.swift in Sources */,
@@ -708,19 +811,24 @@
 				3072D6FA2BC078BC00381BDF /* WordViewController.swift in Sources */,
 				3072D6CD2BC008DC00381BDF /* CombineAsyncStreamBridge.swift in Sources */,
 				303D46A32BC2BF5E00A57E09 /* UISearchBar+Extensions.swift in Sources */,
+				30E5C44A2BC469DA0032D7B3 /* SwipeDirection.swift in Sources */,
 				303D46A82BC3235200A57E09 /* ExploreItemView.swift in Sources */,
 				3072C8892BBFFFC100381BDF /* Int+Extensions.swift in Sources */,
 				3072C83A2BBFFB9C00381BDF /* SceneDelegate.swift in Sources */,
+				30E5C4492BC469DA0032D7B3 /* TapGestureRecognizer.swift in Sources */,
 				3072C89A2BBFFFC700381BDF /* Localized.swift in Sources */,
 				3072D6FC2BC0899000381BDF /* WordModel.swift in Sources */,
 				3072D6C32BC0071600381BDF /* Coordinatable.swift in Sources */,
+				30E5C4482BC469DA0032D7B3 /* CGPoint+Extensions.swift in Sources */,
 				30E5C4242BC427320032D7B3 /* CardOverlayView.swift in Sources */,
 				3072C8922BBFFFC100381BDF /* Comparable+Extensions.swift in Sources */,
 				3072C8A12BC0007100381BDF /* BaseViewController.swift in Sources */,
+				30E5C43D2BC469DA0032D7B3 /* CardAnimationOptions.swift in Sources */,
 				3072D6C62BC0071600381BDF /* Coordinator.swift in Sources */,
 				3072C88E2BBFFFC100381BDF /* Encodable+Extensions.swift in Sources */,
 				3072D6D72BC02ADD00381BDF /* SearchHeaderView.swift in Sources */,
 				3072C8902BBFFFC100381BDF /* UserDefaults+Extension.swift in Sources */,
+				30E5C44E2BC469DA0032D7B3 /* SwipeCardStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1057,25 +1165,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		30E5C4202BC425130032D7B3 /* XCRemoteSwiftPackageReference "Shuffle" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mac-gallagher/Shuffle.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		30E5C4212BC425130032D7B3 /* Shuffle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 30E5C4202BC425130032D7B3 /* XCRemoteSwiftPackageReference "Shuffle" */;
-			productName = Shuffle;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3072C82C2BBFFB9B00381BDF /* Project object */;
 }
