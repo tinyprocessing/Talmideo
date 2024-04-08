@@ -1,10 +1,16 @@
 import Combine
 import UIKit
 
+protocol ExploreViewControllerDelegate: AnyObject {
+    func didTap(model: ExploreItemView.ExploreItemModel)
+}
+
 class ExploreViewController: BaseViewController {
     private var cancellables = Set<AnyCancellable>()
     private let scrollView = UIScrollView()
     private let stackView = UIStackView()
+
+    public var exploreDelegate: ExploreViewControllerDelegate?
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -32,7 +38,7 @@ class ExploreViewController: BaseViewController {
     }
 
     private func configure() {
-        view.backgroundColor = .white
+        view.backgroundColor = Constants.backgroundColor
         view.addSubview(titleLabel)
 
         NSLayoutConstraint.activate([
@@ -44,27 +50,31 @@ class ExploreViewController: BaseViewController {
         setupScrollView()
         setupStackView()
         setupExplorerItem(.init(
+            type: .noun,
             image: "ExplorerNoun",
             title: "Nouns",
-            subtitle: "3,489",
-            secondary: "Nouns available"
+            subtitle: "4,370",
+            secondary: "words available"
         ))
         setupExplorerItem(.init(
+            type: .verb,
             image: "ExplorerVerb",
             title: "Verbs",
-            subtitle: "230",
-            secondary: "Top verbs"
+            subtitle: "3,440",
+            secondary: "verbs"
         ))
         setupExplorerItem(.init(
+            type: .adjective,
             image: "ExplorerAdjective",
             title: "Adjectives",
-            subtitle: "780",
-            secondary: "Adjectives available"
+            subtitle: "948",
+            secondary: "words available"
         ))
     }
 
     private func setupExplorerItem(_ model: ExploreItemView.ExploreItemModel) {
         let view = ExploreItemView(model: model)
+        view.delegate = self
         stackView.addArrangedSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalTo: stackView.widthAnchor, constant: -30).isActive = true
@@ -104,5 +114,11 @@ class ExploreViewController: BaseViewController {
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
+    }
+}
+
+extension ExploreViewController: ExploreItemViewDelegate {
+    func didTap(_ model: ExploreItemView.ExploreItemModel) {
+        exploreDelegate?.didTap(model: model)
     }
 }

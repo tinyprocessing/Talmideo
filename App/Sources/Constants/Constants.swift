@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 enum Constants {
     static let CalibrationEndpointUrl = "https://tinyprocessing.com"
@@ -11,4 +12,5 @@ enum Constants {
     static let DictionaryTranslator = "dictionary"
     static let WordDataTable = "worddata"
     static let WordData = "word"
+    static let backgroundColor = UIColor(hex: "F5F8FA")
 }

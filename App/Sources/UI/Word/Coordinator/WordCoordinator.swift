@@ -8,10 +8,9 @@ class WordCoordinator: Coordinator<Void> { private let router: Router?
     private var model: CurrentValueSubject<WordModel, Never> = .init(WordModel())
     private let bookmarks = BookmarkManager()
 
-    init?(router: Router?) {
+    init?(router: Router?, databaseWord: SQLiteDataDatabase) {
         self.router = router
-        database = SQLiteDataDatabase(name: Constants.DictionaryTranslator,
-                                      tableName: Constants.WordData)
+        database = databaseWord
         viewController = WordViewController(model: model)
         super.init()
         viewController?.wordDelegate = self

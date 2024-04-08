@@ -63,6 +63,11 @@
 		3072D6FE2BC133B100381BDF /* WordHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6FD2BC133B100381BDF /* WordHeaderView.swift */; };
 		3072D7002BC18B2800381BDF /* WordDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6FF2BC18B2800381BDF /* WordDataView.swift */; };
 		3072D7022BC1ACD000381BDF /* WordDataRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D7012BC1ACD000381BDF /* WordDataRowView.swift */; };
+		30E5C0A22BC4176B0032D7B3 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C0A12BC4176B0032D7B3 /* UIButton+Extensions.swift */; };
+		30E5C41D2BC41E7D0032D7B3 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C41C2BC41E7D0032D7B3 /* CardViewController.swift */; };
+		30E5C41F2BC41E9B0032D7B3 /* CardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C41E2BC41E9B0032D7B3 /* CardCoordinator.swift */; };
+		30E5C4222BC425130032D7B3 /* Shuffle in Frameworks */ = {isa = PBXBuildFile; productRef = 30E5C4212BC425130032D7B3 /* Shuffle */; };
+		30E5C4242BC427320032D7B3 /* CardOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C4232BC427320032D7B3 /* CardOverlayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +148,10 @@
 		3072D6FD2BC133B100381BDF /* WordHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordHeaderView.swift; sourceTree = "<group>"; };
 		3072D6FF2BC18B2800381BDF /* WordDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDataView.swift; sourceTree = "<group>"; };
 		3072D7012BC1ACD000381BDF /* WordDataRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDataRowView.swift; sourceTree = "<group>"; };
+		30E5C0A12BC4176B0032D7B3 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		30E5C41C2BC41E7D0032D7B3 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		30E5C41E2BC41E9B0032D7B3 /* CardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCoordinator.swift; sourceTree = "<group>"; };
+		30E5C4232BC427320032D7B3 /* CardOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOverlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30E5C4222BC425130032D7B3 /* Shuffle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +322,7 @@
 				3072C8872BBFFFC100381BDF /* Float+Extensions.swift */,
 				3072C8882BBFFFC100381BDF /* Comparable+Extensions.swift */,
 				303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */,
+				30E5C0A12BC4176B0032D7B3 /* UIButton+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -468,6 +479,7 @@
 				3072D6EF2BC0778E00381BDF /* Views */,
 				3072D6EE2BC0778000381BDF /* Coordinator */,
 				3072D6F02BC0779E00381BDF /* ExploreViewController.swift */,
+				30E5C41C2BC41E7D0032D7B3 /* CardViewController.swift */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -476,6 +488,7 @@
 			isa = PBXGroup;
 			children = (
 				3072D6F22BC077AB00381BDF /* ExploreCoordinator.swift */,
+				30E5C41E2BC41E9B0032D7B3 /* CardCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -484,6 +497,7 @@
 			isa = PBXGroup;
 			children = (
 				303D46A72BC3235200A57E09 /* ExploreItemView.swift */,
+				30E5C4232BC427320032D7B3 /* CardOverlayView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -532,6 +546,9 @@
 			dependencies = (
 			);
 			name = Talmideo;
+			packageProductDependencies = (
+				30E5C4212BC425130032D7B3 /* Shuffle */,
+			);
 			productName = hebrew;
 			productReference = 3072C8342BBFFB9C00381BDF /* Talmideo.app */;
 			productType = "com.apple.product-type.application";
@@ -604,6 +621,9 @@
 				Base,
 			);
 			mainGroup = 3072C82B2BBFFB9B00381BDF;
+			packageReferences = (
+				30E5C4202BC425130032D7B3 /* XCRemoteSwiftPackageReference "Shuffle" */,
+			);
 			productRefGroup = 3072C8352BBFFB9C00381BDF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -656,14 +676,17 @@
 				303D46A62BC2EDFB00A57E09 /* BookmarkManager.swift in Sources */,
 				3072D6CE2BC008DC00381BDF /* Publisher+SingleOutput.swift in Sources */,
 				3072D6F32BC077AB00381BDF /* ExploreCoordinator.swift in Sources */,
+				30E5C41D2BC41E7D0032D7B3 /* CardViewController.swift in Sources */,
 				3072D6EC2BC06AC900381BDF /* SettingsViewController.swift in Sources */,
 				3072D6F12BC0779E00381BDF /* ExploreViewController.swift in Sources */,
 				3072D6C92BC007CD00381BDF /* TalmideoCoordinator.swift in Sources */,
 				3072C88D2BBFFFC100381BDF /* UIColor+Extensions.swift in Sources */,
 				3072C88B2BBFFFC100381BDF /* String+Extensions.swift in Sources */,
+				30E5C0A22BC4176B0032D7B3 /* UIButton+Extensions.swift in Sources */,
 				3072D7002BC18B2800381BDF /* WordDataView.swift in Sources */,
 				3072D6FE2BC133B100381BDF /* WordHeaderView.swift in Sources */,
 				3072D6EA2BC06A7C00381BDF /* SettingsCoordinator.swift in Sources */,
+				30E5C41F2BC41E9B0032D7B3 /* CardCoordinator.swift in Sources */,
 				3072D6C52BC0071600381BDF /* MappedCoordinator.swift in Sources */,
 				3072D6C42BC0071600381BDF /* AnyCoordinator.swift in Sources */,
 				3072C8792BBFFFA600381BDF /* Router.swift in Sources */,
@@ -691,6 +714,7 @@
 				3072C89A2BBFFFC700381BDF /* Localized.swift in Sources */,
 				3072D6FC2BC0899000381BDF /* WordModel.swift in Sources */,
 				3072D6C32BC0071600381BDF /* Coordinatable.swift in Sources */,
+				30E5C4242BC427320032D7B3 /* CardOverlayView.swift in Sources */,
 				3072C8922BBFFFC100381BDF /* Comparable+Extensions.swift in Sources */,
 				3072C8A12BC0007100381BDF /* BaseViewController.swift in Sources */,
 				3072D6C62BC0071600381BDF /* Coordinator.swift in Sources */,
@@ -1033,6 +1057,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		30E5C4202BC425130032D7B3 /* XCRemoteSwiftPackageReference "Shuffle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-gallagher/Shuffle.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		30E5C4212BC425130032D7B3 /* Shuffle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 30E5C4202BC425130032D7B3 /* XCRemoteSwiftPackageReference "Shuffle" */;
+			productName = Shuffle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3072C82C2BBFFB9B00381BDF /* Project object */;
 }

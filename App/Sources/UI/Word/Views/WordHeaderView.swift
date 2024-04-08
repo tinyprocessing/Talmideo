@@ -71,6 +71,7 @@ class WordHeaderView: UIView {
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15),
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             titleLabel.heightAnchor.constraint(equalToConstant: 30),
+            titleLabel.widthAnchor.constraint(equalToConstant: 100),
             subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             subtitleLabel.centerXAnchor.constraint(equalTo: titleLabel.centerXAnchor),
             subtitleLabel.heightAnchor.constraint(equalToConstant: 20),

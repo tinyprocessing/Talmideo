@@ -4,31 +4,31 @@ import Foundation
 class SearchCoordinator: Coordinator<Void> {
     private let router: Router?
     private var viewController: SearchViewController?
-    private let database: SQLiteDataDatabase?
+    private let databaseSearch: SQLiteDataDatabase
+    private let databaseWord: SQLiteDataDatabase
     private var model: CurrentValueSubject<SearchViewModel, Never> = .init(SearchViewModel(result: []))
     private var wordCoordinator: WordCoordinator?
     private let bookmarks = BookmarkManager()
     private var bookmarksFilter = false
 
-    init?(router: Router) {
+    init?(router: Router, databaseSearch: SQLiteDataDatabase, databaseWord: SQLiteDataDatabase) {
         self.router = router
-        database = SQLiteDataDatabase(name: Constants.Dictionary,
-                                      tableName: Constants.WordDataTable)
+        self.databaseSearch = databaseSearch
+        self.databaseWord = databaseWord
         viewController = SearchViewController(model: model, bookmarks: bookmarks)
         super.init()
         viewController?.searchDelegate = self
     }
 
     private func search(_ value: String) {
-        let query: (String, [Any?]) = database?.query.prepare(.index(
+        let query: (String, [Any?]) = databaseSearch.query.prepare(.index(
             value: value,
             limit: 50
-        )) ?? ("", [])
-        if let result = database?.search(query) {
-            let words = result.compactMap { SearchWordModel.from(dictionary: $0) }
-            let viewModel = SearchViewModel(result: Array(Set(words)))
-            model.send(viewModel)
-        }
+        ))
+        let result = databaseSearch.search(query)
+        let words = result.compactMap { SearchWordModel.from(dictionary: $0) }
+        let viewModel = SearchViewModel(result: words)
+        model.send(viewModel)
     }
 
     private func processSearchResults(isBookmarks: Bool = false) {
@@ -39,11 +39,10 @@ class SearchCoordinator: Coordinator<Void> {
         idArray.forEach { id in
             let query: (String, [Any?]) = prepareQueryForID(id)
 
-            if let response = database?.search(query) {
-                let words = response.compactMap { SearchWordModel.from(dictionary: $0) }
-                Array(Set(words)).forEach { word in
-                    searchResultModel.result.append(word)
-                }
+            let response = databaseSearch.search(query)
+            let words = response.compactMap { SearchWordModel.from(dictionary: $0) }
+            Array(Set(words)).forEach { word in
+                searchResultModel.result.append(word)
             }
         }
 
@@ -51,14 +50,14 @@ class SearchCoordinator: Coordinator<Void> {
     }
 
     private func prepareQueryForID(_ id: Int) -> (String, [Any?]) {
-        return database?.query.prepare(.id(
+        return databaseSearch.query.prepare(.id(
             value: "\(id)",
             limit: 50
-        )) ?? ("", [])
+        ))
     }
 
     override func start() {
-        wordCoordinator = WordCoordinator(router: router)
+        wordCoordinator = WordCoordinator(router: router, databaseWord: databaseWord)
         wordCoordinator?.start()
         processSearchResults(isBookmarks: bookmarksFilter)
         super.start()

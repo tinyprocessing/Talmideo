@@ -1,8 +1,14 @@
 import Foundation
 import UIKit
 
+protocol ExploreItemViewDelegate: AnyObject {
+    func didTap(_ model: ExploreItemView.ExploreItemModel)
+}
+
 class ExploreItemView: UIView {
     private var model: ExploreItemModel
+
+    public var delegate: ExploreItemViewDelegate?
 
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
@@ -11,6 +17,7 @@ class ExploreItemView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 20
+        view.isUserInteractionEnabled = true
         return view
     }()
 
@@ -46,38 +53,41 @@ class ExploreItemView: UIView {
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
-        
+
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
         backgroundView.layer.cornerRadius = 8
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         label.addSubview(backgroundView)
         backgroundView.leadingAnchor.constraint(equalTo: label.leadingAnchor, constant: -16).isActive = true
         backgroundView.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: 16).isActive = true
         backgroundView.topAnchor.constraint(equalTo: label.topAnchor, constant: -16).isActive = true
         backgroundView.bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: 16).isActive = true
         label.sendSubviewToBack(backgroundView)
-        
+
         return label
     }()
 
-    private lazy var playButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var playButton: ActionButton = {
+        let button = ActionButton()
         button.setImage(Config.iconPlay, for: .normal)
+        button.setImage(Config.iconPlay, for: .highlighted)
+        button.setImage(Config.iconPlay, for: .selected)
         button.tintColor = .white
         button.backgroundColor = Config.buttonColor
         button.layer.cornerRadius = 30
         button.layer.shadowColor = Config.buttonColor.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
         button.layer.shadowRadius = 6
-        button.layer.shadowOpacity = 0.7 
-        button.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
+        button.layer.shadowOpacity = 0.7
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
         return button
     }()
 
     public struct ExploreItemModel {
+        var type: ExploreCoordinator.ExploreIndex = .noun
         var image = ""
         var title = ""
         var subtitle = ""
@@ -135,7 +145,9 @@ class ExploreItemView: UIView {
         ])
     }
 
-    @objc private func playButtonTapped() {}
+    @objc private func playButtonTapped() {
+        delegate?.didTap(model)
+    }
 
     private enum Config {
         static let backgroundColor = UIColor(hex: "F5F8FA")
@@ -148,12 +160,12 @@ class ExploreItemView: UIView {
     }
 }
 
-fileprivate class ExploreLabel: UILabel {
+private class ExploreLabel: UILabel {
     override func drawText(in rect: CGRect) {
         let insets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         super.drawText(in: rect.inset(by: insets))
     }
-    
+
     override var intrinsicContentSize: CGSize {
         let size = super.intrinsicContentSize
         let insets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)

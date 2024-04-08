@@ -17,11 +17,10 @@ final class SQLiteDataDatabase: DataDatabase {
 
         enum QueryType {
             case search(columns: [String], value: String, limit: Int?)
-            // Custom queries
-            // TODO: Change this somehow to be Generic
             case word(value: Int)
             case index(value: String, limit: Int?)
             case id(value: String, limit: Int?)
+            case export(value: String)
         }
 
         func prepare(_ queryType: QueryType) -> (String, [Any?]) {
@@ -38,10 +37,33 @@ final class SQLiteDataDatabase: DataDatabase {
                 return ("SELECT * FROM \(tableName) WHERE id = \(value)", [])
             case .index(let value, let limit):
                 var query = """
-                SELECT t.word_data_id, t.id, t.token, t.position, w.initial_form, w.meaning_en, w.meaning_ru, w.meaning_es
-                FROM token t
-                JOIN worddata w ON t.word_data_id = w.id
-                WHERE t.token LIKE ? ORDER BY t.position
+                WITH RankedTokens
+                AS (SELECT t.word_data_id,
+                           t.id,
+                           t.token,
+                           t.position,
+                           w.initial_form,
+                           w.meaning_en,
+                           w.meaning_ru,
+                           w.meaning_es,
+                           ROW_NUMBER() OVER (PARTITION BY t.word_data_id ORDER BY t.position) AS rn
+                    FROM token t
+                        JOIN worddata w
+                            ON t.word_data_id = w.id
+                    WHERE t.token LIKE ? )
+                SELECT word_data_id,
+                       id,
+                       token,
+                       position,
+                       initial_form,
+                       meaning_en,
+                       meaning_ru,
+                       meaning_es
+                FROM RankedTokens
+                WHERE rn = 1
+                ORDER BY
+                    LENGTH(initial_form),
+                    id
                 """
                 if let limit = limit {
                     query += " LIMIT \(limit)"
@@ -52,12 +74,17 @@ final class SQLiteDataDatabase: DataDatabase {
                 SELECT t.word_data_id, t.id, t.token, t.position, w.initial_form, w.meaning_en, w.meaning_ru, w.meaning_es
                 FROM token t
                 JOIN worddata w ON t.word_data_id = w.id
-                WHERE t.word_data_id = ? ORDER BY t.position
+                WHERE t.word_data_id = ?
                 """
                 if let limit = limit {
                     query += " LIMIT \(limit)"
                 }
                 return (query, ["\(value)"])
+            case .export(let value):
+                var query = """
+                SELECT id FROM word WHERE data LIKE ?
+                """
+                return (query, ["%\(value)%"])
             }
         }
     }

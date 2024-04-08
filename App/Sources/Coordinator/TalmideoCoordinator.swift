@@ -6,19 +6,29 @@ class TalmideoCoordinator: Coordinator<Void> {
     private var searchCoordinator: SearchCoordinator?
     private var settingsCoordinator: SettingsCoordinator?
     private var exploreCoordinator: ExploreCoordinator?
+    private let databaseSearch: SQLiteDataDatabase
+    private let databaseWord: SQLiteDataDatabase
 
     private var tabViewController: TabViewController?
 
     init?(router: Router) {
         self.router = router
         tabViewController = TabViewController()
+        databaseSearch = SQLiteDataDatabase(name: Constants.Dictionary,
+                                            tableName: Constants.WordDataTable)
+        databaseWord = SQLiteDataDatabase(name: Constants.DictionaryTranslator,
+                                          tableName: Constants.WordData)
         super.init()
     }
 
     private func launchTM() {
-        searchCoordinator = SearchCoordinator(router: router)
+        searchCoordinator = SearchCoordinator(
+            router: router,
+            databaseSearch: databaseSearch,
+            databaseWord: databaseWord
+        )
         settingsCoordinator = SettingsCoordinator(router: router)
-        exploreCoordinator = ExploreCoordinator(router: router)
+        exploreCoordinator = ExploreCoordinator(router: router, databaseWord: databaseWord)
 
         searchCoordinator?.start()
         settingsCoordinator?.start()
