@@ -67,9 +67,9 @@ class TalmideoCoordinator: Coordinator<Void> {
     }
 
     private enum Config {
-        static let search = "Search"
-        static let settings = "Settings"
-        static let explore = "Explore"
+        static let search: String = .localized(.search)
+        static let settings: String = .localized(.settings)
+        static let explore: String = .localized(.explore)
         static var imageSearch: UIImage {
             let config = UIImage.SymbolConfiguration(pointSize: 16, weight: .regular, scale: .default)
             return UIImage(systemName: "magnifyingglass", withConfiguration: config) ?? UIImage()

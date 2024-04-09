@@ -21,14 +21,38 @@ class SearchCoordinator: Coordinator<Void> {
     }
 
     private func search(_ value: String) {
-        let query: (String, [Any?]) = databaseSearch.query.prepare(.index(
-            value: value,
-            limit: 50
-        ))
-        let result = databaseSearch.search(query)
-        let words = result.compactMap { SearchWordModel.from(dictionary: $0) }
-        let viewModel = SearchViewModel(result: words)
-        model.send(viewModel)
+        let (isText, array) = isText(value)
+        if isText {
+            model.send(SearchViewModel(result: []))
+            print(array)
+            array.forEach { word in
+                let query: (String, [Any?]) = databaseSearch.query.prepare(.index(
+                    value: word,
+                    limit: 1,
+                    accurate: true
+                ))
+                let result = databaseSearch.search(query)
+                let words = result.compactMap { SearchWordModel.from(dictionary: $0) }
+                var newModel: SearchViewModel = model.value
+                newModel.result.append(contentsOf: words)
+                model.send(newModel)
+            }
+        } else {
+            let query: (String, [Any?]) = databaseSearch.query.prepare(.index(
+                value: value,
+                limit: 50,
+                accurate: false
+            ))
+            let result = databaseSearch.search(query)
+            let words = result.compactMap { SearchWordModel.from(dictionary: $0) }
+            let viewModel = SearchViewModel(result: words)
+            model.send(viewModel)
+        }
+    }
+
+    private func isText(_ value: String) -> (Bool, [String]) {
+        let array = value.components(separatedBy: " ")
+        return (array.count > 1, array)
     }
 
     private func processSearchResults(isBookmarks: Bool = false) {
@@ -76,9 +100,7 @@ class SearchCoordinator: Coordinator<Void> {
         return randomIntegers
     }
 
-    private enum Config {
-        static let columns: [String] = ["initial_form", "meaning_ru", "meaning_en"]
-    }
+    private enum Config {}
 }
 
 extension SearchCoordinator: SearchViewControllerDelegate {

@@ -18,7 +18,7 @@ final class SQLiteDataDatabase: DataDatabase {
         enum QueryType {
             case search(columns: [String], value: String, limit: Int?)
             case word(value: Int)
-            case index(value: String, limit: Int?)
+            case index(value: String, limit: Int?, accurate: Bool)
             case id(value: String, limit: Int?)
             case export(value: String)
         }
@@ -35,7 +35,7 @@ final class SQLiteDataDatabase: DataDatabase {
                 return (query, values)
             case .word(let value):
                 return ("SELECT * FROM \(tableName) WHERE id = \(value)", [])
-            case .index(let value, let limit):
+            case .index(let value, let limit, let accurate):
                 var query = """
                 WITH RankedTokens
                 AS (SELECT t.word_data_id,
@@ -67,6 +67,9 @@ final class SQLiteDataDatabase: DataDatabase {
                 """
                 if let limit = limit {
                     query += " LIMIT \(limit)"
+                }
+                if accurate {
+                    return (query, ["\(value)"])
                 }
                 return (query, ["%\(value)%"])
             case .id(let value, let limit):

@@ -29,9 +29,10 @@ class WordHeaderView: UIView {
         label.text = Config.title
         label.numberOfLines = 0
         label.textColor = .black
+        label.lineBreakMode = .byWordWrapping
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
         return label
     }()
 
@@ -81,6 +82,7 @@ class WordHeaderView: UIView {
             meaningLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 5),
             meaningLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             meaningLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            meaningLabel.heightAnchor.constraint(equalToConstant: 60),
             rootLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             rootLabel.trailingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 20),
             rootLabel.heightAnchor.constraint(equalToConstant: 20),

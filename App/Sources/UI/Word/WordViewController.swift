@@ -141,14 +141,16 @@ class WordViewController: BaseViewController {
             }
         }
 
+        if model.value.partOfSpeech == "P" {
+            if let present = model.value.forms?.pronoun {
+                let view = createWordDataView()
+                view.update(.pronoun(value: present))
+            }
+        }
         if model.value.partOfSpeech == "V" {
             if let present = model.value.forms?.present {
                 let view = createWordDataView()
                 view.update(.present(value: present))
-            }
-            if let passivePresent = model.value.forms?.passivePresent {
-                let view = createWordDataView()
-                view.update(.passivePresent(value: passivePresent))
             }
             if let past = model.value.forms?.past {
                 let view = createWordDataView()
@@ -157,6 +159,10 @@ class WordViewController: BaseViewController {
             if let future = model.value.forms?.future {
                 let view = createWordDataView()
                 view.update(.future(value: future))
+            }
+            if let passivePresent = model.value.forms?.passivePresent {
+                let view = createWordDataView()
+                view.update(.passivePresent(value: passivePresent))
             }
         }
         if model.value.partOfSpeech == "N" {

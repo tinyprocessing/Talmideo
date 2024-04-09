@@ -41,7 +41,7 @@ struct WordModel: Codable {
 
 struct Forms: Codable {
     let main: Main?
-    let pPronoun, sPronoun: [String: InitialForm]?
+    let pronoun, pPronoun, sPronoun: [String: InitialForm]?
     let smichut: Main?
     let future, imperative, passiveFuture, passivePast: [String: InitialForm]?
     let passivePresent: Present?
@@ -50,6 +50,7 @@ struct Forms: Codable {
 
     enum CodingKeys: String, CodingKey {
         case main
+        case pronoun = "+pronoun"
         case pPronoun = "p+pronoun"
         case sPronoun = "s+pronoun"
         case smichut

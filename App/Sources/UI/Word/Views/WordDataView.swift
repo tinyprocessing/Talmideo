@@ -27,6 +27,7 @@ class WordDataView: UIView {
     public enum State {
         case present(value: Present)
         case passivePresent(value: Present)
+        case pronoun(value: [String: InitialForm])
         case past(value: [String: InitialForm])
         case future(value: [String: InitialForm])
         case imperative(value: [String: InitialForm])
@@ -96,6 +97,9 @@ class WordDataView: UIView {
         case .adjective(let value):
             titleLabel.text = Config.adjective
             adjective(value)
+        case .pronoun(let value):
+            titleLabel.text = Config.pronoun
+            tenses(value, true)
         }
     }
 
@@ -216,6 +220,7 @@ class WordDataView: UIView {
         static let passivePast = "Passive Past"
         static let noun = "Noun"
         static let adjective = "Adjective"
+        static let pronoun = "Pronoun"
 
         static let oneP = "אנחנו"
         static let oneS = "אני"
