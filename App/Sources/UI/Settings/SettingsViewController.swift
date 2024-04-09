@@ -2,6 +2,17 @@ import Combine
 import UIKit
 
 class SettingsViewController: BaseViewController {
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = Config.title
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 28, weight: .bold)
+        return label
+    }()
+
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -17,6 +28,17 @@ class SettingsViewController: BaseViewController {
     }
 
     private func configure() {
-        view.backgroundColor = .white
+        view.backgroundColor = Constants.backgroundColor
+        view.addSubview(titleLabel)
+
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            titleLabel.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+
+    private enum Config {
+        static let title = "Settings"
     }
 }

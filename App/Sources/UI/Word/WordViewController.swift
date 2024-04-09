@@ -59,7 +59,7 @@ class WordViewController: BaseViewController {
     }
 
     private func configure() {
-        view.backgroundColor = Config.backgroundColor
+        view.backgroundColor = Constants.backgroundColor
 
         model
             .receive(on: DispatchQueue.main)
@@ -198,7 +198,6 @@ class WordViewController: BaseViewController {
     }
 
     private enum Config {
-        static let backgroundColor = UIColor(hex: "F5F8FA")
         static let buttonColor = UIColor(hex: "FFC75A")
         static var iconBack: UIImage {
             let config = UIImage.SymbolConfiguration(pointSize: 14, weight: .regular, scale: .default)

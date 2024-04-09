@@ -115,7 +115,7 @@ class ExploreItemView: UIView {
     }
 
     private func configure() {
-        backgroundColor = Config.backgroundColor
+        backgroundColor = Constants.backgroundColor
         layer.cornerRadius = 20
 
         NSLayoutConstraint.activate([
@@ -150,7 +150,6 @@ class ExploreItemView: UIView {
     }
 
     private enum Config {
-        static let backgroundColor = UIColor(hex: "F5F8FA")
         static let buttonColor = UIColor(hex: "FFC75A")
         static let title = ""
         static var iconPlay: UIImage {

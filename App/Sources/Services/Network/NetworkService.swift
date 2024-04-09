@@ -97,7 +97,7 @@ class NetworkService: NetworkServiceProtocol {
 
     func request(configuration: any APIConfiguration) async throws -> Result<Data, Error> {
         do {
-            var request = try configuration.asURLRequest()
+            let request = try configuration.asURLRequest()
             let (data, response) = try await URLSession.shared.data(for: request)
             let statusCode = (response as? HTTPURLResponse)?.statusCode
             if let statusCode, Constants.UnauthorizedErrorCodeRange ~= statusCode {

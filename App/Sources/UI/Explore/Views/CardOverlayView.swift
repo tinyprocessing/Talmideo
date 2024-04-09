@@ -16,15 +16,6 @@ class CardContentView: UIView {
         return view
     }()
 
-    private let gradientLayer: CAGradientLayer = {
-        let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.black.withAlphaComponent(0.01).cgColor,
-                           UIColor.black.withAlphaComponent(0.8).cgColor]
-        gradient.startPoint = CGPoint(x: 0.5, y: 0)
-        gradient.endPoint = CGPoint(x: 0.5, y: 1)
-        return gradient
-    }()
-
     init(_ model: WordModel) {
         self.model = model
         super.init(frame: .zero)
@@ -36,10 +27,10 @@ class CardContentView: UIView {
     }
 
     private func initialize() {
-        backgroundColor = Constants.backgroundColor
+        backgroundColor = .clear
         addSubview(backgroundView)
         backgroundView.anchorToSuperview()
-        backgroundView.backgroundColor = UIColor(hex: "D9EDBF").withAlphaComponent(0.2)
+        backgroundView.backgroundColor = UIColor(hex: "B4DDD3").withAlphaComponent(0.6)
         backgroundView.addSubview(headerView)
 
         NSLayoutConstraint.activate([
@@ -86,10 +77,5 @@ class CardContentView: UIView {
 
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        let heightFactor: CGFloat = 0.35
-        gradientLayer.frame = CGRect(x: 0,
-                                     y: (1 - heightFactor) * bounds.height,
-                                     width: bounds.width,
-                                     height: heightFactor * bounds.height)
     }
 }

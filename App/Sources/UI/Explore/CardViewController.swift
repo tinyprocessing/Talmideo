@@ -118,7 +118,6 @@ class CardViewController: BaseViewController {
     }
 
     private enum Config {
-        static let backgroundColor = UIColor(hex: "F5F8FA")
         static let buttonColor = UIColor(hex: "FFC75A")
         static var iconBack: UIImage {
             let config = UIImage.SymbolConfiguration(pointSize: 14, weight: .regular, scale: .default)
@@ -146,6 +145,7 @@ extension CardViewController: SwipeCardStackDataSource, SwipeCardStackDelegate {
     }
 
     func cardStack(_ cardStack: SwipeCardStack, didSwipeCardAt index: Int, with direction: SwipeDirection) {
+        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
         if (cards.count - index) < 3 {
             cardDelegate?.addCards()
         }

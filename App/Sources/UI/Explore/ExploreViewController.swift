@@ -14,7 +14,7 @@ class ExploreViewController: BaseViewController {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Explore"
+        label.text = Config.title
         label.numberOfLines = 0
         label.textColor = .black
         label.textAlignment = .center
@@ -49,30 +49,30 @@ class ExploreViewController: BaseViewController {
 
         setupScrollView()
         setupStackView()
-        setupExplorerItem(.init(
+        setupExploreItem(.init(
             type: .noun,
-            image: "ExplorerNoun",
+            image: "ExploreNoun",
             title: "Nouns",
             subtitle: "4,370",
             secondary: "words available"
         ))
-        setupExplorerItem(.init(
+        setupExploreItem(.init(
             type: .verb,
-            image: "ExplorerVerb",
+            image: "ExploreVerb",
             title: "Verbs",
             subtitle: "3,440",
             secondary: "verbs"
         ))
-        setupExplorerItem(.init(
+        setupExploreItem(.init(
             type: .adjective,
-            image: "ExplorerAdjective",
+            image: "ExploreAdjective",
             title: "Adjectives",
             subtitle: "948",
             secondary: "words available"
         ))
     }
 
-    private func setupExplorerItem(_ model: ExploreItemView.ExploreItemModel) {
+    private func setupExploreItem(_ model: ExploreItemView.ExploreItemModel) {
         let view = ExploreItemView(model: model)
         view.delegate = self
         stackView.addArrangedSubview(view)
@@ -114,6 +114,10 @@ class ExploreViewController: BaseViewController {
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
+    }
+
+    private enum Config {
+        static let title = "Explore"
     }
 }
 

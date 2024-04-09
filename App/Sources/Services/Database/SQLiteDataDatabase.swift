@@ -81,7 +81,7 @@ final class SQLiteDataDatabase: DataDatabase {
                 }
                 return (query, ["\(value)"])
             case .export(let value):
-                var query = """
+                let query = """
                 SELECT id FROM word WHERE data LIKE ?
                 """
                 return (query, ["%\(value)%"])

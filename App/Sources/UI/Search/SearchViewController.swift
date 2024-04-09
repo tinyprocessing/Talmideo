@@ -60,7 +60,7 @@ class SearchViewController: BaseViewController {
     private func configure() {
         hideKeyboardWhenTappedAround()
 
-        view.backgroundColor = Config.backgroundColor
+        view.backgroundColor = Constants.backgroundColor
         view.addSubview(searchHeader)
         view.addSubview(searchList)
         view.addSubview(safeAreaView)
@@ -106,7 +106,6 @@ class SearchViewController: BaseViewController {
     }
 
     private enum Config {
-        static let backgroundColor = UIColor(hex: "F5F8FA")
         static let searchHeaderHeight: CGFloat = 120
         static let searchListPadding: CGFloat = 10
         static let searchListPaddingTop: CGFloat = 20

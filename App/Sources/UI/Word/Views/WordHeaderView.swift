@@ -64,7 +64,8 @@ class WordHeaderView: UIView {
         configure()
     }
 
-    private func configure() { backgroundColor = .white
+    private func configure() {
+        backgroundColor = .white
         layer.cornerRadius = 20
 
         NSLayoutConstraint.activate([
