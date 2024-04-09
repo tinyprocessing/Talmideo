@@ -30,7 +30,7 @@ class CardContentView: UIView {
         backgroundColor = .clear
         addSubview(backgroundView)
         backgroundView.anchorToSuperview()
-        backgroundView.backgroundColor = UIColor(hex: "B4DDD3").withAlphaComponent(0.6)
+        backgroundView.backgroundColor = UIColor(hex: "f2f2f2")
         backgroundView.addSubview(headerView)
 
         NSLayoutConstraint.activate([

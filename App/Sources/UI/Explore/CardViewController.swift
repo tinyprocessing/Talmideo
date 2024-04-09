@@ -26,9 +26,7 @@ class CardViewController: BaseViewController {
 
     private lazy var nextButton: ActionButton = {
         let button = ActionButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        button.setImage(Config.nextBack, for: .normal)
-        button.setImage(Config.nextBack, for: .selected)
-        button.setImage(Config.nextBack, for: .highlighted)
+        button.setTitle("Next", for: .normal)
         button.tintColor = .white
         button.layer.shadowColor = Config.buttonColor.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -38,6 +36,7 @@ class CardViewController: BaseViewController {
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .medium)
         return button
     }()
 
@@ -57,7 +56,8 @@ class CardViewController: BaseViewController {
         cardStack.delegate = self
         cardStack.dataSource = self
         cardStack.reloadData()
-        layoutCardStackView()
+        configure()
+
         model
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
@@ -67,7 +67,7 @@ class CardViewController: BaseViewController {
             .store(in: &cancellables)
     }
 
-    private func layoutCardStackView() {
+    private func configure() {
         view.addSubview(backButton)
         view.addSubview(cardStack)
         view.addSubview(nextButton)
@@ -84,8 +84,9 @@ class CardViewController: BaseViewController {
         NSLayoutConstraint.activate([
             nextButton.heightAnchor.constraint(equalToConstant: 50),
             nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            nextButton.widthAnchor.constraint(equalToConstant: 50),
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nextButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            nextButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             cardStack.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 20),
             cardStack.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -20),
             cardStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),

@@ -18,6 +18,17 @@ class ExploreItemView: UIView {
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 20
         view.isUserInteractionEnabled = true
+
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+
+        let tintView = UIView(frame: view.bounds)
+        tintView.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+        tintView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(tintView)
         return view
     }()
 
@@ -126,17 +137,17 @@ class ExploreItemView: UIView {
 
             titleLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 20),
             titleLabel.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 20),
-            titleLabel.heightAnchor.constraint(equalToConstant: 40),
+            titleLabel.heightAnchor.constraint(equalToConstant: 30),
 
             subtitleLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 20),
-            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
             subtitleLabel.heightAnchor.constraint(equalToConstant: 40),
 
             secondaryLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 0),
             secondaryLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 20),
             secondaryLabel.heightAnchor.constraint(equalToConstant: 25),
 
-            heightAnchor.constraint(equalToConstant: 200),
+            heightAnchor.constraint(equalToConstant: 160),
 
             playButton.widthAnchor.constraint(equalToConstant: 60),
             playButton.heightAnchor.constraint(equalToConstant: 60),

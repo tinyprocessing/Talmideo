@@ -54,21 +54,21 @@ class ExploreViewController: BaseViewController {
             image: "ExploreNoun",
             title: "Nouns",
             subtitle: "4,370",
-            secondary: "words available"
+            secondary: "Start learning"
         ))
         setupExploreItem(.init(
             type: .verb,
             image: "ExploreVerb",
             title: "Verbs",
             subtitle: "3,440",
-            secondary: "verbs"
+            secondary: "Start learning"
         ))
         setupExploreItem(.init(
             type: .adjective,
             image: "ExploreAdjective",
             title: "Adjectives",
             subtitle: "948",
-            secondary: "words available"
+            secondary: "Start learning"
         ))
     }
 
