@@ -40,6 +40,12 @@ class CardViewController: BaseViewController {
         return button
     }()
 
+    private lazy var timerView: TimerView = {
+        let view = TimerView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     init(model: CurrentValueSubject<[WordModel], Never>) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
@@ -69,8 +75,9 @@ class CardViewController: BaseViewController {
 
     private func configure() {
         view.addSubview(backButton)
-        view.addSubview(cardStack)
         view.addSubview(nextButton)
+        view.addSubview(timerView)
+        view.addSubview(cardStack)
 
         cardStack.translatesAutoresizingMaskIntoConstraints = false
 
@@ -78,7 +85,11 @@ class CardViewController: BaseViewController {
             backButton.widthAnchor.constraint(equalToConstant: 30),
             backButton.heightAnchor.constraint(equalToConstant: 30),
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
-            backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16)
+            backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            timerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            timerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            timerView.heightAnchor.constraint(equalToConstant: 40),
+            timerView.widthAnchor.constraint(equalToConstant: 100)
         ])
 
         NSLayoutConstraint.activate([

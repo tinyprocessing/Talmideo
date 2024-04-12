@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		302E39132BC92B2A00639007 /* SettingsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E39122BC92B2A00639007 /* SettingsCellView.swift */; };
+		303362832BC6B28300A2ECE9 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303362822BC6B28300A2ECE9 /* TimerView.swift */; };
 		303D46A32BC2BF5E00A57E09 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */; };
 		303D46A62BC2EDFB00A57E09 /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D46A52BC2EDFB00A57E09 /* BookmarkManager.swift */; };
 		303D46A82BC3235200A57E09 /* ExploreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D46A72BC3235200A57E09 /* ExploreItemView.swift */; };
@@ -108,6 +110,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		302E39122BC92B2A00639007 /* SettingsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellView.swift; sourceTree = "<group>"; };
+		303362822BC6B28300A2ECE9 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
 		303D46A52BC2EDFB00A57E09 /* BookmarkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkManager.swift; sourceTree = "<group>"; };
 		303D46A72BC3235200A57E09 /* ExploreItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreItemView.swift; sourceTree = "<group>"; };
@@ -521,6 +525,7 @@
 		3072D6E82BC06A6700381BDF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				302E39122BC92B2A00639007 /* SettingsCellView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 			children = (
 				303D46A72BC3235200A57E09 /* ExploreItemView.swift */,
 				30E5C4232BC427320032D7B3 /* CardOverlayView.swift */,
+				303362822BC6B28300A2ECE9 /* TimerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -799,6 +805,7 @@
 				30E5C4432BC469DA0032D7B3 /* CGVector+Extensions.swift in Sources */,
 				3072D6EA2BC06A7C00381BDF /* SettingsCoordinator.swift in Sources */,
 				30E5C41F2BC41E9B0032D7B3 /* CardCoordinator.swift in Sources */,
+				303362832BC6B28300A2ECE9 /* TimerView.swift in Sources */,
 				3072D6C52BC0071600381BDF /* MappedCoordinator.swift in Sources */,
 				3072D6C42BC0071600381BDF /* AnyCoordinator.swift in Sources */,
 				3072C8792BBFFFA600381BDF /* Router.swift in Sources */,
@@ -823,6 +830,7 @@
 				3072C8382BBFFB9C00381BDF /* AppDelegate.swift in Sources */,
 				3072D6D42BC0168800381BDF /* SearchWordModel.swift in Sources */,
 				3072D6E52BC060B600381BDF /* TabViewController.swift in Sources */,
+				302E39132BC92B2A00639007 /* SettingsCellView.swift in Sources */,
 				3072D6FA2BC078BC00381BDF /* WordViewController.swift in Sources */,
 				3072D6CD2BC008DC00381BDF /* CombineAsyncStreamBridge.swift in Sources */,
 				303D46A32BC2BF5E00A57E09 /* UISearchBar+Extensions.swift in Sources */,
@@ -1029,7 +1037,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FH85Z67KT3;
+				DEVELOPMENT_TEAM = GAH72SPMY9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1056,7 +1064,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FH85Z67KT3;
+				DEVELOPMENT_TEAM = GAH72SPMY9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
