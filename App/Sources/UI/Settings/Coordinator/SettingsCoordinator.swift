@@ -6,6 +6,11 @@ class SettingsCoordinator: Coordinator<Void> {
     private let router: Router?
     private var viewController: SettingsViewController?
     private var bookmarks = BookmarkManager()
+    private var context: CurrentValueSubject<TalmideoContext, Never>
+
+    deinit {
+        print(Self.self, "deinit")
+    }
 
     struct SettingsSectionModel {
         let title: String
@@ -17,16 +22,29 @@ class SettingsCoordinator: Coordinator<Void> {
     }
 
     struct SettingsCellModel {
+        enum SettingsType {
+            case bookmarks
+            case general
+        }
+
         let title: String
         let actionButtonTitle: String
         let isActionDanger: Bool
         let action: (() -> Void)?
+        let type: SettingsType
 
-        init(title: String, actionButtonTitle: String, isActionDanger: Bool = false, action: (() -> Void)?) {
+        init(
+            title: String,
+            actionButtonTitle: String,
+            isActionDanger: Bool = false,
+            action: (() -> Void)?,
+            type: SettingsType = .general
+        ) {
             self.title = title
             self.actionButtonTitle = actionButtonTitle
             self.action = action
             self.isActionDanger = isActionDanger
+            self.type = type
         }
     }
 
@@ -34,7 +52,12 @@ class SettingsCoordinator: Coordinator<Void> {
         SettingsSectionModel(
             title: .localized(.generalSettings),
             options: [.init(title: .localized(.notifications), actionButtonTitle: "", action: nil),
-                      .init(title: .localized(.bookmarks), actionButtonTitle: "\(bookmarks.count)", action: nil)]
+                      .init(
+                          title: .localized(.bookmarks),
+                          actionButtonTitle: "\(bookmarks.count)",
+                          action: nil,
+                          type: .bookmarks
+                      )]
         ),
         SettingsSectionModel(
             title: .localized(.advancedSettings),
@@ -45,6 +68,7 @@ class SettingsCoordinator: Coordinator<Void> {
                 action: { [weak self] in
                     guard let self = self else { return }
                     bookmarks.removeAll()
+                    context.send(.init(state: .bookmarks))
                 }
             )]
         ),
@@ -68,10 +92,11 @@ class SettingsCoordinator: Coordinator<Void> {
         )
     ]
 
-    init?(router: Router) {
+    init?(router: Router, context: CurrentValueSubject<TalmideoContext, Never>) {
         self.router = router
+        self.context = context
         super.init()
-        viewController = SettingsViewController(SettingsModel(settingsSections: settingsSections))
+        viewController = SettingsViewController(SettingsModel(settingsSections: settingsSections), context: context)
     }
 
     override func start() {

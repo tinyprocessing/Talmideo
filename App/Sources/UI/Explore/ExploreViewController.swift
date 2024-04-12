@@ -10,6 +10,7 @@ class ExploreViewController: BaseViewController {
     private let scrollView = UIScrollView()
     private let stackView = UIStackView()
     private let bookmarks = BookmarkManager()
+    private let context: CurrentValueSubject<TalmideoContext, Never>
 
     public var exploreDelegate: ExploreViewControllerDelegate?
 
@@ -24,7 +25,10 @@ class ExploreViewController: BaseViewController {
         return label
     }()
 
-    init() {
+    private var bookmarksView: ExploreItemView? = nil
+
+    init(context: CurrentValueSubject<TalmideoContext, Never>) {
+        self.context = context
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -36,6 +40,26 @@ class ExploreViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+    }
+
+    public func updateBookmarks() {
+        if bookmarksView == nil && bookmarks.count > 3 {
+            setupExploreItem(.init(
+                type: .bookmarks,
+                image: "ExploreBookmarks",
+                title: .localized(.bookmarks),
+                subtitle: "\(bookmarks.count)",
+                secondary: .localized(.repeat)
+            ))
+        } else if bookmarksView != nil && bookmarks.count <= 3 {
+            bookmarksView?.removeFromSuperview()
+            stackView.arrangedSubviews.forEach { view in
+                if view == bookmarksView {
+                    view.removeFromSuperview()
+                }
+            }
+            bookmarksView = nil
+        }
     }
 
     private func configure() {
@@ -50,16 +74,7 @@ class ExploreViewController: BaseViewController {
 
         setupScrollView()
         setupStackView()
-        let bookmarksCount = bookmarks.getAllBookmarkedIDs().count
-        if bookmarksCount > 3 {
-            setupExploreItem(.init(
-                type: .bookmarks,
-                image: "ExploreBookmarks",
-                title: .localized(.bookmarks),
-                subtitle: "\(bookmarksCount)",
-                secondary: .localized(.repeat)
-            ))
-        }
+
         setupExploreItem(.init(
             type: .noun,
             image: "ExploreNoun",
@@ -84,9 +99,14 @@ class ExploreViewController: BaseViewController {
     }
 
     private func setupExploreItem(_ model: ExploreItemView.ExploreItemModel) {
-        let view = ExploreItemView(model: model)
+        let view = ExploreItemView(model: model, context: context)
         view.delegate = self
-        stackView.addArrangedSubview(view)
+        if model.type == .bookmarks {
+            bookmarksView = view
+            stackView.insertArrangedSubview(view, at: 0)
+        } else {
+            stackView.addArrangedSubview(view)
+        }
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalTo: stackView.widthAnchor, constant: -30).isActive = true
         view.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true

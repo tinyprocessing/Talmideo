@@ -1,8 +1,11 @@
+import Combine
 import Foundation
 import UIKit
 
 class SettingsCellView: UIView {
     private let model: SettingsCoordinator.SettingsCellModel
+    private var context: CurrentValueSubject<TalmideoContext, Never>
+    private var cancellables = Set<AnyCancellable>()
 
     private lazy var wrapperView: UIView = {
         let view = UIView()
@@ -50,8 +53,9 @@ class SettingsCellView: UIView {
         return view
     }()
 
-    init(_ model: SettingsCoordinator.SettingsCellModel) {
+    init(_ model: SettingsCoordinator.SettingsCellModel, context: CurrentValueSubject<TalmideoContext, Never>) {
         self.model = model
+        self.context = context
         super.init(frame: .zero)
         configure()
     }
@@ -62,6 +66,17 @@ class SettingsCellView: UIView {
     }
 
     private func configure() {
+        context
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                if self.model.type == .bookmarks, context.value.state == .bookmarks {
+                    let bookmars = BookmarkManager()
+                    self.actionButton.setTitle("\(bookmars.count)", for: .normal)
+                }
+            }
+            .store(in: &cancellables)
+
         addSubview(wrapperView)
         wrapperView.addSubview(titleLabel)
         wrapperView.addSubview(actionButton)
@@ -79,7 +94,6 @@ class SettingsCellView: UIView {
 
             actionButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             actionButton.heightAnchor.constraint(equalToConstant: 25),
-//            actionButton.widthAnchor.constraint(equalToConstant: 70),
             actionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
         ])
 

@@ -15,7 +15,9 @@ class BookmarkManager {
         }
     }
 
-    public lazy var count: Int = getAllBookmarkedIDs().count
+    public var count: Int {
+        return getAllBookmarkedIDs().count
+    }
 
     func addBookmark(_ id: Int) {
         var ids = bookmarkedIDs

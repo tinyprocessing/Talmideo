@@ -6,27 +6,13 @@ class ExploreCoordinator: Coordinator<Void> {
     private var viewController: ExploreViewController?
     private let database: SQLiteDataDatabase
     private let bookmarksManager = BookmarkManager()
+    private var context: CurrentValueSubject<TalmideoContext, Never>
+    private var cancellables = Set<AnyCancellable>()
 
     private var nouns: [Int] = []
     private var verbs: [Int] = []
     private var adjectives: [Int] = []
     private var bookmarks: [Int] = []
-
-    init?(router: Router, databaseWord: SQLiteDataDatabase) {
-        self.router = router
-        database = databaseWord
-        viewController = ExploreViewController()
-        super.init()
-        viewController?.exploreDelegate = self
-    }
-
-    override func start() {
-        let array: [ExploreIndex] = [.noun, .verb, .adjective, .bookmarks]
-        array.forEach { value in
-            load(value)
-        }
-        super.start()
-    }
 
     public enum ExploreIndex: String {
         case noun = "N"
@@ -39,7 +25,43 @@ class ExploreCoordinator: Coordinator<Void> {
         }
     }
 
-    private func load(_ value: ExploreIndex) {
+    deinit {
+        print(Self.self, "deinit")
+    }
+
+    init?(router: Router, databaseWord: SQLiteDataDatabase, context: CurrentValueSubject<TalmideoContext, Never>) {
+        self.router = router
+        self.context = context
+        database = databaseWord
+        viewController = ExploreViewController(context: context)
+        super.init()
+        viewController?.exploreDelegate = self
+    }
+
+    override func start() {
+        prepare()
+        super.start()
+
+        context
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                prepare()
+                viewController?.updateBookmarks()
+            }
+            .store(in: &cancellables)
+    }
+
+    private func prepare() {
+        Task {
+            let array: [ExploreIndex] = [.noun, .verb, .adjective, .bookmarks]
+            for value in array {
+                await load(value)
+            }
+        }
+    }
+
+    private func load(_ value: ExploreIndex) async {
         let query: (String, [Any?]) = database.query.prepare(.export(value: value.value))
         let result = database.search(query)
         var ids: [Int] = []

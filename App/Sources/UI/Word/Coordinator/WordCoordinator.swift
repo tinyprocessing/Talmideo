@@ -7,9 +7,11 @@ class WordCoordinator: Coordinator<Void> { private let router: Router?
     private var id = 0
     private var model: CurrentValueSubject<WordModel, Never> = .init(WordModel())
     private let bookmarks = BookmarkManager()
+    private var context: CurrentValueSubject<TalmideoContext, Never>
 
-    init?(router: Router?, databaseWord: SQLiteDataDatabase) {
+    init?(router: Router?, databaseWord: SQLiteDataDatabase, context: CurrentValueSubject<TalmideoContext, Never>) {
         self.router = router
+        self.context = context
         database = databaseWord
         viewController = WordViewController(model: model)
         super.init()
@@ -56,6 +58,7 @@ extension WordCoordinator: WordViewDelegate {
     }
 
     func bookmark(_ model: WordModel) {
+        context.send(.init(state: .bookmarks))
         if bookmarks.isBookmarked(id) {
             bookmarks.removeBookmark(id)
         } else {

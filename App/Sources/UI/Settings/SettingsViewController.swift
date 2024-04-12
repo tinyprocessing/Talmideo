@@ -1,7 +1,9 @@
+import Combine
 import UIKit
 
 class SettingsViewController: BaseViewController {
     private let model: SettingsCoordinator.SettingsModel
+    private var context: CurrentValueSubject<TalmideoContext, Never>
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -29,8 +31,9 @@ class SettingsViewController: BaseViewController {
         return view
     }()
 
-    init(_ model: SettingsCoordinator.SettingsModel) {
+    init(_ model: SettingsCoordinator.SettingsModel, context: CurrentValueSubject<TalmideoContext, Never>) {
         self.model = model
+        self.context = context
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -45,7 +48,7 @@ class SettingsViewController: BaseViewController {
     }
 
     private func generateSettingsCellView(_ model: SettingsCoordinator.SettingsCellModel) {
-        let view = SettingsCellView(model)
+        let view = SettingsCellView(model, context: context)
         view.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(view)
 

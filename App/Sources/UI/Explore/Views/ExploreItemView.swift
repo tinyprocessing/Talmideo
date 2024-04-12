@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 import UIKit
 
@@ -7,6 +8,8 @@ protocol ExploreItemViewDelegate: AnyObject {
 
 class ExploreItemView: UIView {
     private var model: ExploreItemModel
+    private let context: CurrentValueSubject<TalmideoContext, Never>
+    private var cancellables = Set<AnyCancellable>()
 
     public var delegate: ExploreItemViewDelegate?
 
@@ -105,8 +108,9 @@ class ExploreItemView: UIView {
         var secondary = ""
     }
 
-    init(model: ExploreItemModel) {
+    init(model: ExploreItemModel, context: CurrentValueSubject<TalmideoContext, Never>) {
         self.model = model
+        self.context = context
         super.init(frame: .zero)
         setupViews()
     }
@@ -126,6 +130,17 @@ class ExploreItemView: UIView {
     }
 
     private func configure() {
+        context
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                if self.model.type == .bookmarks, context.value.state == .bookmarks {
+                    let bookmarks = BookmarkManager()
+                    subtitleLabel.text = "\(bookmarks.count)"
+                }
+            }
+            .store(in: &cancellables)
+
         backgroundColor = Constants.backgroundColor
         layer.cornerRadius = 20
 

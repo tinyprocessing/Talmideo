@@ -78,7 +78,7 @@ class CardContentView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
     }
-    
+
     private enum Config {
         static let backgroundColor = UIColor.secondaryLabel.withAlphaComponent(0.05)
     }

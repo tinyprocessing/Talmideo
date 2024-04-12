@@ -4,6 +4,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     private let router = Router(baseRoute: Constants.InitialRouteType)
+    private var coordinator: TalmideoCoordinator? = nil
 
     func scene(
         _ scene: UIScene,
@@ -16,9 +17,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = router.navigationController
         window?.makeKeyAndVisible()
 
-        let coordinator = TalmideoCoordinator(router: router)
+        coordinator = TalmideoCoordinator(router: router)
         if let coordinator = coordinator {
             coordinator.start()
+            coordinator.onFinish = { result in
+                print("Task finished with result: \(result)")
+            }
         }
     }
 

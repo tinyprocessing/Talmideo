@@ -81,3 +81,15 @@ extension UIView {
         layer.shadowColor = color.cgColor
     }
 }
+
+extension UIViewController {
+    func resetToInitialState() {
+        for childVC in children {
+            childVC.willMove(toParent: nil)
+            childVC.view.removeFromSuperview()
+            childVC.removeFromParent()
+        }
+
+        view.subviews.forEach { $0.removeFromSuperview() }
+    }
+}

@@ -10,11 +10,22 @@ class SearchCoordinator: Coordinator<Void> {
     private var wordCoordinator: WordCoordinator?
     private let bookmarks = BookmarkManager()
     private var bookmarksFilter = false
+    private var context: CurrentValueSubject<TalmideoContext, Never>
 
-    init?(router: Router, databaseSearch: SQLiteDataDatabase, databaseWord: SQLiteDataDatabase) {
+    deinit {
+        print(Self.self, "deinit")
+    }
+
+    init?(
+        router: Router,
+        databaseSearch: SQLiteDataDatabase,
+        databaseWord: SQLiteDataDatabase,
+        context: CurrentValueSubject<TalmideoContext, Never>
+    ) {
         self.router = router
         self.databaseSearch = databaseSearch
         self.databaseWord = databaseWord
+        self.context = context
         viewController = SearchViewController(model: model, bookmarks: bookmarks)
         super.init()
         viewController?.searchDelegate = self
@@ -81,7 +92,7 @@ class SearchCoordinator: Coordinator<Void> {
     }
 
     override func start() {
-        wordCoordinator = WordCoordinator(router: router, databaseWord: databaseWord)
+        wordCoordinator = WordCoordinator(router: router, databaseWord: databaseWord, context: context)
         wordCoordinator?.start()
         processSearchResults(isBookmarks: bookmarksFilter)
         super.start()

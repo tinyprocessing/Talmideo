@@ -1,5 +1,19 @@
+import Combine
 import Foundation
 import UIKit
+
+struct TalmideoContext {
+    enum State {
+        case bookmarks
+        case coordinator
+    }
+
+    var state: State = .bookmarks
+
+    init(state: State) {
+        self.state = state
+    }
+}
 
 class TalmideoCoordinator: Coordinator<Void> {
     private let router: Router
@@ -10,6 +24,11 @@ class TalmideoCoordinator: Coordinator<Void> {
     private let databaseWord: SQLiteDataDatabase
 
     private var tabViewController: TabViewController?
+    private var context: CurrentValueSubject<TalmideoContext, Never> = .init(TalmideoContext(state: .coordinator))
+
+    deinit {
+        print(Self.self, "deinit")
+    }
 
     init?(router: Router) {
         self.router = router
@@ -25,15 +44,19 @@ class TalmideoCoordinator: Coordinator<Void> {
         searchCoordinator = SearchCoordinator(
             router: router,
             databaseSearch: databaseSearch,
-            databaseWord: databaseWord
+            databaseWord: databaseWord,
+            context: context
         )
-        settingsCoordinator = SettingsCoordinator(router: router)
-        exploreCoordinator = ExploreCoordinator(router: router, databaseWord: databaseWord)
+        settingsCoordinator = SettingsCoordinator(router: router, context: context)
+        exploreCoordinator = ExploreCoordinator(router: router, databaseWord: databaseWord, context: context)
 
         searchCoordinator?.start()
         settingsCoordinator?.start()
         exploreCoordinator?.start()
 
+        if let settingsCoordinator = settingsCoordinator {
+            addChild(coordinator: settingsCoordinator)
+        }
         configureVCs()
     }
 
