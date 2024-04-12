@@ -4,8 +4,9 @@ import UIKit
 class TimerView: UIView {
     private let timerLabel: UILabel = {
         let label = UILabel()
+        label.text = "00:00:00"
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
         return label

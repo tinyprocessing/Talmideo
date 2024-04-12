@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 class SettingsCellView: UIView {
-    private let model: SettingsViewController.SettingsCellModel
+    private let model: SettingsCoordinator.SettingsCellModel
 
     private lazy var wrapperView: UIView = {
         let view = UIView()
@@ -22,10 +22,10 @@ class SettingsCellView: UIView {
         return label
     }()
 
-    private lazy var actionButton: UIButton = {
-        let button = UIButton()
+    private lazy var actionButton: ActionButton = {
+        let button = ActionButton()
         button.setTitle(model.actionButtonTitle, for: .normal)
-        button.backgroundColor = .secondaryLabel.withAlphaComponent(0.1)
+        button.backgroundColor = .secondaryLabel.withAlphaComponent(0.05)
         button.layer.cornerRadius = 12.5
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -33,13 +33,24 @@ class SettingsCellView: UIView {
         button.setTitleColor(.black.withAlphaComponent(0.7), for: .normal)
         button.tintColor = .black
         button.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        if model.isActionDanger {
+            button.setTitleColor(.red.withAlphaComponent(0.7), for: .normal)
+            button.tintColor = .red
+        }
         if model.actionButtonTitle.isEmpty {
             button.isHidden = true
         }
+        let padding: CGFloat = 10
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding)
         return button
     }()
 
-    init(_ model: SettingsViewController.SettingsCellModel) {
+    private lazy var switchAction: UISwitch = {
+        let view = UISwitch()
+        return view
+    }()
+
+    init(_ model: SettingsCoordinator.SettingsCellModel) {
         self.model = model
         super.init(frame: .zero)
         configure()
@@ -68,7 +79,7 @@ class SettingsCellView: UIView {
 
             actionButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             actionButton.heightAnchor.constraint(equalToConstant: 25),
-            actionButton.widthAnchor.constraint(equalToConstant: 70),
+//            actionButton.widthAnchor.constraint(equalToConstant: 70),
             actionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
         ])
 

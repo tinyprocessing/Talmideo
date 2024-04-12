@@ -5,10 +5,12 @@ class ExploreCoordinator: Coordinator<Void> {
     private let router: Router?
     private var viewController: ExploreViewController?
     private let database: SQLiteDataDatabase
+    private let bookmarksManager = BookmarkManager()
 
     private var nouns: [Int] = []
     private var verbs: [Int] = []
     private var adjectives: [Int] = []
+    private var bookmarks: [Int] = []
 
     init?(router: Router, databaseWord: SQLiteDataDatabase) {
         self.router = router
@@ -19,7 +21,7 @@ class ExploreCoordinator: Coordinator<Void> {
     }
 
     override func start() {
-        let array: [ExploreIndex] = [.noun, .verb, .adjective]
+        let array: [ExploreIndex] = [.noun, .verb, .adjective, .bookmarks]
         array.forEach { value in
             load(value)
         }
@@ -30,6 +32,7 @@ class ExploreCoordinator: Coordinator<Void> {
         case noun = "N"
         case verb = "V"
         case adjective = "A"
+        case bookmarks
 
         var value: String {
             return #""part_of_speech":"\#(rawValue)""#
@@ -54,6 +57,8 @@ class ExploreCoordinator: Coordinator<Void> {
             verbs = ids
         case .adjective:
             adjectives = ids
+        case .bookmarks:
+            bookmarks = bookmarksManager.getAllBookmarkedIDs()
         }
     }
 
@@ -72,6 +77,8 @@ extension ExploreCoordinator: ExploreViewControllerDelegate {
             wordsArray = verbs
         case .adjective:
             wordsArray = adjectives
+        case .bookmarks:
+            wordsArray = bookmarks
         }
 
         let cardCoordinator = createCardCoordinator(withWords: wordsArray)

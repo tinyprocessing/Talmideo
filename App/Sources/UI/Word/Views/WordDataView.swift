@@ -211,16 +211,16 @@ class WordDataView: UIView {
 
     private enum Config {
         static let title = ""
-        static let present = "Present"
-        static let passivePresent = "Passive Present"
-        static let past = "Past"
-        static let future = "Future"
-        static let imperative = "Imperative"
-        static let passiveFuture = "Passive Future"
-        static let passivePast = "Passive Past"
-        static let noun = "Noun"
-        static let adjective = "Adjective"
-        static let pronoun = "Pronoun"
+        static let present: String = .localized(.present)
+        static let passivePresent: String = .localized(.passivePresent)
+        static let past: String = .localized(.past)
+        static let future: String = .localized(.future)
+        static let imperative: String = .localized(.imperative)
+        static let passiveFuture: String = .localized(.passiveFuture)
+        static let passivePast: String = .localized(.passivePast)
+        static let noun: String = .localized(.noun)
+        static let adjective: String = .localized(.adjective)
+        static let pronoun: String = .localized(.pronoun)
 
         static let oneP = "אנחנו"
         static let oneS = "אני"

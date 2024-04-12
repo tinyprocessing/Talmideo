@@ -15,6 +15,8 @@ class BookmarkManager {
         }
     }
 
+    public lazy var count: Int = getAllBookmarkedIDs().count
+
     func addBookmark(_ id: Int) {
         var ids = bookmarkedIDs
         ids[id] = Date()
@@ -35,5 +37,9 @@ class BookmarkManager {
         let sortedIDs = bookmarkedIDs.sorted(by: { $0.value > $1.value })
         let limitedIDs = Array(sortedIDs.prefix(100))
         return limitedIDs.map { $0.key }
+    }
+
+    func removeAll() {
+        UserDefaults.standard.removeObject(forKey: bookmarkKey)
     }
 }

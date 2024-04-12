@@ -9,6 +9,7 @@ class ExploreViewController: BaseViewController {
     private var cancellables = Set<AnyCancellable>()
     private let scrollView = UIScrollView()
     private let stackView = UIStackView()
+    private let bookmarks = BookmarkManager()
 
     public var exploreDelegate: ExploreViewControllerDelegate?
 
@@ -49,26 +50,36 @@ class ExploreViewController: BaseViewController {
 
         setupScrollView()
         setupStackView()
+        let bookmarksCount = bookmarks.getAllBookmarkedIDs().count
+        if bookmarksCount > 3 {
+            setupExploreItem(.init(
+                type: .bookmarks,
+                image: "ExploreBookmarks",
+                title: .localized(.bookmarks),
+                subtitle: "\(bookmarksCount)",
+                secondary: .localized(.repeat)
+            ))
+        }
         setupExploreItem(.init(
             type: .noun,
             image: "ExploreNoun",
-            title: "Nouns",
+            title: .localized(.nouns),
             subtitle: "4,370",
-            secondary: "Start learning"
+            secondary: .localized(.startLearning)
         ))
         setupExploreItem(.init(
             type: .verb,
             image: "ExploreVerb",
-            title: "Verbs",
+            title: .localized(.verbs),
             subtitle: "3,440",
-            secondary: "Start learning"
+            secondary: .localized(.startLearning)
         ))
         setupExploreItem(.init(
             type: .adjective,
             image: "ExploreAdjective",
-            title: "Adjectives",
+            title: .localized(.adjectives),
             subtitle: "948",
-            secondary: "Start learning"
+            secondary: .localized(.startLearning)
         ))
     }
 
@@ -117,7 +128,7 @@ class ExploreViewController: BaseViewController {
     }
 
     private enum Config {
-        static let title = "Explore"
+        static let title: String = .localized(.explore)
     }
 }
 

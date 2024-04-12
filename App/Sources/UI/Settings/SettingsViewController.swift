@@ -1,33 +1,7 @@
 import UIKit
 
-class TouchPassingTableView: UITableView {
-    override func touchesShouldCancel(in view: UIView) -> Bool {
-        print("need to cancel touch")
-        return false
-    }
-
-    override func touchesShouldBegin(_ touches: Set<UITouch>, with event: UIEvent?, in view: UIView) -> Bool {
-        return true
-    }
-}
-
 class SettingsViewController: BaseViewController {
-    struct SettingsSectionModel {
-        let title: String
-        let options: [SettingsCellModel]
-    }
-
-    struct SettingsCellModel {
-        let title: String
-        let actionButtonTitle: String
-        let action: (() -> Void)?
-
-        init(title: String, actionButtonTitle: String, action: (() -> Void)?) {
-            self.title = title
-            self.actionButtonTitle = actionButtonTitle
-            self.action = action
-        }
-    }
+    private let model: SettingsCoordinator.SettingsModel
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -49,33 +23,14 @@ class SettingsViewController: BaseViewController {
     private lazy var stackView: UIStackView = {
         let view = UIStackView(axis: .vertical)
         view.axis = .vertical
-        view.spacing = 10
+        view.spacing = 5
         view.alignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private let settingsSections: [SettingsSectionModel] = [
-        SettingsSectionModel(
-            title: "General Settings",
-            options: [.init(title: "Notifications", actionButtonTitle: "", action: nil),
-                      .init(title: "Bookmarks", actionButtonTitle: "", action: nil)]
-        ),
-        SettingsSectionModel(
-            title: "Advanced Settings",
-            options: [.init(title: "Clear history", actionButtonTitle: "Delete", action: nil)]
-        ),
-        SettingsSectionModel(
-            title: "Contact",
-            options: [.init(title: "Github", actionButtonTitle: "Open", action: {
-                print("open github")
-            }),
-            .init(title: "Website", actionButtonTitle: "Open", action: {}),
-            .init(title: "Mail", actionButtonTitle: "Send", action: {})]
-        )
-    ]
-
-    init() {
+    init(_ model: SettingsCoordinator.SettingsModel) {
+        self.model = model
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -89,7 +44,7 @@ class SettingsViewController: BaseViewController {
         configure()
     }
 
-    private func generateSettingsCellView(_ model: SettingsCellModel) {
+    private func generateSettingsCellView(_ model: SettingsCoordinator.SettingsCellModel) {
         let view = SettingsCellView(model)
         view.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(view)
@@ -102,7 +57,7 @@ class SettingsViewController: BaseViewController {
         ])
     }
 
-    private func generateSettingsSectionView(_ model: SettingsSectionModel) {
+    private func generateSettingsSectionView(_ model: SettingsCoordinator.SettingsSectionModel) {
         let label = UILabel()
         label.text = model.title
         label.font = .systemFont(ofSize: 18, weight: .medium)
@@ -143,7 +98,7 @@ class SettingsViewController: BaseViewController {
             stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
 
-        settingsSections.forEach { settingsModel in
+        model.settingsSections.forEach { settingsModel in
             generateSettingsSectionView(settingsModel)
             settingsModel.options.forEach { model in
                 generateSettingsCellView(model)
@@ -152,7 +107,7 @@ class SettingsViewController: BaseViewController {
     }
 
     private enum Config {
-        static let title = "Settings"
+        static let title: String = .localized(.settings)
         static let settingsViewCell = "SettingsViewCell"
     }
 }

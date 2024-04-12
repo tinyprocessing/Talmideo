@@ -26,7 +26,7 @@ class CardViewController: BaseViewController {
 
     private lazy var nextButton: ActionButton = {
         let button = ActionButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        button.setTitle("Next", for: .normal)
+        button.setTitle(.localized(.next), for: .normal)
         button.tintColor = .white
         button.layer.shadowColor = Config.buttonColor.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)

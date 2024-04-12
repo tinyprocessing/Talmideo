@@ -129,7 +129,7 @@ class WordHeaderView: UIView {
 
     private enum Config {
         static let title = ""
-        static let masculine = "masculine"
-        static let feminine = "feminine"
+        static let masculine: String = .localized(.masculine)
+        static let feminine: String = .localized(.feminine)
     }
 }
