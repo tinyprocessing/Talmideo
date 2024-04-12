@@ -27,21 +27,21 @@ class CardViewController: BaseViewController {
     private lazy var nextButton: ActionButton = {
         let button = ActionButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         button.setTitle(.localized(.next), for: .normal)
-        button.tintColor = .white
-        button.layer.shadowColor = Config.buttonColor.cgColor
+        button.setTitleColor(.black, for: .normal)
+        button.layer.shadowColor = Config.buttonNextColor.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
         button.layer.shadowRadius = 6
         button.layer.shadowOpacity = 0.7
-        button.backgroundColor = Config.buttonColor
+        button.backgroundColor = Config.buttonNextColor
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
         return button
     }()
 
-    private lazy var timerView: TimerView = {
-        let view = TimerView()
+    private lazy var cardTimerView: CardTimerView = {
+        let view = CardTimerView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -76,7 +76,7 @@ class CardViewController: BaseViewController {
     private func configure() {
         view.addSubview(backButton)
         view.addSubview(nextButton)
-        view.addSubview(timerView)
+        view.addSubview(cardTimerView)
         view.addSubview(cardStack)
 
         cardStack.translatesAutoresizingMaskIntoConstraints = false
@@ -86,10 +86,10 @@ class CardViewController: BaseViewController {
             backButton.heightAnchor.constraint(equalToConstant: 30),
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            timerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            timerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
-            timerView.heightAnchor.constraint(equalToConstant: 40),
-            timerView.widthAnchor.constraint(equalToConstant: 100)
+            cardTimerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            cardTimerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            cardTimerView.heightAnchor.constraint(equalToConstant: 40),
+            cardTimerView.widthAnchor.constraint(equalToConstant: 100)
         ])
 
         NSLayoutConstraint.activate([
@@ -131,6 +131,7 @@ class CardViewController: BaseViewController {
 
     private enum Config {
         static let buttonColor = UIColor(hex: "FFC75A")
+        static let buttonNextColor = UIColor.secondaryLabel.withAlphaComponent(0.05)
         static var iconBack: UIImage {
             let config = UIImage.SymbolConfiguration(pointSize: 14, weight: .regular, scale: .default)
             return UIImage(systemName: "chevron.left", withConfiguration: config) ?? UIImage()

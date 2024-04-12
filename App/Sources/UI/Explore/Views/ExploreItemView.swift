@@ -26,7 +26,7 @@ class ExploreItemView: UIView {
         view.addSubview(blurEffectView)
 
         let tintView = UIView(frame: view.bounds)
-        tintView.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+        tintView.backgroundColor = UIColor.secondaryLabel.withAlphaComponent(0.1)
         tintView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(tintView)
         return view
@@ -143,7 +143,7 @@ class ExploreItemView: UIView {
             subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
             subtitleLabel.heightAnchor.constraint(equalToConstant: 40),
 
-            secondaryLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 0),
+            secondaryLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 5),
             secondaryLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 20),
             secondaryLabel.heightAnchor.constraint(equalToConstant: 25),
 

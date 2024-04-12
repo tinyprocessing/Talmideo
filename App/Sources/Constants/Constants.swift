@@ -8,8 +8,8 @@ enum Constants {
     static let InitialRouteType: RouteType = .home
     static let DefaultAnimationDuration = 0.3
 
-    static let Dictionary = "word_index"
-    static let DictionaryTranslator = "dictionary"
+    static let Dictionary = "database"
+    static let DictionaryTranslator = "index"
     static let WordDataTable = "worddata"
     static let WordData = "word"
     static let backgroundColor = UIColor(hex: "F5F8FA")

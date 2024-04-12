@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class TimerView: UIView {
+class CardTimerView: UIView {
     private let timerLabel: UILabel = {
         let label = UILabel()
         label.text = "00:00:00"

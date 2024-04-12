@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		302E39132BC92B2A00639007 /* SettingsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E39122BC92B2A00639007 /* SettingsCellView.swift */; };
-		303362832BC6B28300A2ECE9 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303362822BC6B28300A2ECE9 /* TimerView.swift */; };
+		303362832BC6B28300A2ECE9 /* CardTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303362822BC6B28300A2ECE9 /* CardTimerView.swift */; };
 		303D46A32BC2BF5E00A57E09 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */; };
 		303D46A62BC2EDFB00A57E09 /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D46A52BC2EDFB00A57E09 /* BookmarkManager.swift */; };
 		303D46A82BC3235200A57E09 /* ExploreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D46A72BC3235200A57E09 /* ExploreItemView.swift */; };
@@ -39,8 +39,8 @@
 		3072C89B2BBFFFC700381BDF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072C8962BBFFFC700381BDF /* Constants.swift */; };
 		3072C89C2BBFFFC700381BDF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072C8972BBFFFC700381BDF /* Colors.swift */; };
 		3072C8A12BC0007100381BDF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072C8A02BC0007100381BDF /* BaseViewController.swift */; };
-		3072C8A32BC0049000381BDF /* dictionary.db in Resources */ = {isa = PBXBuildFile; fileRef = 3072C8A22BC0049000381BDF /* dictionary.db */; };
-		3072C8A52BC0049B00381BDF /* word_index.db in Resources */ = {isa = PBXBuildFile; fileRef = 3072C8A42BC0049B00381BDF /* word_index.db */; };
+		3072C8A32BC0049000381BDF /* index.db in Resources */ = {isa = PBXBuildFile; fileRef = 3072C8A22BC0049000381BDF /* index.db */; };
+		3072C8A52BC0049B00381BDF /* database.db in Resources */ = {isa = PBXBuildFile; fileRef = 3072C8A42BC0049B00381BDF /* database.db */; };
 		3072D6C32BC0071600381BDF /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6BF2BC0071600381BDF /* Coordinatable.swift */; };
 		3072D6C42BC0071600381BDF /* AnyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6C02BC0071600381BDF /* AnyCoordinator.swift */; };
 		3072D6C52BC0071600381BDF /* MappedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6C12BC0071600381BDF /* MappedCoordinator.swift */; };
@@ -111,7 +111,7 @@
 
 /* Begin PBXFileReference section */
 		302E39122BC92B2A00639007 /* SettingsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellView.swift; sourceTree = "<group>"; };
-		303362822BC6B28300A2ECE9 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		303362822BC6B28300A2ECE9 /* CardTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTimerView.swift; sourceTree = "<group>"; };
 		303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
 		303D46A52BC2EDFB00A57E09 /* BookmarkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkManager.swift; sourceTree = "<group>"; };
 		303D46A72BC3235200A57E09 /* ExploreItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreItemView.swift; sourceTree = "<group>"; };
@@ -148,8 +148,8 @@
 		3072C8962BBFFFC700381BDF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3072C8972BBFFFC700381BDF /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3072C8A02BC0007100381BDF /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		3072C8A22BC0049000381BDF /* dictionary.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dictionary.db; sourceTree = "<group>"; };
-		3072C8A42BC0049B00381BDF /* word_index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = word_index.db; sourceTree = "<group>"; };
+		3072C8A22BC0049000381BDF /* index.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = index.db; sourceTree = "<group>"; };
+		3072C8A42BC0049B00381BDF /* database.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = database.db; sourceTree = "<group>"; };
 		3072D6BF2BC0071600381BDF /* Coordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		3072D6C02BC0071600381BDF /* AnyCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCoordinator.swift; sourceTree = "<group>"; };
 		3072D6C12BC0071600381BDF /* MappedCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappedCoordinator.swift; sourceTree = "<group>"; };
@@ -226,6 +226,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		302E39142BC98E6B00639007 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				302E39162BC98E7700639007 /* Coordinator */,
+				302E39152BC98E7200639007 /* Views */,
+				30E5C41C2BC41E7D0032D7B3 /* CardViewController.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		302E39152BC98E7200639007 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				30E5C4232BC427320032D7B3 /* CardOverlayView.swift */,
+				303362822BC6B28300A2ECE9 /* CardTimerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		302E39162BC98E7700639007 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				30E5C41E2BC41E9B0032D7B3 /* CardCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		303D46A42BC2EDEA00A57E09 /* Bookmarks */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,8 +319,8 @@
 			isa = PBXGroup;
 			children = (
 				30493F552BC5C912001BB2AF /* Common */,
-				3072C8A42BC0049B00381BDF /* word_index.db */,
-				3072C8A22BC0049000381BDF /* dictionary.db */,
+				3072C8A42BC0049B00381BDF /* database.db */,
+				3072C8A22BC0049000381BDF /* index.db */,
 				3072C8402BBFFB9D00381BDF /* Assets.xcassets */,
 				3072C8422BBFFB9D00381BDF /* LaunchScreen.storyboard */,
 				3072C8452BBFFB9D00381BDF /* Info.plist */,
@@ -396,6 +423,7 @@
 		3072C89E2BC0006A00381BDF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				302E39142BC98E6B00639007 /* Card */,
 				3072D6F42BC0788600381BDF /* Word */,
 				3072D6ED2BC0777400381BDF /* Explore */,
 				3072D6E62BC06A5500381BDF /* Settings */,
@@ -533,10 +561,9 @@
 		3072D6ED2BC0777400381BDF /* Explore */ = {
 			isa = PBXGroup;
 			children = (
-				3072D6EF2BC0778E00381BDF /* Views */,
 				3072D6EE2BC0778000381BDF /* Coordinator */,
+				3072D6EF2BC0778E00381BDF /* Views */,
 				3072D6F02BC0779E00381BDF /* ExploreViewController.swift */,
-				30E5C41C2BC41E7D0032D7B3 /* CardViewController.swift */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -545,7 +572,6 @@
 			isa = PBXGroup;
 			children = (
 				3072D6F22BC077AB00381BDF /* ExploreCoordinator.swift */,
-				30E5C41E2BC41E9B0032D7B3 /* CardCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -554,8 +580,6 @@
 			isa = PBXGroup;
 			children = (
 				303D46A72BC3235200A57E09 /* ExploreItemView.swift */,
-				30E5C4232BC427320032D7B3 /* CardOverlayView.swift */,
-				303362822BC6B28300A2ECE9 /* TimerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -749,9 +773,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				30493F582BC5C937001BB2AF /* Localizable.strings in Resources */,
-				3072C8A52BC0049B00381BDF /* word_index.db in Resources */,
+				3072C8A52BC0049B00381BDF /* database.db in Resources */,
 				3072C8442BBFFB9D00381BDF /* LaunchScreen.storyboard in Resources */,
-				3072C8A32BC0049000381BDF /* dictionary.db in Resources */,
+				3072C8A32BC0049000381BDF /* index.db in Resources */,
 				3072C8412BBFFB9D00381BDF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -805,7 +829,7 @@
 				30E5C4432BC469DA0032D7B3 /* CGVector+Extensions.swift in Sources */,
 				3072D6EA2BC06A7C00381BDF /* SettingsCoordinator.swift in Sources */,
 				30E5C41F2BC41E9B0032D7B3 /* CardCoordinator.swift in Sources */,
-				303362832BC6B28300A2ECE9 /* TimerView.swift in Sources */,
+				303362832BC6B28300A2ECE9 /* CardTimerView.swift in Sources */,
 				3072D6C52BC0071600381BDF /* MappedCoordinator.swift in Sources */,
 				3072D6C42BC0071600381BDF /* AnyCoordinator.swift in Sources */,
 				3072C8792BBFFFA600381BDF /* Router.swift in Sources */,

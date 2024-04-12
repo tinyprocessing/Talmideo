@@ -43,8 +43,7 @@ class CardCoordinator: Coordinator<Void> {
             if let data = value["data"] as? String {
                 if let jsonData = data.data(using: .utf8) {
                     do {
-                        let i = try JSONDecoder().decode(WordModel.self, from: jsonData)
-                        word = i
+                        word = try JSONDecoder().decode(WordModel.self, from: jsonData)
                     } catch {
                         print("Error decoding JSON: \(error)")
                     }
