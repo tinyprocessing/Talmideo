@@ -19,11 +19,13 @@ class CardCoordinator: Coordinator<Void> {
     }
 
     private func update() {
-        var array: [WordModel] = []
-        getRandomWords().forEach { value in
-            array.append(get(value))
+        Task {
+            var array: [WordModel] = []
+            getRandomWords().forEach { value in
+                array.append(get(value))
+            }
+            model.send(array)
         }
-        model.send(array)
     }
 
     private func getRandomWords() -> [Int] {

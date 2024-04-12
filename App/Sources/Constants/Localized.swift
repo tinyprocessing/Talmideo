@@ -24,6 +24,7 @@ enum LocalizedString: String {
     // MARK: Settings
 
     case generalSettings
+    case generalStatistics
     case bookmarks
     case github
     case website

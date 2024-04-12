@@ -50,14 +50,13 @@ class SettingsCoordinator: Coordinator<Void> {
 
     private lazy var settingsSections: [SettingsSectionModel] = [
         SettingsSectionModel(
-            title: .localized(.generalSettings),
-            options: [.init(title: .localized(.notifications), actionButtonTitle: "", action: nil),
-                      .init(
-                          title: .localized(.bookmarks),
-                          actionButtonTitle: "\(bookmarks.count)",
-                          action: nil,
-                          type: .bookmarks
-                      )]
+            title: .localized(.generalStatistics),
+            options: [.init(
+                title: .localized(.bookmarks),
+                actionButtonTitle: "\(bookmarks.count)",
+                action: nil,
+                type: .bookmarks
+            )]
         ),
         SettingsSectionModel(
             title: .localized(.advancedSettings),

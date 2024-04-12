@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		302E39132BC92B2A00639007 /* SettingsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E39122BC92B2A00639007 /* SettingsCellView.swift */; };
+		302E39182BC9A49000639007 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E39172BC9A49000639007 /* SoundManager.swift */; };
+		302E391A2BC9A58700639007 /* cardSwipe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 302E39192BC9A58700639007 /* cardSwipe.mp3 */; };
 		303362832BC6B28300A2ECE9 /* CardTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303362822BC6B28300A2ECE9 /* CardTimerView.swift */; };
 		303D46A32BC2BF5E00A57E09 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */; };
 		303D46A62BC2EDFB00A57E09 /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D46A52BC2EDFB00A57E09 /* BookmarkManager.swift */; };
@@ -111,6 +113,8 @@
 
 /* Begin PBXFileReference section */
 		302E39122BC92B2A00639007 /* SettingsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellView.swift; sourceTree = "<group>"; };
+		302E39172BC9A49000639007 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		302E39192BC9A58700639007 /* cardSwipe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardSwipe.mp3; sourceTree = "<group>"; };
 		303362822BC6B28300A2ECE9 /* CardTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTimerView.swift; sourceTree = "<group>"; };
 		303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
 		303D46A52BC2EDFB00A57E09 /* BookmarkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkManager.swift; sourceTree = "<group>"; };
@@ -324,6 +328,7 @@
 				3072C8402BBFFB9D00381BDF /* Assets.xcassets */,
 				3072C8422BBFFB9D00381BDF /* LaunchScreen.storyboard */,
 				3072C8452BBFFB9D00381BDF /* Info.plist */,
+				302E39192BC9A58700639007 /* cardSwipe.mp3 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 				3072D6CA2BC008DC00381BDF /* CombineAsyncAwaitBridging */,
 				3072D6BE2BC0071600381BDF /* Coordinator */,
 				3072C87C2BBFFFB600381BDF /* CombineUtils.swift */,
+				302E39172BC9A49000639007 /* SoundManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -775,6 +781,7 @@
 				30493F582BC5C937001BB2AF /* Localizable.strings in Resources */,
 				3072C8A52BC0049B00381BDF /* database.db in Resources */,
 				3072C8442BBFFB9D00381BDF /* LaunchScreen.storyboard in Resources */,
+				302E391A2BC9A58700639007 /* cardSwipe.mp3 in Resources */,
 				3072C8A32BC0049000381BDF /* index.db in Resources */,
 				3072C8412BBFFB9D00381BDF /* Assets.xcassets in Resources */,
 			);
@@ -818,6 +825,7 @@
 				3072D6EC2BC06AC900381BDF /* SettingsViewController.swift in Sources */,
 				3072D6F12BC0779E00381BDF /* ExploreViewController.swift in Sources */,
 				3072D6C92BC007CD00381BDF /* TalmideoCoordinator.swift in Sources */,
+				302E39182BC9A49000639007 /* SoundManager.swift in Sources */,
 				3072C88D2BBFFFC100381BDF /* UIColor+Extensions.swift in Sources */,
 				30E5C43E2BC469DA0032D7B3 /* SwipeView.swift in Sources */,
 				30E5C4452BC469DA0032D7B3 /* StringUtils.swift in Sources */,

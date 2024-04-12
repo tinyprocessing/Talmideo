@@ -159,6 +159,7 @@ extension CardViewController: SwipeCardStackDataSource, SwipeCardStackDelegate {
 
     func cardStack(_ cardStack: SwipeCardStack, didSwipeCardAt index: Int, with direction: SwipeDirection) {
         UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+        SoundManager.shared.playSoundEffect(.cardSwipe)
         if (cards.count - index) < 3 {
             cardDelegate?.addCards()
         }
