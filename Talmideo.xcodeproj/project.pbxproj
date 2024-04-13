@@ -69,6 +69,7 @@
 		3072D7002BC18B2800381BDF /* WordDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6FF2BC18B2800381BDF /* WordDataView.swift */; };
 		3072D7022BC1ACD000381BDF /* WordDataRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D7012BC1ACD000381BDF /* WordDataRowView.swift */; };
 		3086DA622BCA8EB200779F98 /* cardSwipeCalm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3086DA612BCA8EB200779F98 /* cardSwipeCalm.mp3 */; };
+		3086DA652BCA93A000779F98 /* NotificationManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3086DA642BCA93A000779F98 /* NotificationManger.swift */; };
 		30E5C0A22BC4176B0032D7B3 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C0A12BC4176B0032D7B3 /* UIButton+Extensions.swift */; };
 		30E5C41D2BC41E7D0032D7B3 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C41C2BC41E7D0032D7B3 /* CardViewController.swift */; };
 		30E5C41F2BC41E9B0032D7B3 /* CardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C41E2BC41E9B0032D7B3 /* CardCoordinator.swift */; };
@@ -181,6 +182,7 @@
 		3072D6FF2BC18B2800381BDF /* WordDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDataView.swift; sourceTree = "<group>"; };
 		3072D7012BC1ACD000381BDF /* WordDataRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDataRowView.swift; sourceTree = "<group>"; };
 		3086DA612BCA8EB200779F98 /* cardSwipeCalm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardSwipeCalm.mp3; sourceTree = "<group>"; };
+		3086DA642BCA93A000779F98 /* NotificationManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManger.swift; sourceTree = "<group>"; };
 		30E5C0A12BC4176B0032D7B3 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		30E5C41C2BC41E7D0032D7B3 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		30E5C41E2BC41E9B0032D7B3 /* CardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCoordinator.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 		3072C86A2BBFFFA600381BDF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3086DA632BCA939000779F98 /* Notifications */,
 				30E5C4252BC469C20032D7B3 /* Shuffle */,
 				303D46A42BC2EDEA00A57E09 /* Bookmarks */,
 				3072D6CF2BC00C6400381BDF /* Database */,
@@ -621,6 +624,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		3086DA632BCA939000779F98 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				3086DA642BCA93A000779F98 /* NotificationManger.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		30E5C4252BC469C20032D7B3 /* Shuffle */ = {
 			isa = PBXGroup;
 			children = (
@@ -826,6 +837,7 @@
 				30E5C41D2BC41E7D0032D7B3 /* CardViewController.swift in Sources */,
 				30E5C4402BC469DA0032D7B3 /* SwipeCardDelegate.swift in Sources */,
 				30E5C44C2BC469DA0032D7B3 /* CardStackAnimationOptions.swift in Sources */,
+				3086DA652BCA93A000779F98 /* NotificationManger.swift in Sources */,
 				3072D6EC2BC06AC900381BDF /* SettingsViewController.swift in Sources */,
 				3072D6F12BC0779E00381BDF /* ExploreViewController.swift in Sources */,
 				3072D6C92BC007CD00381BDF /* TalmideoCoordinator.swift in Sources */,

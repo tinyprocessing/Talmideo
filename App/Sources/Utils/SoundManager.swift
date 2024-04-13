@@ -31,7 +31,6 @@ class SoundManager {
 }
 
 extension AVSpeechSynthesizer {
-
     private struct Storage {
         static let shared = AVSpeechSynthesizer()
     }
@@ -40,15 +39,14 @@ extension AVSpeechSynthesizer {
         let synthesizer = Storage.shared
         return synthesizer
     }()
-    
+
     func speak(_ string: String, language: String) {
         let utterance = AVSpeechUtterance(string: string)
         utterance.voice = AVSpeechSynthesisVoice(language: language)
-        
+
         if isSpeaking {
             stopSpeaking(at: .immediate)
         }
         speak(utterance)
     }
-
 }
