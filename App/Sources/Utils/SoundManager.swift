@@ -6,6 +6,7 @@ class SoundManager {
 
     enum Sound: String {
         case cardSwipe
+        case cardSwipeCalm
     }
 
     private var player: AVAudioPlayer?

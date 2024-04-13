@@ -68,6 +68,7 @@
 		3072D6FE2BC133B100381BDF /* WordHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6FD2BC133B100381BDF /* WordHeaderView.swift */; };
 		3072D7002BC18B2800381BDF /* WordDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D6FF2BC18B2800381BDF /* WordDataView.swift */; };
 		3072D7022BC1ACD000381BDF /* WordDataRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072D7012BC1ACD000381BDF /* WordDataRowView.swift */; };
+		3086DA622BCA8EB200779F98 /* cardSwipeCalm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3086DA612BCA8EB200779F98 /* cardSwipeCalm.mp3 */; };
 		30E5C0A22BC4176B0032D7B3 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C0A12BC4176B0032D7B3 /* UIButton+Extensions.swift */; };
 		30E5C41D2BC41E7D0032D7B3 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C41C2BC41E7D0032D7B3 /* CardViewController.swift */; };
 		30E5C41F2BC41E9B0032D7B3 /* CardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C41E2BC41E9B0032D7B3 /* CardCoordinator.swift */; };
@@ -179,6 +180,7 @@
 		3072D6FD2BC133B100381BDF /* WordHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordHeaderView.swift; sourceTree = "<group>"; };
 		3072D6FF2BC18B2800381BDF /* WordDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDataView.swift; sourceTree = "<group>"; };
 		3072D7012BC1ACD000381BDF /* WordDataRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDataRowView.swift; sourceTree = "<group>"; };
+		3086DA612BCA8EB200779F98 /* cardSwipeCalm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardSwipeCalm.mp3; sourceTree = "<group>"; };
 		30E5C0A12BC4176B0032D7B3 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		30E5C41C2BC41E7D0032D7B3 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		30E5C41E2BC41E9B0032D7B3 /* CardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCoordinator.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				3072C8422BBFFB9D00381BDF /* LaunchScreen.storyboard */,
 				3072C8452BBFFB9D00381BDF /* Info.plist */,
 				302E39192BC9A58700639007 /* cardSwipe.mp3 */,
+				3086DA612BCA8EB200779F98 /* cardSwipeCalm.mp3 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				3072C8A52BC0049B00381BDF /* database.db in Resources */,
 				3072C8442BBFFB9D00381BDF /* LaunchScreen.storyboard in Resources */,
 				302E391A2BC9A58700639007 /* cardSwipe.mp3 in Resources */,
+				3086DA622BCA8EB200779F98 /* cardSwipeCalm.mp3 in Resources */,
 				3072C8A32BC0049000381BDF /* index.db in Resources */,
 				3072C8412BBFFB9D00381BDF /* Assets.xcassets in Resources */,
 			);
