@@ -1,4 +1,3 @@
-import Foundation
 import UIKit
 
 class ActionButton: UIButton {
@@ -8,34 +7,26 @@ class ActionButton: UIButton {
     }
 
     private func setupButton() {
-        addTarget(self, action: #selector(buttonPressed), for: .touchDown)
-        addTarget(self, action: #selector(buttonReleased), for: .touchUpInside)
-        addTarget(self, action: #selector(buttonReleased), for: .touchUpOutside)
-        addTarget(self, action: #selector(buttonReleased), for: .touchCancel)
+        addTarget(self, action: #selector(scaleButton(_:)), for: .touchDown)
+        addTarget(self, action: #selector(scaleButton(_:)), for: .touchUpOutside)
+        addTarget(self, action: #selector(scaleButton(_:)), for: .touchUpInside)
     }
 
-    @objc func buttonPressed() {
-        UIView.animate(withDuration: 0.1,
-                       delay: 0,
-                       options: [.allowUserInteraction, .curveEaseOut],
+    @objc private func scaleButton(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.2,
                        animations: {
-                           self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-                       }, completion: nil)
-    }
-
-    @objc func buttonReleased() {
-        UIView.animate(withDuration: 0.1,
-                       delay: 0,
-                       usingSpringWithDamping: 0.5,
-                       initialSpringVelocity: 6.0,
-                       options: [.allowUserInteraction, .curveEaseIn],
-                       animations: {
-                           self.transform = .identity
-                       }, completion: nil)
+                           self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                       },
+                       completion: { _ in
+                           UIView.animate(withDuration: 0.2) {
+                               self.transform = .identity
+                           }
+                       })
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupButton()
     }
 
     @available(*, unavailable)

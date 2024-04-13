@@ -46,7 +46,7 @@ class ExploreViewController: BaseViewController {
         if bookmarksView == nil && bookmarks.count > 3 {
             setupExploreItem(.init(
                 type: .bookmarks,
-                image: "ExploreBookmarks",
+                image: "background4",
                 title: .localized(.bookmarks),
                 subtitle: "\(bookmarks.count)",
                 secondary: .localized(.repeat)
@@ -77,21 +77,21 @@ class ExploreViewController: BaseViewController {
 
         setupExploreItem(.init(
             type: .noun,
-            image: "ExploreNoun",
+            image: "background1",
             title: .localized(.nouns),
             subtitle: "4,370",
             secondary: .localized(.startLearning)
         ))
         setupExploreItem(.init(
             type: .verb,
-            image: "ExploreVerb",
+            image: "background2",
             title: .localized(.verbs),
             subtitle: "3,440",
             secondary: .localized(.startLearning)
         ))
         setupExploreItem(.init(
             type: .adjective,
-            image: "ExploreAdjective",
+            image: "background3",
             title: .localized(.adjectives),
             subtitle: "948",
             secondary: .localized(.startLearning)

@@ -1,3 +1,4 @@
+import AVFoundation
 import UIKit
 
 class CardContentView: UIView {
@@ -15,6 +16,24 @@ class CardContentView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+
+    private lazy var soundButton: ActionButton = {
+        let button = ActionButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        button.setImage(Config.soundButton, for: .normal)
+        button.setImage(Config.soundButton, for: .selected)
+        button.layer.shadowColor = Config.buttonSoundColor.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 2)
+        button.layer.shadowRadius = 6
+        button.layer.shadowOpacity = 0.7
+        button.backgroundColor = Config.buttonSoundColor
+        button.layer.cornerRadius = 30
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .black
+        button.addTarget(self, action: #selector(soundButtonTapped), for: .touchUpInside)
+        return button
+    }()
+
+    private var wordDataView: WordDataView?
 
     init(_ model: WordModel) {
         self.model = model
@@ -61,6 +80,24 @@ class CardContentView: UIView {
                 view.update(.adjective(value: adjective))
             }
         }
+
+        backgroundView.addSubview(soundButton)
+        backgroundView.isUserInteractionEnabled = true
+        NSLayoutConstraint.activate([
+            soundButton.widthAnchor.constraint(equalToConstant: 60),
+            soundButton.heightAnchor.constraint(equalToConstant: 60),
+            soundButton.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor)
+        ])
+
+        if let wordDataView = wordDataView {
+            NSLayoutConstraint.activate([
+                soundButton.topAnchor.constraint(equalTo: wordDataView.bottomAnchor, constant: 20)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                soundButton.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 20)
+            ])
+        }
     }
 
     private func createWordDataView() -> WordDataView {
@@ -72,6 +109,7 @@ class CardContentView: UIView {
         view.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 10).isActive = true
         view.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -10).isActive = true
         view.widthAnchor.constraint(equalTo: headerView.widthAnchor).isActive = true
+        wordDataView = view
         return view
     }
 
@@ -79,7 +117,16 @@ class CardContentView: UIView {
         super.draw(rect)
     }
 
+    @objc private func soundButtonTapped() {
+        AVSpeechSynthesizer.shared.speak(model.initialForm?.transcription ?? "", language: "ru")
+    }
+
     private enum Config {
         static let backgroundColor = UIColor.secondaryLabel.withAlphaComponent(0.05)
+        static let buttonSoundColor = UIColor.secondaryLabel.withAlphaComponent(0.05)
+        static var soundButton: UIImage {
+            let config = UIImage.SymbolConfiguration(pointSize: 24, weight: .regular, scale: .default)
+            return UIImage(systemName: "speaker.wave.2", withConfiguration: config) ?? UIImage()
+        }
     }
 }
