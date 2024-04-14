@@ -26,43 +26,51 @@ class LocalNotificationManager {
         }
     }
 
-    public func scheduleNotificationsForToday(newWords: [Word]) {
+    public func scheduleNotifications(words: [Word]) async {
         removeAllNotifications()
 
-        let currentDate = Date()
         let calendar = Calendar.current
+        let timezone = TimeZone.current
 
-        let notificationTimes: [Int] = [10, 13, 19]
+        var dateComponents = calendar.dateComponents(in: timezone, from: Date())
+        dateComponents.hour = 10
+        dateComponents.minute = 0
+        dateComponents.second = 0
 
-        let notificationsToSchedule = min(newWords.count, notificationTimes.count)
+        var notificationIndex = 0
+        var daysToAdd = 0
+        for word in words {
+            var notificationDate = calendar.date(from: dateComponents)!
+            notificationDate = calendar.date(byAdding: .day, value: daysToAdd, to: notificationDate)!
+            notificationDate = calendar.date(bySettingHour: 10, minute: 0, second: 0, of: notificationDate)!
+            switch notificationIndex % 3 {
+            case 1:
+                notificationDate = calendar.date(bySettingHour: 12, minute: 0, second: 0, of: notificationDate)!
+            case 2:
+                notificationDate = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: notificationDate)!
+            default:
+                break
+            }
+            scheduleNotificationForWord(word: word, date: notificationDate)
+            notificationIndex += 1
 
-        for (index, word) in newWords.prefix(notificationsToSchedule).enumerated() {
-            var components = calendar.dateComponents([.year, .month, .day], from: currentDate)
-            components.hour = notificationTimes[index]
-
-            if let notificationDate = calendar.date(from: components), notificationDate > currentDate {
-                scheduleNotificationForWord(word: word, date: notificationDate)
-            } else {
-                components.day! += 1
-                components.hour = notificationTimes[index]
-                let nextDayNotificationDate = calendar.date(from: components)!
-//                let currentDate = Date()
-//                let testDate = Calendar.current.date(byAdding: .second, value: 5, to: currentDate)!
-                scheduleNotificationForWord(word: word, date: nextDayNotificationDate)
-                print("shedule new notification in - ", nextDayNotificationDate, "with this data - ", word)
+            if notificationIndex % 3 == 0 {
+                daysToAdd += 1
             }
         }
     }
 
     private func scheduleNotificationForWord(word: Word, date: Date) {
         let content = UNMutableNotificationContent()
-        content.title = "New Word!"
-        content.body = "Learn a new word: \(word.text) - \(word.definition)"
+        content.title = "Remember this word?"
+        content.body = "You marked this word: \(word.text) - \(word.definition)"
         content.sound = .default
 
-        let triggerDateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        let triggerDateComponents = Calendar.current.dateComponents(
+            [.year, .month, .day, .hour, .minute, .second],
+            from: date
+        )
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
-        print(trigger)
 
         let request = UNNotificationRequest(identifier: word.id, content: content, trigger: trigger)
 

@@ -108,16 +108,12 @@ class WordDataView: UIView {
                      (value.fp, "אנחנו\nאתן\nהן", value.fs, "אני\nאת\nהיא")]
 
         for (leftValue, leftForms, rightValue, rightForms) in forms {
-            guard let leftValue = leftValue, let rightValue = rightValue else {
-                continue
-            }
-
-            let rowView = WordDataRowView(left: .init(value: leftValue.value ?? "",
+            let rowView = WordDataRowView(left: .init(value: leftValue?.value ?? "",
                                                       forms: leftForms,
-                                                      transliteration: leftValue.transcription),
-                                          right: .init(value: rightValue.value ?? "",
+                                                      transliteration: leftValue?.transcription ?? "-"),
+                                          right: .init(value: rightValue?.value ?? "",
                                                        forms: rightForms,
-                                                       transliteration: rightValue.transcription))
+                                                       transliteration: rightValue?.transcription ?? "-"))
             stackView.addArrangedSubview(rowView)
         }
 

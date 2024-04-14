@@ -8,16 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         AVSpeechSynthesizer.shared.speak("", language: "en")
-        LocalNotificationManager.shared.requestAuthorization { granted in
-            if granted {
-                let words: [LocalNotificationManager.Word] = [
-                    .init(id: "1", text: "hello world", definition: "this is new word")
-                ]
-                LocalNotificationManager.shared.scheduleNotificationsForToday(newWords: words)
-            } else {
-                print("Notification authorization denied")
-            }
-        }
+        LocalNotificationManager.shared.requestAuthorization { _ in }
         return true
     }
 

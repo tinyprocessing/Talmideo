@@ -7,12 +7,12 @@ class CardContentView: UIView {
         let background = UIView()
         background.clipsToBounds = true
         background.layer.cornerRadius = 25
+        background.translatesAutoresizingMaskIntoConstraints = false
         return background
     }()
 
     private lazy var headerView: WordHeaderView = {
         let view = WordHeaderView()
-        view.update(model)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -46,6 +46,7 @@ class CardContentView: UIView {
     }
 
     private func initialize() {
+        translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .clear
         addSubview(backgroundView)
         backgroundView.anchorToSuperview()
@@ -53,11 +54,12 @@ class CardContentView: UIView {
         backgroundView.addSubview(headerView)
 
         NSLayoutConstraint.activate([
-            headerView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
             headerView.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 20),
             headerView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 10),
             headerView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -10)
         ])
+
+        headerView.update(model)
         update()
     }
 
@@ -102,13 +104,11 @@ class CardContentView: UIView {
 
     private func createWordDataView() -> WordDataView {
         let view = WordDataView()
-        backgroundView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.widthAnchor.constraint(equalTo: backgroundView.widthAnchor, constant: -30).isActive = true
+        backgroundView.addSubview(view)
         view.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 20).isActive = true
-        view.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 10).isActive = true
-        view.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -10).isActive = true
         view.widthAnchor.constraint(equalTo: headerView.widthAnchor).isActive = true
+        view.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
         wordDataView = view
         return view
     }

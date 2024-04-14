@@ -32,32 +32,34 @@ class SearchCoordinator: Coordinator<Void> {
     }
 
     private func search(_ value: String) {
-        let (isText, array) = isText(value)
-        if isText {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
             model.send(SearchViewModel(result: []))
-            print(array)
-            array.forEach { word in
+            let (isText, array) = isText(value)
+            if isText {
+                array.forEach { word in
+                    let query: (String, [Any?]) = self.databaseSearch.query.prepare(.index(
+                        value: word,
+                        limit: 1,
+                        accurate: true
+                    ))
+                    let result = self.databaseSearch.search(query)
+                    let words = result.compactMap { SearchWordModel.from(dictionary: $0) }
+                    var newModel: SearchViewModel = self.model.value
+                    newModel.result.append(contentsOf: words)
+                    self.model.send(newModel)
+                }
+            } else {
                 let query: (String, [Any?]) = databaseSearch.query.prepare(.index(
-                    value: word,
-                    limit: 1,
-                    accurate: true
+                    value: value,
+                    limit: 50,
+                    accurate: false
                 ))
                 let result = databaseSearch.search(query)
                 let words = result.compactMap { SearchWordModel.from(dictionary: $0) }
-                var newModel: SearchViewModel = model.value
-                newModel.result.append(contentsOf: words)
-                model.send(newModel)
+                let viewModel = SearchViewModel(result: words)
+                model.send(viewModel)
             }
-        } else {
-            let query: (String, [Any?]) = databaseSearch.query.prepare(.index(
-                value: value,
-                limit: 50,
-                accurate: false
-            ))
-            let result = databaseSearch.search(query)
-            let words = result.compactMap { SearchWordModel.from(dictionary: $0) }
-            let viewModel = SearchViewModel(result: words)
-            model.send(viewModel)
         }
     }
 
@@ -66,22 +68,47 @@ class SearchCoordinator: Coordinator<Void> {
         return (array.count > 1, array)
     }
 
-    private func processSearchResults(isBookmarks: Bool = false) {
-        let idArray: [Int] = isBookmarks ? bookmarks.getAllBookmarkedIDs() : generateRandomIntegers()
+    private func processSearchResults(isBookmarks: Bool = false, needUpdateModel: Bool = true) {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
+            let start = DispatchTime.now()
+            let idArray: [Int] = isBookmarks ? bookmarks.getAllBookmarkedIDs(count: 200) : generateRandomIntegers()
+            let searchResultModel = generateSearchResultModel(for: idArray)
 
-        var searchResultModel = SearchViewModel(result: [])
-
-        idArray.forEach { id in
-            let query: (String, [Any?]) = prepareQueryForID(id)
-
-            let response = databaseSearch.search(query)
-            let words = response.compactMap { SearchWordModel.from(dictionary: $0) }
-            Array(Set(words)).forEach { word in
-                searchResultModel.result.append(word)
+            if isBookmarks {
+                generateNotifications()
             }
-        }
 
+            if needUpdateModel {
+                updateModel(with: searchResultModel)
+            }
+            let milliseconds = Double(DispatchTime.now().uptimeNanoseconds - start.uptimeNanoseconds) / 1_000_000
+            print("Function \(#function) took \(milliseconds) milliseconds to run")
+        }
+    }
+
+    private func generateSearchResultModel(for idArray: [Int]) -> SearchViewModel {
+        var searchResultModel = SearchViewModel(result: [])
+        for id in idArray {
+            let query: (String, [Any?]) = prepareQueryForID(id)
+            let response = databaseSearch.search(query)
+            let words = response.compactMap { SearchWordModel.fromID(dictionary: $0) }
+            searchResultModel.result.append(contentsOf: words)
+        }
+        return searchResultModel
+    }
+
+    private func updateModel(with searchResultModel: SearchViewModel) {
         model.send(searchResultModel)
+    }
+
+    private func generateNotifications() {
+        Task {
+            let words = model.value.result.prefix(10).map { word in
+                LocalNotificationManager.Word(id: "\(word.id)", text: word.form, definition: word.meaning)
+            }
+            await LocalNotificationManager.shared.scheduleNotifications(words: words)
+        }
     }
 
     private func prepareQueryForID(_ id: Int) -> (String, [Any?]) {
@@ -96,6 +123,7 @@ class SearchCoordinator: Coordinator<Void> {
         wordCoordinator?.start()
         processSearchResults(isBookmarks: bookmarksFilter)
         super.start()
+        processSearchResults(isBookmarks: true, needUpdateModel: false)
     }
 
     public func exportViewController() -> BaseViewController {

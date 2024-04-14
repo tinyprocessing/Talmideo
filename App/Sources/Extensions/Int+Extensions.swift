@@ -14,3 +14,12 @@ extension Int {
         return Int(Range<Int>(min...max))
     }
 }
+
+func measureExecutionTime<T>(_ block: () -> T) -> (T, Double) {
+    let startTime = DispatchTime.now()
+    let result = block()
+    let endTime = DispatchTime.now()
+    let executionTime = Double(endTime.uptimeNanoseconds - startTime.uptimeNanoseconds) /
+        1_000_000 // Convert nanoseconds to milliseconds
+    return (result, executionTime)
+}

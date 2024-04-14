@@ -39,7 +39,6 @@ class ExploreCoordinator: Coordinator<Void> {
     }
 
     override func start() {
-        prepare()
         super.start()
 
         context

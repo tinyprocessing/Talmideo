@@ -33,4 +33,15 @@ extension SearchWordModel {
         }
         return SearchWordModel(id: id, form: form, meaningRu: meaningRu, meaningEn: meaningEn)
     }
+
+    static func fromID(dictionary: [String: Any?]) -> SearchWordModel? {
+        guard let id = dictionary["id"] as? Int,
+              let form = dictionary["initial_form"] as? String,
+              let meaningRu = dictionary["meaning_ru"] as? String,
+              let meaningEn = dictionary["meaning_en"] as? String
+        else {
+            return nil
+        }
+        return SearchWordModel(id: id, form: form, meaningRu: meaningRu, meaningEn: meaningEn)
+    }
 }

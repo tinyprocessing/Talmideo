@@ -97,11 +97,10 @@ open class SwipeCard: SwipeView {
 
         // Content
         if let content = content {
-            if let footer = footer, footer.isOpaque {
-                content.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height - footerHeight)
-            } else {
-                content.frame = bounds
-            }
+            content.topAnchor.constraint(equalTo: topAnchor).isActive = true
+            content.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+            content.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+            content.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
             sendSubviewToBack(content)
         }
 

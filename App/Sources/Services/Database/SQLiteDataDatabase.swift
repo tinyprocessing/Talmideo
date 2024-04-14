@@ -74,10 +74,7 @@ final class SQLiteDataDatabase: DataDatabase {
                 return (query, ["%\(value)%"])
             case .id(let value, let limit):
                 var query = """
-                SELECT t.word_data_id, t.id, t.token, t.position, w.initial_form, w.meaning_en, w.meaning_ru, w.meaning_es
-                FROM token t
-                JOIN worddata w ON t.word_data_id = w.id
-                WHERE t.word_data_id = ?
+                SELECT * FROM worddata WHERE id LIKE ?
                 """
                 if let limit = limit {
                     query += " LIMIT \(limit)"
@@ -96,8 +93,11 @@ final class SQLiteDataDatabase: DataDatabase {
     public let query: Query
 
     init(name: String, tableName: String) {
+        let start = DispatchTime.now()
         query = .init(tableName: tableName)
         open(name: name)
+        let milliseconds = Double(DispatchTime.now().uptimeNanoseconds - start.uptimeNanoseconds) / 1_000_000
+        print("Function \(#function) took \(milliseconds) milliseconds to run")
     }
 
     public func search(_ query: (String, [Any?])) -> [[String: Any?]] {

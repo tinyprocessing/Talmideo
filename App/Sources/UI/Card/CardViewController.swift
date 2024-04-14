@@ -106,16 +106,10 @@ class CardViewController: BaseViewController {
     }
 
     private func update() {
-        if cards.isEmpty {
-            cards = model.value
-            cardStack.reloadData()
-            return
-        }
-
-        let old = cards.count
-        let new = old + model.value.count
         DispatchQueue.main.async { [self] in
+            let old = cards.count
             cards.append(contentsOf: model.value)
+            let new = cards.count
             let indices = Array(old..<new)
             cardStack.appendCards(atIndices: indices)
         }

@@ -82,7 +82,6 @@ class WordHeaderView: UIView {
             meaningLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 5),
             meaningLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             meaningLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            meaningLabel.heightAnchor.constraint(equalToConstant: 60),
             rootLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             rootLabel.trailingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 20),
             rootLabel.heightAnchor.constraint(equalToConstant: 20),
@@ -120,7 +119,6 @@ class WordHeaderView: UIView {
         if let root = model.root {
             rootLabel.text = concatenateStrings(root)
         }
-        setNeedsLayout()
     }
 
     private func concatenateStrings(_ strings: [String]) -> String {

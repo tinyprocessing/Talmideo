@@ -35,10 +35,15 @@ class BookmarkManager {
         return bookmarkedIDs.keys.contains(id)
     }
 
-    func getAllBookmarkedIDs() -> [Int] {
-        let sortedIDs = bookmarkedIDs.sorted(by: { $0.value > $1.value })
-        let limitedIDs = Array(sortedIDs.prefix(100))
-        return limitedIDs.map { $0.key }
+    func getAllBookmarkedIDs(count: Int? = nil) -> [Int] {
+        let stored = bookmarkedIDs.sorted(by: { $0.value > $1.value })
+
+        if let count = count {
+            let limited = Array(stored.prefix(count))
+            return limited.map { $0.key }
+        } else {
+            return stored.map { $0.key }
+        }
     }
 
     func removeAll() {

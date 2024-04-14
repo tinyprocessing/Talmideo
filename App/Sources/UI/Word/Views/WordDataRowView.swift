@@ -143,7 +143,7 @@ class WordDataRowView: UIView {
         let leftStackView = UIStackView()
         leftStackView.axis = .horizontal
         leftStackView.alignment = .top
-        leftStackView.distribution = .fillProportionally
+        leftStackView.distribution = .fill
         leftStackView.translatesAutoresizingMaskIntoConstraints = false
         leftStackView.spacing = 4
         leftStackView.addArrangedSubview(leftBlockStackView)
@@ -162,7 +162,7 @@ class WordDataRowView: UIView {
         rightStackView.axis = .horizontal
         rightStackView.alignment = .top
         rightStackView.spacing = 4
-        rightStackView.distribution = .fillProportionally
+        rightStackView.distribution = .fill
         rightStackView.translatesAutoresizingMaskIntoConstraints = false
         rightStackView.addArrangedSubview(rightBlockStackView)
         rightStackView.addArrangedSubview(rightLabel)
