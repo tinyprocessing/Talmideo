@@ -9,7 +9,7 @@ class WordHeaderView: UIView {
         label.textColor = .black
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 22, weight: .bold)
+        label.font = UIFont.customFont(.robotoSlabMedium, size: 20)
         return label
     }()
 
@@ -20,7 +20,7 @@ class WordHeaderView: UIView {
         label.textColor = .black
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = UIFont.customFont(.robotoSlabRegular, size: 14)
         return label
     }()
 
@@ -32,7 +32,7 @@ class WordHeaderView: UIView {
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.font = UIFont.customFont(.robotoSlabRegular, size: 16)
         return label
     }()
 
@@ -43,7 +43,7 @@ class WordHeaderView: UIView {
         label.textColor = .secondaryLabel
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.font = UIFont.customFont(.robotoSlabRegular, size: 16)
         return label
     }()
 

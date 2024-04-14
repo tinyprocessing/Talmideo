@@ -33,3 +33,5 @@
 "next" = "Далее";
 "repeat" = "Повторить";
 "generalStatistics" = "Статистика";
+"remember" = "Новое слово";
+"markedWord" = "Узнайте новое слово: %@ - %@";

@@ -33,3 +33,5 @@
 "next" = "Next";
 "repeat" = "Repeat";
 "generalStatistics" = "Statistics";
+"remember" = "New word";
+"markedWord" = "Discover the word: %@ - %@";

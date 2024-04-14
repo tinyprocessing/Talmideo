@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "tinyprocessing_a_vibrant_world_bursting_with_creativity._Illust_84bd49cf-97fd-48ab-b0c4-eb2c89437251.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -20,7 +20,7 @@ class SettingsCellView: UIView {
         let label = UILabel()
         label.textColor = .black
         label.text = model.title
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.font = UIFont.customFont(.robotoSlabRegular, size: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -32,7 +32,7 @@ class SettingsCellView: UIView {
         button.layer.cornerRadius = 12.5
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
+        button.titleLabel?.font = UIFont.customFont(.robotoSlabRegular, size: 14)
         button.setTitleColor(.black.withAlphaComponent(0.7), for: .normal)
         button.tintColor = .black
         button.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)

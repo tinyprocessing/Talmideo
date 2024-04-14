@@ -29,6 +29,25 @@ extension Router: BaseViewControllerDelegate {
         navigationController.pushViewController(vc, animated: true)
     }
 
+    func willRouteWithCover(_ vc: UIViewController) {
+        vc.modalPresentationStyle = .overFullScreen
+        navigationController.present(vc, animated: false)
+    }
+
+    // viewController.modalPresentationStyle = .overFullScreen
+    // viewController.delegate = self
+    // viewController.productContext = productContext
+    // viewController.container = container
+    // navigationControllerOpticalVTO = UINavigationController(rootViewController: UIViewController())
+    // if let navigationControllerOpticalVTO {
+    //    navigationControllerOpticalVTO.interactivePopGestureRecognizer?.isEnabled = false
+    //    navigationControllerOpticalVTO.modalPresentationStyle = .overFullScreen
+    //    let presentingController = navigationController.presentedViewController ?? navigationController
+    //    presentingController.present(navigationControllerOpticalVTO, animated: true)
+    //    navigationControllerOpticalVTO.navigationBar.isHidden = true
+    //    viewController.navigationPresentedController = navigationControllerOpticalVTO
+    //    navigationControllerOpticalVTO.pushViewController(viewController, animated: true)
+    // }
     func willRouteWith(_ vc: UIViewController) {
         navigationController.pushViewController(vc, animated: true)
     }

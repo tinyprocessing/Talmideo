@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		302E39132BC92B2A00639007 /* SettingsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E39122BC92B2A00639007 /* SettingsCellView.swift */; };
 		302E39182BC9A49000639007 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E39172BC9A49000639007 /* SoundManager.swift */; };
-		302E391A2BC9A58700639007 /* cardSwipe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 302E39192BC9A58700639007 /* cardSwipe.mp3 */; };
 		303362832BC6B28300A2ECE9 /* CardTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303362822BC6B28300A2ECE9 /* CardTimerView.swift */; };
 		303D46A32BC2BF5E00A57E09 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */; };
 		303D46A62BC2EDFB00A57E09 /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D46A52BC2EDFB00A57E09 /* BookmarkManager.swift */; };
 		303D46A82BC3235200A57E09 /* ExploreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D46A72BC3235200A57E09 /* ExploreItemView.swift */; };
+		3044557F2BCC400600B52FCD /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3044557B2BCC400500B52FCD /* OnboardingCoordinator.swift */; };
+		304455802BCC400600B52FCD /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3044557C2BCC400500B52FCD /* OnboardingViewController.swift */; };
+		304455812BCC400600B52FCD /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3044557E2BCC400500B52FCD /* OnboardingView.swift */; };
+		304455852BCC5CA600B52FCD /* RobotoSlabRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 304455832BCC5CA600B52FCD /* RobotoSlabRegular.ttf */; };
+		304455862BCC5CA600B52FCD /* RobotoSlabMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 304455842BCC5CA600B52FCD /* RobotoSlabMedium.ttf */; };
+		304455882BCC5E9A00B52FCD /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304455872BCC5E9A00B52FCD /* UIFont+Extensions.swift */; };
 		30493F582BC5C937001BB2AF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30493F5A2BC5C937001BB2AF /* Localizable.strings */; };
 		3072C8382BBFFB9C00381BDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072C8372BBFFB9C00381BDF /* AppDelegate.swift */; };
 		3072C83A2BBFFB9C00381BDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072C8392BBFFB9C00381BDF /* SceneDelegate.swift */; };
@@ -116,11 +121,16 @@
 /* Begin PBXFileReference section */
 		302E39122BC92B2A00639007 /* SettingsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellView.swift; sourceTree = "<group>"; };
 		302E39172BC9A49000639007 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
-		302E39192BC9A58700639007 /* cardSwipe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardSwipe.mp3; sourceTree = "<group>"; };
 		303362822BC6B28300A2ECE9 /* CardTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTimerView.swift; sourceTree = "<group>"; };
 		303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
 		303D46A52BC2EDFB00A57E09 /* BookmarkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkManager.swift; sourceTree = "<group>"; };
 		303D46A72BC3235200A57E09 /* ExploreItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreItemView.swift; sourceTree = "<group>"; };
+		3044557B2BCC400500B52FCD /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		3044557C2BCC400500B52FCD /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		3044557E2BCC400500B52FCD /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		304455832BCC5CA600B52FCD /* RobotoSlabRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RobotoSlabRegular.ttf; sourceTree = "<group>"; };
+		304455842BCC5CA600B52FCD /* RobotoSlabMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RobotoSlabMedium.ttf; sourceTree = "<group>"; };
+		304455872BCC5E9A00B52FCD /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		30493F542BC5C8EC001BB2AF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		30493F592BC5C937001BB2AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		30493F5B2BC5C93B001BB2AF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -269,6 +279,41 @@
 			path = Bookmarks;
 			sourceTree = "<group>";
 		};
+		304455792BCC400500B52FCD /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				3044557A2BCC400500B52FCD /* Coordinator */,
+				3044557C2BCC400500B52FCD /* OnboardingViewController.swift */,
+				3044557D2BCC400500B52FCD /* Views */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		3044557A2BCC400500B52FCD /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				3044557B2BCC400500B52FCD /* OnboardingCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		3044557D2BCC400500B52FCD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3044557E2BCC400500B52FCD /* OnboardingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		304455822BCC5C9400B52FCD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				304455842BCC5CA600B52FCD /* RobotoSlabMedium.ttf */,
+				304455832BCC5CA600B52FCD /* RobotoSlabRegular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		30493F552BC5C912001BB2AF /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,13 +371,13 @@
 		3072C8672BBFFF2100381BDF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				304455822BCC5C9400B52FCD /* Fonts */,
 				30493F552BC5C912001BB2AF /* Common */,
 				3072C8A42BC0049B00381BDF /* database.db */,
 				3072C8A22BC0049000381BDF /* index.db */,
 				3072C8402BBFFB9D00381BDF /* Assets.xcassets */,
 				3072C8422BBFFB9D00381BDF /* LaunchScreen.storyboard */,
 				3072C8452BBFFB9D00381BDF /* Info.plist */,
-				302E39192BC9A58700639007 /* cardSwipe.mp3 */,
 				3086DA612BCA8EB200779F98 /* cardSwipeCalm.mp3 */,
 			);
 			path = Resources;
@@ -418,6 +463,7 @@
 				3072C8882BBFFFC100381BDF /* Comparable+Extensions.swift */,
 				303D46A22BC2BF5E00A57E09 /* UISearchBar+Extensions.swift */,
 				30E5C0A12BC4176B0032D7B3 /* UIButton+Extensions.swift */,
+				304455872BCC5E9A00B52FCD /* UIFont+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -435,6 +481,7 @@
 		3072C89E2BC0006A00381BDF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				304455792BCC400500B52FCD /* Onboarding */,
 				302E39142BC98E6B00639007 /* Card */,
 				3072D6F42BC0788600381BDF /* Word */,
 				3072D6ED2BC0777400381BDF /* Explore */,
@@ -792,11 +839,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				304455852BCC5CA600B52FCD /* RobotoSlabRegular.ttf in Resources */,
 				30493F582BC5C937001BB2AF /* Localizable.strings in Resources */,
 				3072C8A52BC0049B00381BDF /* database.db in Resources */,
 				3072C8442BBFFB9D00381BDF /* LaunchScreen.storyboard in Resources */,
-				302E391A2BC9A58700639007 /* cardSwipe.mp3 in Resources */,
 				3086DA622BCA8EB200779F98 /* cardSwipeCalm.mp3 in Resources */,
+				304455862BCC5CA600B52FCD /* RobotoSlabMedium.ttf in Resources */,
 				3072C8A32BC0049000381BDF /* index.db in Resources */,
 				3072C8412BBFFB9D00381BDF /* Assets.xcassets in Resources */,
 			);
@@ -837,6 +885,7 @@
 				30E5C41D2BC41E7D0032D7B3 /* CardViewController.swift in Sources */,
 				30E5C4402BC469DA0032D7B3 /* SwipeCardDelegate.swift in Sources */,
 				30E5C44C2BC469DA0032D7B3 /* CardStackAnimationOptions.swift in Sources */,
+				3044557F2BCC400600B52FCD /* OnboardingCoordinator.swift in Sources */,
 				3086DA652BCA93A000779F98 /* NotificationManger.swift in Sources */,
 				3072D6EC2BC06AC900381BDF /* SettingsViewController.swift in Sources */,
 				3072D6F12BC0779E00381BDF /* ExploreViewController.swift in Sources */,
@@ -870,6 +919,7 @@
 				3072C89B2BBFFFC700381BDF /* Constants.swift in Sources */,
 				3072D6E32BC03C8400381BDF /* SearchListView.swift in Sources */,
 				30E5C44D2BC469DA0032D7B3 /* CardStackAnimator.swift in Sources */,
+				304455812BCC400600B52FCD /* OnboardingView.swift in Sources */,
 				3072C88C2BBFFFC100381BDF /* UIView+Extension.swift in Sources */,
 				30E5C43F2BC469DA0032D7B3 /* CardAnimator.swift in Sources */,
 				30E5C4462BC469DA0032D7B3 /* PanGestureRecognizer.swift in Sources */,
@@ -895,10 +945,12 @@
 				3072C8922BBFFFC100381BDF /* Comparable+Extensions.swift in Sources */,
 				3072C8A12BC0007100381BDF /* BaseViewController.swift in Sources */,
 				30E5C43D2BC469DA0032D7B3 /* CardAnimationOptions.swift in Sources */,
+				304455802BCC400600B52FCD /* OnboardingViewController.swift in Sources */,
 				3072D6C62BC0071600381BDF /* Coordinator.swift in Sources */,
 				3072C88E2BBFFFC100381BDF /* Encodable+Extensions.swift in Sources */,
 				3072D6D72BC02ADD00381BDF /* SearchHeaderView.swift in Sources */,
 				3072C8902BBFFFC100381BDF /* UserDefaults+Extension.swift in Sources */,
+				304455882BCC5E9A00B52FCD /* UIFont+Extensions.swift in Sources */,
 				30E5C44E2BC469DA0032D7B3 /* SwipeCardStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1084,14 +1136,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = GAH72SPMY9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Talmideo;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "We use notifications to deliver new word alerts and enhance your learning experience.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1111,14 +1167,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = GAH72SPMY9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Talmideo;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "We use notifications to deliver new word alerts and enhance your learning experience.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

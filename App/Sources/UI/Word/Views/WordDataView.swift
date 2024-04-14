@@ -9,7 +9,7 @@ class WordDataView: UIView {
         label.textColor = .secondaryLabel
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.font = UIFont.customFont(.robotoSlabMedium, size: 18)
         return label
     }()
 

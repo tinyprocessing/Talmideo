@@ -75,7 +75,7 @@ class SearchCoordinator: Coordinator<Void> {
             let idArray: [Int] = isBookmarks ? bookmarks.getAllBookmarkedIDs(count: 200) : generateRandomIntegers()
             let searchResultModel = generateSearchResultModel(for: idArray)
 
-            if isBookmarks {
+            if !isBookmarks {
                 generateNotifications()
             }
 
@@ -102,15 +102,6 @@ class SearchCoordinator: Coordinator<Void> {
         model.send(searchResultModel)
     }
 
-    private func generateNotifications() {
-        Task {
-            let words = model.value.result.prefix(10).map { word in
-                LocalNotificationManager.Word(id: "\(word.id)", text: word.form, definition: word.meaning)
-            }
-            await LocalNotificationManager.shared.scheduleNotifications(words: words)
-        }
-    }
-
     private func prepareQueryForID(_ id: Int) -> (String, [Any?]) {
         return databaseSearch.query.prepare(.id(
             value: "\(id)",
@@ -128,6 +119,15 @@ class SearchCoordinator: Coordinator<Void> {
 
     public func exportViewController() -> BaseViewController {
         return viewController ?? BaseViewController()
+    }
+
+    private func generateNotifications() {
+        Task {
+            let words = model.value.result.shuffled().prefix(20).map { word in
+                LocalNotificationManager.Word(id: "\(word.id)", text: word.form, definition: word.meaning)
+            }
+            await LocalNotificationManager.shared.scheduleNotifications(words: words)
+        }
     }
 
     private func generateRandomIntegers() -> [Int] {

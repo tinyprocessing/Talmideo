@@ -42,6 +42,11 @@ enum LocalizedString: String {
     case delete
     case next
     case `repeat`
+
+    // MARK: Notifications
+
+    case remember
+    case markedWord
 }
 
 extension String {

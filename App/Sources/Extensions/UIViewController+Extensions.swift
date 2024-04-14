@@ -93,3 +93,33 @@ extension UIViewController {
         view.subviews.forEach { $0.removeFromSuperview() }
     }
 }
+
+extension UIPageViewController {
+    func createNextPageViewController() -> UIViewController? {
+        guard let currentViewController = viewControllers?.first else { return nil }
+        return dataSource?.pageViewController(self, viewControllerAfter: currentViewController)
+    }
+
+    func createPreviousPageViewController() -> UIViewController? {
+        guard let currentViewController = viewControllers?.first else { return nil }
+        return dataSource?.pageViewController(self, viewControllerBefore: currentViewController)
+    }
+
+    func goToNextPage(animated: Bool = true) {
+        guard let nextPageViewController = createNextPageViewController(),
+              let current = viewControllers?.first
+        else { return }
+        setViewControllers([nextPageViewController], direction: .forward, animated: animated, completion: nil)
+        delegate?.pageViewController?(
+            self,
+            didFinishAnimating: true,
+            previousViewControllers: [current],
+            transitionCompleted: true
+        )
+    }
+
+    func goToPreviousPage(animated: Bool = true) {
+        guard let previousPageViewController = createPreviousPageViewController() else { return }
+        setViewControllers([previousPageViewController], direction: .reverse, animated: animated, completion: nil)
+    }
+}

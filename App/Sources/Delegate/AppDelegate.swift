@@ -8,7 +8,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         AVSpeechSynthesizer.shared.speak("", language: "en")
-        LocalNotificationManager.shared.requestAuthorization { _ in }
         return true
     }
 

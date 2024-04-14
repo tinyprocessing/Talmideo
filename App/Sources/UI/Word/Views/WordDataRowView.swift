@@ -15,7 +15,7 @@ class WordDataRowView: UIView {
         let label = UILabel()
         label.textAlignment = .right
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = UIFont.customFont(.robotoSlabRegular, size: 14)
         label.textColor = .secondaryLabel.withAlphaComponent(0.7)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -24,7 +24,7 @@ class WordDataRowView: UIView {
     private lazy var leftValueLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = UIFont.customFont(.robotoSlabMedium, size: 18)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         label.layer.opacity = 0
@@ -34,7 +34,7 @@ class WordDataRowView: UIView {
     private lazy var leftTransliterationLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = UIFont.customFont(.robotoSlabRegular, size: 14)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         label.layer.opacity = 0
@@ -45,7 +45,7 @@ class WordDataRowView: UIView {
         let label = UILabel()
         label.textAlignment = .right
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = UIFont.customFont(.robotoSlabRegular, size: 14)
         label.textColor = .secondaryLabel.withAlphaComponent(0.7)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.layer.opacity = 0
@@ -55,7 +55,7 @@ class WordDataRowView: UIView {
     private lazy var rightValueLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = UIFont.customFont(.robotoSlabMedium, size: 18)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         label.layer.opacity = 0
@@ -65,7 +65,7 @@ class WordDataRowView: UIView {
     private lazy var rightTransliterationLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = UIFont.customFont(.robotoSlabRegular, size: 14)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         label.layer.opacity = 0

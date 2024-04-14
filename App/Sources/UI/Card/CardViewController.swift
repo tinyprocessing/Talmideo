@@ -36,7 +36,7 @@ class CardViewController: BaseViewController {
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .regular)
+        button.titleLabel?.font = UIFont.customFont(.robotoSlabRegular, size: 18)
         return button
     }()
 

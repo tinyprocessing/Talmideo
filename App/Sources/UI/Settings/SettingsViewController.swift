@@ -12,7 +12,7 @@ class SettingsViewController: BaseViewController {
         label.textColor = .black
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 28, weight: .bold)
+        label.font = UIFont.customFont(.robotoSlabMedium, size: 28)
         return label
     }()
 
@@ -63,7 +63,7 @@ class SettingsViewController: BaseViewController {
     private func generateSettingsSectionView(_ model: SettingsCoordinator.SettingsSectionModel) {
         let label = UILabel()
         label.text = model.title
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = UIFont.customFont(.robotoSlabRegular, size: 18)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(label)

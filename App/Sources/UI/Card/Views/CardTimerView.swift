@@ -6,7 +6,7 @@ class CardTimerView: UIView {
         let label = UILabel()
         label.text = "00:00:00"
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        label.font = UIFont.customFont(.robotoSlabMedium, size: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
         return label

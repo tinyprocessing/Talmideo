@@ -22,6 +22,7 @@ class SearchHeaderView: UIView {
     private lazy var searchBar: UISearchBar = {
         let view = UISearchBar()
         view.placeholder = Config.searchBarPlaceholder
+        view.textField?.font = UIFont.customFont(.robotoSlabRegular, size: 14)
         view.clearBackgroundColor()
         view.textField?.backgroundColor = .white
         view.textField?.layer.cornerRadius = 15

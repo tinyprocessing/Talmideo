@@ -42,7 +42,7 @@ class ExploreItemView: UIView {
         label.textColor = .white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 28, weight: .bold)
+        label.font = UIFont.customFont(.robotoSlabMedium, size: 28)
         return label
     }()
 
@@ -53,7 +53,7 @@ class ExploreItemView: UIView {
         label.textColor = .white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = UIFont.customFont(.robotoSlabMedium, size: 20)
         return label
     }()
 
@@ -64,7 +64,7 @@ class ExploreItemView: UIView {
         label.textColor = .white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.font = UIFont.customFont(.robotoSlabMedium, size: 16)
         label.layer.cornerRadius = 8
         label.layer.masksToBounds = true
 

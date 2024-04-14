@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "tinyprocessing_a_serene_haven_of_creativity._Illustrated_with_g_f5053e97-3616-4c20-9e0c-85081b8953d9.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

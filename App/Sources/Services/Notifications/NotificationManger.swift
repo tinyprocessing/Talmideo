@@ -62,8 +62,8 @@ class LocalNotificationManager {
 
     private func scheduleNotificationForWord(word: Word, date: Date) {
         let content = UNMutableNotificationContent()
-        content.title = "Remember this word?"
-        content.body = "You marked this word: \(word.text) - \(word.definition)"
+        content.title = .localized(.remember)
+        content.body = String(format: .localized(.markedWord), word.text, word.definition)
         content.sound = .default
 
         let triggerDateComponents = Calendar.current.dateComponents(

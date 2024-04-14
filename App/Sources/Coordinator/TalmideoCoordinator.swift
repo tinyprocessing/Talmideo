@@ -20,6 +20,7 @@ class TalmideoCoordinator: Coordinator<Void> {
     private var searchCoordinator: SearchCoordinator?
     private var settingsCoordinator: SettingsCoordinator?
     private var exploreCoordinator: ExploreCoordinator?
+    private var onboardingCoordinator: OnboardingCoordinator?
     private let databaseSearch: SQLiteDataDatabase
     private let databaseWord: SQLiteDataDatabase
 
@@ -38,6 +39,14 @@ class TalmideoCoordinator: Coordinator<Void> {
         databaseWord = SQLiteDataDatabase(name: Constants.DictionaryTranslator,
                                           tableName: Constants.WordData)
         super.init()
+    }
+
+    private func onboarding() {
+        onboardingCoordinator = OnboardingCoordinator(router: router)
+        onboardingCoordinator?.start()
+        if let onboardingCoordinator = onboardingCoordinator {
+            router.willRouteWithCover(onboardingCoordinator.exportViewController())
+        }
     }
 
     private func launchTM() {
@@ -82,6 +91,9 @@ class TalmideoCoordinator: Coordinator<Void> {
         }
         tabViewController?.setupTabBarItems(with: array)
         router.willRouteWith(tabViewController!)
+        if !UserDefaults.standard.bool(forKey: "onboardingFinished") {
+            onboarding()
+        }
     }
 
     override func start() {

@@ -30,12 +30,14 @@ class SearchCellView: UIView, UIGestureRecognizerDelegate {
         leftLabel.numberOfLines = 1
         leftLabel.lineBreakMode = .byTruncatingTail
         leftLabel.isUserInteractionEnabled = true
+        leftLabel.font = UIFont.customFont(.robotoSlabRegular, size: 16)
 
         rightLabel.translatesAutoresizingMaskIntoConstraints = false
         rightLabel.numberOfLines = 1
         rightLabel.lineBreakMode = .byTruncatingTail
         rightLabel.textAlignment = .right
         rightLabel.isUserInteractionEnabled = true
+        rightLabel.font = UIFont.customFont(.robotoSlabRegular, size: 16)
 
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         rightLabel.addGestureRecognizer(tapRecognizer)
