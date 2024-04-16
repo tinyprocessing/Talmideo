@@ -35,3 +35,9 @@
 "generalStatistics" = "Статистика";
 "remember" = "Новое слово";
 "markedWord" = "Узнайте новое слово: %@ - %@";
+"onboardingSearchTitle" = "Поиск слов";
+"onboardingExploreTitle" = "Изучайте новые слова";
+"onboardingSwipeTitle" = "Используйте карточки";
+"onboardingSearchContent" = "Легко найдите любое слово с помощью единого поиска - просто введите его так, как слышите.";
+"onboardingExploreContent" = "Откройте для себя новые слова с помощью функции Explore!";
+"onboardingSwipeContent" = "Приготовьтесь к путешествию по словам: Каждое слово говорит о многом!";

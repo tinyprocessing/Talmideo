@@ -8,6 +8,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         AVSpeechSynthesizer.shared.speak("", language: "en")
+        let customFont = UIFont.customFont(.robotoSlabRegular, size: 16)
+        UITabBarItem.appearance().setTitleTextAttributes(
+            [NSAttributedString.Key.font: customFont],
+            for: .normal
+        )
+        UITabBarItem.appearance().setTitleTextAttributes(
+            [NSAttributedString.Key.font: customFont],
+            for: .selected
+        )
         return true
     }
 

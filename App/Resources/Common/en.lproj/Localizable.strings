@@ -35,3 +35,9 @@
 "generalStatistics" = "Statistics";
 "remember" = "New word";
 "markedWord" = "Discover the word: %@ - %@";
+"onboardingSearchTitle" = "Search words";
+"onboardingExploreTitle" = "Explore new words";
+"onboardingSwipeTitle" = "Swipe cards";
+"onboardingSearchContent" = "Easily locate any word using our single search field – simply type it as you hear it.";
+"onboardingExploreContent" = "Discover new words effortlessly with our Explore feature!";
+"onboardingSwipeContent" = "Get ready for a card-swiping journey: Each word speaks volumes!";

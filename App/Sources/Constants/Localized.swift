@@ -47,6 +47,15 @@ enum LocalizedString: String {
 
     case remember
     case markedWord
+
+    // MARK: Onboarding
+
+    case onboardingSearchTitle
+    case onboardingExploreTitle
+    case onboardingSwipeTitle
+    case onboardingSearchContent
+    case onboardingExploreContent
+    case onboardingSwipeContent
 }
 
 extension String {

@@ -106,13 +106,11 @@ class CardViewController: BaseViewController {
     }
 
     private func update() {
-        DispatchQueue.main.async { [self] in
-            let old = cards.count
-            cards.append(contentsOf: model.value)
-            let new = cards.count
-            let indices = Array(old..<new)
-            cardStack.appendCards(atIndices: indices)
-        }
+        let old = cards.count
+        cards.append(contentsOf: model.value)
+        let new = cards.count
+        let indices = Array(old..<new)
+        cardStack.appendCards(atIndices: indices)
     }
 
     @objc private func backButtonTapped() {

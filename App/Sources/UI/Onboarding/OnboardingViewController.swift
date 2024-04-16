@@ -101,20 +101,20 @@ final class OnboardingViewController: BaseViewController {
 
         pages.append(contentsOf: [
             OnboardingView(
-                title: "Search words",
-                subtitle: "Easily locate any word using our single search field – simply type it as you hear it.",
+                title: .localized(.onboardingSearchTitle),
+                subtitle: .localized(.onboardingSearchContent),
                 image: UIImage(named: "onboarding1") ?? UIImage()
             ),
             OnboardingView(
-                title: "Explore new words",
-                subtitle: "Discover new words effortlessly with our Explore feature!",
+                title: .localized(.onboardingExploreTitle),
+                subtitle: .localized(.onboardingExploreContent),
                 image: UIImage(named: "onboarding2") ?? UIImage()
             ),
-            OnboardingView(
-                title: "Swipe cards",
-                subtitle: "Get ready for a card-swiping journey: Each word speaks volumes!",
-                image: UIImage(named: "onboarding3") ?? UIImage()
-            )
+//            OnboardingView(
+//                title: .localized(.onboardingSwipeTitle),
+//                subtitle: .localized(.onboardingSwipeContent),
+//                image: UIImage(named: "onboarding3") ?? UIImage()
+//            )
         ])
 
         pageControl.numberOfPages = pages.count
@@ -184,7 +184,7 @@ extension OnboardingViewController: UIPageViewControllerDataSource, UIPageViewCo
            let visibleViewController = pageViewController.viewControllers?.first,
            let index = pages.firstIndex(of: visibleViewController) {
             pageControl.currentPage = index
-            if index == 2 {
+            if index == 1{
                 LocalNotificationManager.shared.requestAuthorization { _ in }
                 UserDefaults.standard.set(true, forKey: "onboardingFinished")
             }
@@ -192,7 +192,7 @@ extension OnboardingViewController: UIPageViewControllerDataSource, UIPageViewCo
     }
 
     @objc private func nextButtonTapped() {
-        if pageControl.currentPage == 2 {
+        if pageControl.currentPage == 1 {
             dismiss(animated: false)
             return
         }
