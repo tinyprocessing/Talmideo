@@ -9,7 +9,7 @@ class WordHeaderView: UIView {
         label.textColor = .black
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.customFont(.robotoSlabMedium, size: 20)
+        label.font = UIFont.customFont(.robotoSlabMedium, size: 22)
         return label
     }()
 

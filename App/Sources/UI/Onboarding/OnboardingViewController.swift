@@ -109,7 +109,7 @@ final class OnboardingViewController: BaseViewController {
                 title: .localized(.onboardingExploreTitle),
                 subtitle: .localized(.onboardingExploreContent),
                 image: UIImage(named: "onboarding2") ?? UIImage()
-            ),
+            )
 //            OnboardingView(
 //                title: .localized(.onboardingSwipeTitle),
 //                subtitle: .localized(.onboardingSwipeContent),
@@ -184,7 +184,7 @@ extension OnboardingViewController: UIPageViewControllerDataSource, UIPageViewCo
            let visibleViewController = pageViewController.viewControllers?.first,
            let index = pages.firstIndex(of: visibleViewController) {
             pageControl.currentPage = index
-            if index == 1{
+            if index == 1 {
                 LocalNotificationManager.shared.requestAuthorization { _ in }
                 UserDefaults.standard.set(true, forKey: "onboardingFinished")
             }

@@ -41,14 +41,6 @@ class TalmideoCoordinator: Coordinator<Void> {
         super.init()
     }
 
-    private func onboarding() {
-        onboardingCoordinator = OnboardingCoordinator(router: router)
-        onboardingCoordinator?.start()
-        if let onboardingCoordinator = onboardingCoordinator {
-            router.willRouteWithCover(onboardingCoordinator.exportViewController())
-        }
-    }
-
     private func launchTM() {
         searchCoordinator = SearchCoordinator(
             router: router,
@@ -91,14 +83,22 @@ class TalmideoCoordinator: Coordinator<Void> {
         }
         tabViewController?.setupTabBarItems(with: array)
         router.willRouteWith(tabViewController!)
-        if !UserDefaults.standard.bool(forKey: "onboardingFinished") {
-            onboarding()
-        }
+        launchOnboarding()
     }
 
     override func start() {
         super.start()
         launchTM()
+    }
+
+    private func launchOnboarding(){
+        if !UserDefaults.standard.bool(forKey: "onboardingFinished") {
+            onboardingCoordinator = OnboardingCoordinator(router: router)
+            onboardingCoordinator?.start()
+            if let onboardingCoordinator = onboardingCoordinator {
+                router.willRouteWithCover(onboardingCoordinator.exportViewController())
+            }
+        }
     }
 
     private enum Config {
