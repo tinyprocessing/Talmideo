@@ -1,5 +1,6 @@
 import AVFoundation
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             [NSAttributedString.Key.font: customFont],
             for: .selected
         )
+        FirebaseApp.configure()
         return true
     }
 
