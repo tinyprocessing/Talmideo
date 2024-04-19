@@ -3,6 +3,7 @@ import UIKit
 
 protocol CardViewControllerDelegate: AnyObject {
     func addCards()
+    func swipe()
 }
 
 class CardViewController: BaseViewController {
@@ -150,8 +151,7 @@ extension CardViewController: SwipeCardStackDataSource, SwipeCardStackDelegate {
     }
 
     func cardStack(_ cardStack: SwipeCardStack, didSwipeCardAt index: Int, with direction: SwipeDirection) {
-        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-        SoundManager.shared.playSoundEffect(.cardSwipeCalm)
+        cardDelegate?.swipe()
         if (cards.count - index) < 3 {
             cardDelegate?.addCards()
         }

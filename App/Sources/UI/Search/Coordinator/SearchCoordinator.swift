@@ -11,6 +11,7 @@ class SearchCoordinator: Coordinator<Void> {
     private let bookmarks = BookmarkManager()
     private var bookmarksFilter = false
     private var context: CurrentValueSubject<TalmideoContext, Never>
+    private let analytics: TalmideoAnalytics
 
     deinit {
         print(Self.self, "deinit")
@@ -20,12 +21,14 @@ class SearchCoordinator: Coordinator<Void> {
         router: Router,
         databaseSearch: SQLiteDataDatabase,
         databaseWord: SQLiteDataDatabase,
-        context: CurrentValueSubject<TalmideoContext, Never>
+        context: CurrentValueSubject<TalmideoContext, Never>,
+        analytics: TalmideoAnalytics
     ) {
         self.router = router
         self.databaseSearch = databaseSearch
         self.databaseWord = databaseWord
         self.context = context
+        self.analytics = analytics
         viewController = SearchViewController(model: model, bookmarks: bookmarks)
         super.init()
         viewController?.searchDelegate = self
@@ -37,6 +40,7 @@ class SearchCoordinator: Coordinator<Void> {
             model.send(SearchViewModel(result: []))
             let (isText, array) = isText(value)
             if isText {
+                analytics.trackEvent(with: .search, event: .searchText)
                 array.forEach { word in
                     let query: (String, [Any?]) = self.databaseSearch.query.prepare(.index(
                         value: word,
@@ -61,6 +65,7 @@ class SearchCoordinator: Coordinator<Void> {
                 model.send(viewModel)
             }
         }
+        analytics.trackEvent(with: .search, event: .search)
     }
 
     private func isText(_ value: String) -> (Bool, [String]) {
@@ -71,19 +76,18 @@ class SearchCoordinator: Coordinator<Void> {
     private func processSearchResults(isBookmarks: Bool = false, needUpdateModel: Bool = true) {
         DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
-            let start = DispatchTime.now()
             let idArray: [Int] = isBookmarks ? bookmarks.getAllBookmarkedIDs(count: 200) : generateRandomIntegers()
             let searchResultModel = generateSearchResultModel(for: idArray)
 
             if !isBookmarks {
                 generateNotifications()
+            } else {
+                analytics.trackEvent(with: .search, event: .bookmarks)
             }
 
             if needUpdateModel {
                 updateModel(with: searchResultModel)
             }
-            let milliseconds = Double(DispatchTime.now().uptimeNanoseconds - start.uptimeNanoseconds) / 1_000_000
-            print("Function \(#function) took \(milliseconds) milliseconds to run")
         }
     }
 
@@ -156,7 +160,10 @@ extension SearchCoordinator: SearchViewControllerDelegate {
     func bookmarkTap(isOn: Bool) {
         bookmarksFilter = isOn
         processSearchResults(isBookmarks: isOn)
+        analytics.trackEvent(with: .bookmarks, event: .bookmarks)
     }
 
-    func close() {}
+    func close() {
+        analytics.trackEvent(with: .search, event: .searchFinish)
+    }
 }

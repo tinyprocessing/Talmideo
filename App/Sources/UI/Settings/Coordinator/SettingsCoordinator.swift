@@ -7,6 +7,7 @@ class SettingsCoordinator: Coordinator<Void> {
     private var viewController: SettingsViewController?
     private var bookmarks = BookmarkManager()
     private var context: CurrentValueSubject<TalmideoContext, Never>
+    private let analytics: TalmideoAnalytics
 
     deinit {
         print(Self.self, "deinit")
@@ -91,9 +92,10 @@ class SettingsCoordinator: Coordinator<Void> {
         )
     ]
 
-    init?(router: Router, context: CurrentValueSubject<TalmideoContext, Never>) {
+    init?(router: Router, context: CurrentValueSubject<TalmideoContext, Never>, analytics: TalmideoAnalytics) {
         self.router = router
         self.context = context
+        self.analytics = analytics
         super.init()
         viewController = SettingsViewController(SettingsModel(settingsSections: settingsSections), context: context)
     }

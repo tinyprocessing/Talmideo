@@ -23,6 +23,7 @@ class TalmideoCoordinator: Coordinator<Void> {
     private var onboardingCoordinator: OnboardingCoordinator?
     private let databaseSearch: SQLiteDataDatabase
     private let databaseWord: SQLiteDataDatabase
+    private let analytics: TalmideoAnalytics
 
     private var tabViewController: TabViewController?
     private var context: CurrentValueSubject<TalmideoContext, Never> = .init(TalmideoContext(state: .coordinator))
@@ -38,18 +39,26 @@ class TalmideoCoordinator: Coordinator<Void> {
                                             tableName: Constants.WordDataTable)
         databaseWord = SQLiteDataDatabase(name: Constants.DictionaryTranslator,
                                           tableName: Constants.WordData)
+        analytics = TalmideoAnalytics()
         super.init()
     }
 
     private func launchTM() {
+        analytics.trackEvent(with: .search, event: .searchStart)
         searchCoordinator = SearchCoordinator(
             router: router,
             databaseSearch: databaseSearch,
             databaseWord: databaseWord,
-            context: context
+            context: context,
+            analytics: analytics
         )
-        settingsCoordinator = SettingsCoordinator(router: router, context: context)
-        exploreCoordinator = ExploreCoordinator(router: router, databaseWord: databaseWord, context: context)
+        settingsCoordinator = SettingsCoordinator(router: router, context: context, analytics: analytics)
+        exploreCoordinator = ExploreCoordinator(
+            router: router,
+            databaseWord: databaseWord,
+            context: context,
+            analtyics: analytics
+        )
 
         searchCoordinator?.start()
         settingsCoordinator?.start()
@@ -91,7 +100,7 @@ class TalmideoCoordinator: Coordinator<Void> {
         launchTM()
     }
 
-    private func launchOnboarding(){
+    private func launchOnboarding() {
         if !UserDefaults.standard.bool(forKey: "onboardingFinished") {
             onboardingCoordinator = OnboardingCoordinator(router: router)
             onboardingCoordinator?.start()

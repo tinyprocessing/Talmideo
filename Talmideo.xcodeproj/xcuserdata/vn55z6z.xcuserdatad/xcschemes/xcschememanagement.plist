@@ -23,17 +23,35 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>Talmideo.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
 		</dict>
 		<key>hebrew.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>3072C8332BBFFB9C00381BDF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3072C8492BBFFB9D00381BDF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3072C8532BBFFB9D00381BDF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

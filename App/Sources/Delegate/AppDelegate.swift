@@ -1,6 +1,6 @@
 import AVFoundation
-import UIKit
 import Firebase
+import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

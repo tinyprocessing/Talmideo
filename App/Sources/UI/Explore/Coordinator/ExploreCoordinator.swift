@@ -8,6 +8,7 @@ class ExploreCoordinator: Coordinator<Void> {
     private let bookmarksManager = BookmarkManager()
     private var context: CurrentValueSubject<TalmideoContext, Never>
     private var cancellables = Set<AnyCancellable>()
+    private let analytics: TalmideoAnalytics
 
     private var nouns: [Int] = []
     private var verbs: [Int] = []
@@ -29,9 +30,15 @@ class ExploreCoordinator: Coordinator<Void> {
         print(Self.self, "deinit")
     }
 
-    init?(router: Router, databaseWord: SQLiteDataDatabase, context: CurrentValueSubject<TalmideoContext, Never>) {
+    init?(
+        router: Router,
+        databaseWord: SQLiteDataDatabase,
+        context: CurrentValueSubject<TalmideoContext, Never>,
+        analtyics: TalmideoAnalytics
+    ) {
         self.router = router
         self.context = context
+        analytics = analytics
         database = databaseWord
         viewController = ExploreViewController(context: context)
         super.init()
@@ -110,6 +117,6 @@ extension ExploreCoordinator: ExploreViewControllerDelegate {
     }
 
     private func createCardCoordinator(withWords words: [Int]) -> CardCoordinator? {
-        return CardCoordinator(router: router, databaseWord: database, words: words)
+        return CardCoordinator(router: router, databaseWord: database, words: words, analytics: analytics)
     }
 }

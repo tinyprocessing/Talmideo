@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import UIKit
 
 class CardCoordinator: Coordinator<Void> {
     private let router: Router?
@@ -7,10 +8,12 @@ class CardCoordinator: Coordinator<Void> {
     private let database: SQLiteDataDatabase
     private let words: [Int]
     private var model: CurrentValueSubject<[WordModel], Never> = .init([])
+    private let analytics: TalmideoAnalytics
 
-    init?(router: Router?, databaseWord: SQLiteDataDatabase, words: [Int]) {
+    init?(router: Router?, databaseWord: SQLiteDataDatabase, words: [Int], analytics: TalmideoAnalytics) {
         self.router = router
         self.words = words
+        self.analytics = analytics
         database = databaseWord
         viewController = CardViewController(model: model)
         super.init()
@@ -65,5 +68,11 @@ class CardCoordinator: Coordinator<Void> {
 extension CardCoordinator: CardViewControllerDelegate {
     func addCards() {
         update()
+    }
+
+    func swipe() {
+        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+        SoundManager.shared.playSoundEffect(.cardSwipeCalm)
+        analytics.trackEvent(with: .explore, event: .swipe)
     }
 }
