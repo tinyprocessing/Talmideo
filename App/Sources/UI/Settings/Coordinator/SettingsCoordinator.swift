@@ -67,6 +67,7 @@ class SettingsCoordinator: Coordinator<Void> {
                 isActionDanger: true,
                 action: { [weak self] in
                     guard let self = self else { return }
+                    analytics.trackEvent(with: .settings, event: .bookmarksRemove)
                     bookmarks.removeAll()
                     context.send(.init(state: .bookmarks))
                 }

@@ -41,6 +41,7 @@ class TalmideoCoordinator: Coordinator<Void> {
                                           tableName: Constants.WordData)
         analytics = TalmideoAnalytics()
         super.init()
+        analytics.trackEvent(with: .app, event: .start)
     }
 
     private func launchTM() {
@@ -57,7 +58,7 @@ class TalmideoCoordinator: Coordinator<Void> {
             router: router,
             databaseWord: databaseWord,
             context: context,
-            analtyics: analytics
+            analytics: analytics
         )
 
         searchCoordinator?.start()

@@ -53,6 +53,7 @@ extension TalmideoAnalytics {
         case onboardingStart
         case databaseStart
         case onboardingFinish
+        case start
         case searchStart
         case search
         case searchText
@@ -60,10 +61,10 @@ extension TalmideoAnalytics {
         case exploreStart
         case exploreFinish
         case swipe
-        case bookmarksRemove
-        case bookmarsAdd
         case bookmarks
+        case bookmarksRemove
         case bookmardsRemoveItem
+        case bookmarsAddItem
     }
 }
 

@@ -114,7 +114,12 @@ class SearchCoordinator: Coordinator<Void> {
     }
 
     override func start() {
-        wordCoordinator = WordCoordinator(router: router, databaseWord: databaseWord, context: context)
+        wordCoordinator = WordCoordinator(
+            router: router,
+            databaseWord: databaseWord,
+            context: context,
+            analytics: analytics
+        )
         wordCoordinator?.start()
         processSearchResults(isBookmarks: bookmarksFilter)
         super.start()

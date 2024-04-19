@@ -34,11 +34,11 @@ class ExploreCoordinator: Coordinator<Void> {
         router: Router,
         databaseWord: SQLiteDataDatabase,
         context: CurrentValueSubject<TalmideoContext, Never>,
-        analtyics: TalmideoAnalytics
+        analytics: TalmideoAnalytics
     ) {
         self.router = router
         self.context = context
-        analytics = analytics
+        self.analytics = analytics
         database = databaseWord
         viewController = ExploreViewController(context: context)
         super.init()
@@ -109,6 +109,7 @@ extension ExploreCoordinator: ExploreViewControllerDelegate {
             wordsArray = bookmarks
         }
 
+        analytics.trackEvent(with: .explore, event: .exploreStart)
         let cardCoordinator = createCardCoordinator(withWords: wordsArray)
         cardCoordinator?.start()
         if let viewController = cardCoordinator?.exportViewController() {

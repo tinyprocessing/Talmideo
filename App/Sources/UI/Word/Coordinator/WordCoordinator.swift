@@ -8,10 +8,17 @@ class WordCoordinator: Coordinator<Void> { private let router: Router?
     private var model: CurrentValueSubject<WordModel, Never> = .init(WordModel())
     private let bookmarks = BookmarkManager()
     private var context: CurrentValueSubject<TalmideoContext, Never>
+    private let analytics: TalmideoAnalytics
 
-    init?(router: Router?, databaseWord: SQLiteDataDatabase, context: CurrentValueSubject<TalmideoContext, Never>) {
+    init?(
+        router: Router?,
+        databaseWord: SQLiteDataDatabase,
+        context: CurrentValueSubject<TalmideoContext, Never>,
+        analytics: TalmideoAnalytics
+    ) {
         self.router = router
         self.context = context
+        self.analytics = analytics
         database = databaseWord
         viewController = WordViewController(model: model)
         super.init()
@@ -61,8 +68,10 @@ extension WordCoordinator: WordViewDelegate {
         context.send(.init(state: .bookmarks))
         if bookmarks.isBookmarked(id) {
             bookmarks.removeBookmark(id)
+            analytics.trackEvent(with: .bookmarks, event: .bookmardsRemoveItem)
         } else {
             bookmarks.addBookmark(id)
+            analytics.trackEvent(with: .bookmarks, event: .bookmarsAddItem)
         }
     }
 }
