@@ -41,3 +41,6 @@
 "onboardingSearchContent" = "Easily locate any word using our single search field – simply type it as you hear it.";
 "onboardingExploreContent" = "Discover new words effortlessly with our Explore feature!";
 "onboardingSwipeContent" = "Get ready for a card-swiping journey: Each word speaks volumes!";
+"autoSpeech" = "Auto pronunciation";
+"sounds" = "Sounds";
+

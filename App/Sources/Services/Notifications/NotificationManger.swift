@@ -12,10 +12,7 @@ class LocalNotificationManager {
     }
 
     public func requestAuthorization(completion: @escaping (Bool) -> Void) {
-        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-            if let error = error {
-                print("Error requesting authorization: \(error.localizedDescription)")
-            }
+        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
             completion(granted)
         }
     }
@@ -27,6 +24,10 @@ class LocalNotificationManager {
     }
 
     public func scheduleNotifications(words: [Word]) async {
+        if !CacheManager.shared.getNotifications() {
+            return
+        }
+
         removeAllNotifications()
 
         let calendar = Calendar.current
@@ -83,5 +84,9 @@ class LocalNotificationManager {
 
     private func removeAllNotifications() {
         notificationCenter.removeAllPendingNotificationRequests()
+    }
+
+    private enum Config {
+        static let settingsNotifications = "notifications"
     }
 }

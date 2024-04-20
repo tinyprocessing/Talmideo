@@ -97,6 +97,10 @@ class SearchViewController: BaseViewController {
 
     // MARK: Actions
 
+    public func scrollToTop() {
+        searchList.scrollToTop()
+    }
+
     private func update() {
         var array: [(Int, String, String, Bool)] = []
         model.value.result.forEach { word in

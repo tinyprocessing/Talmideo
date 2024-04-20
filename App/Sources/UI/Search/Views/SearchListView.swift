@@ -57,6 +57,10 @@ class SearchListView: UIView {
         ])
     }
 
+    func scrollToTop() {
+        scrollView.setContentOffset(.zero, animated: true)
+    }
+
     func refreshWithData(_ data: [(Int, String, String, Bool)]) {
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
 

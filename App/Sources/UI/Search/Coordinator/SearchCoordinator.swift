@@ -131,10 +131,11 @@ class SearchCoordinator: Coordinator<Void> {
     }
 
     private func generateNotifications() {
+        context.send(.init(state: .notifications))
+        let words = model.value.result.shuffled().prefix(20).map { word in
+            LocalNotificationManager.Word(id: "\(word.id)", text: word.form, definition: word.meaning)
+        }
         Task {
-            let words = model.value.result.shuffled().prefix(20).map { word in
-                LocalNotificationManager.Word(id: "\(word.id)", text: word.form, definition: word.meaning)
-            }
             await LocalNotificationManager.shared.scheduleNotifications(words: words)
         }
     }

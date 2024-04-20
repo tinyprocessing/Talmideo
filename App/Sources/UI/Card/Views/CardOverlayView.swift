@@ -117,7 +117,7 @@ class CardContentView: UIView {
         super.draw(rect)
     }
 
-    @objc private func soundButtonTapped() {
+    @objc public func soundButtonTapped() {
         AVSpeechSynthesizer.shared.speak(model.initialForm?.value ?? "", language: "he-IL")
     }
 

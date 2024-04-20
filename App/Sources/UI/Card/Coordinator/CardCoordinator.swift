@@ -72,7 +72,9 @@ extension CardCoordinator: CardViewControllerDelegate {
 
     func swipe() {
         UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-        SoundManager.shared.playSoundEffect(.cardSwipeCalm)
+        if CacheManager.shared.getSounds() {
+            SoundManager.shared.playSoundEffect(.cardSwipeCalm)
+        }
         analytics.trackEvent(with: .explore, event: .swipe)
     }
 }

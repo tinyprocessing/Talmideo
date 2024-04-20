@@ -33,6 +33,8 @@ enum LocalizedString: String {
     case notifications
     case contact
     case advancedSettings
+    case autoSpeech
+    case sounds
 
     // MARK: Global
 

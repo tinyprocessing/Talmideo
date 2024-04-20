@@ -6,6 +6,8 @@ struct TalmideoContext {
     enum State {
         case bookmarks
         case coordinator
+        case settings
+        case notifications
     }
 
     var state: State = .bookmarks
@@ -27,6 +29,9 @@ class TalmideoCoordinator: Coordinator<Void> {
 
     private var tabViewController: TabViewController?
     private var context: CurrentValueSubject<TalmideoContext, Never> = .init(TalmideoContext(state: .coordinator))
+
+    private var lastTabTapTime: Date?
+    private var lastTabTappedItem: UIViewController?
 
     deinit {
         print(Self.self, "deinit")
@@ -92,6 +97,7 @@ class TalmideoCoordinator: Coordinator<Void> {
             array.append(controller)
         }
         tabViewController?.setupTabBarItems(with: array)
+        tabViewController?.delegate = self
         router.willRouteWith(tabViewController!)
         launchOnboarding()
     }
@@ -128,6 +134,22 @@ class TalmideoCoordinator: Coordinator<Void> {
         static var imageExplore: UIImage {
             let config = UIImage.SymbolConfiguration(pointSize: 16, weight: .regular, scale: .default)
             return UIImage(systemName: "square.grid.2x2", withConfiguration: config) ?? UIImage()
+        }
+    }
+}
+
+extension TalmideoCoordinator: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let currentTime = Date()
+        if let lastTap = lastTabTapTime, let lastItem = lastTabTappedItem,
+           lastItem == viewController && currentTime.timeIntervalSince(lastTap) < 0.3 {
+            if let vc = viewController as? SearchViewController {
+                vc.scrollToTop()
+            }
+            lastTabTapTime = nil
+        } else {
+            lastTabTapTime = currentTime
+            lastTabTappedItem = viewController
         }
     }
 }

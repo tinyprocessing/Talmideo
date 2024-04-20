@@ -185,7 +185,9 @@ extension OnboardingViewController: UIPageViewControllerDataSource, UIPageViewCo
            let index = pages.firstIndex(of: visibleViewController) {
             pageControl.currentPage = index
             if index == 1 {
-                LocalNotificationManager.shared.requestAuthorization { _ in }
+                LocalNotificationManager.shared.requestAuthorization { granted in
+                    CacheManager.shared.setNotifications(granted)
+                }
                 UserDefaults.standard.set(true, forKey: "onboardingFinished")
             }
         }

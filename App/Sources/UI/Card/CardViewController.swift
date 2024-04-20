@@ -155,5 +155,8 @@ extension CardViewController: SwipeCardStackDataSource, SwipeCardStackDelegate {
         if (cards.count - index) < 3 {
             cardDelegate?.addCards()
         }
+        if CacheManager.shared.getAutoSpeech() {
+            (cardStack.topCard?.content as? CardContentView)?.soundButtonTapped()
+        }
     }
 }

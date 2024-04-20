@@ -26,6 +26,9 @@ class SettingsCoordinator: Coordinator<Void> {
         enum SettingsType {
             case bookmarks
             case general
+            case swipeNotifications
+            case swipeSpeech
+            case swipeSounds
         }
 
         let title: String
@@ -33,19 +36,28 @@ class SettingsCoordinator: Coordinator<Void> {
         let isActionDanger: Bool
         let action: (() -> Void)?
         let type: SettingsType
+        let swipeDefaultValue: Bool
+        let swipeActionTrue: (() -> Void)?
+        let swipeActionFalse: (() -> Void)?
 
         init(
-            title: String,
-            actionButtonTitle: String,
+            title: String = "",
+            actionButtonTitle: String = "",
             isActionDanger: Bool = false,
-            action: (() -> Void)?,
-            type: SettingsType = .general
+            action: (() -> Void)? = nil,
+            type: SettingsType = .general,
+            swipeDefaultValue: Bool = false,
+            swipeActionTrue: (() -> Void)? = nil,
+            swipeActionFalse: (() -> Void)? = nil
         ) {
             self.title = title
             self.actionButtonTitle = actionButtonTitle
-            self.action = action
             self.isActionDanger = isActionDanger
+            self.action = action
             self.type = type
+            self.swipeDefaultValue = swipeDefaultValue
+            self.swipeActionTrue = swipeActionTrue
+            self.swipeActionFalse = swipeActionFalse
         }
     }
 
@@ -57,6 +69,41 @@ class SettingsCoordinator: Coordinator<Void> {
                 actionButtonTitle: "\(bookmarks.count)",
                 action: nil,
                 type: .bookmarks
+            ), .init(
+                title: .localized(.notifications),
+                action: nil,
+                type: .swipeNotifications,
+                swipeDefaultValue: CacheManager.shared.getNotifications(),
+                swipeActionTrue: { [weak self] in
+                    guard let self = self else { return }
+                    CacheManager.shared.setNotifications(true)
+                    context.send(.init(state: .notifications))
+                },
+                swipeActionFalse: { [weak self] in
+                    guard let self = self else { return }
+                    CacheManager.shared.setNotifications(false)
+                    context.send(.init(state: .notifications))
+                }
+            ), .init(
+                title: .localized(.autoSpeech),
+                type: .swipeSpeech,
+                swipeDefaultValue: CacheManager.shared.getAutoSpeech(),
+                swipeActionTrue: {
+                    CacheManager.shared.setAutoSpeech(true)
+                },
+                swipeActionFalse: {
+                    CacheManager.shared.setAutoSpeech(false)
+                }
+            ), .init(
+                title: .localized(.sounds),
+                type: .swipeSounds,
+                swipeDefaultValue: CacheManager.shared.getSounds(),
+                swipeActionTrue: {
+                    CacheManager.shared.setSounds(true)
+                },
+                swipeActionFalse: {
+                    CacheManager.shared.setSounds(false)
+                }
             )]
         ),
         SettingsSectionModel(

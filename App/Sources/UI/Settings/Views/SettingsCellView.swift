@@ -35,6 +35,7 @@ class SettingsCellView: UIView {
         button.titleLabel?.font = UIFont.customFont(.robotoSlabRegular, size: 14)
         button.setTitleColor(.black.withAlphaComponent(0.7), for: .normal)
         button.tintColor = .black
+        button.isHidden = true
         button.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
         if model.isActionDanger {
             button.setTitleColor(.red.withAlphaComponent(0.7), for: .normal)
@@ -50,6 +51,10 @@ class SettingsCellView: UIView {
 
     private lazy var switchAction: UISwitch = {
         let view = UISwitch()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.addTarget(self, action: #selector(swipeActionTapped), for: .valueChanged)
+        view.isOn = model.swipeDefaultValue
+        view.isHidden = true
         return view
     }()
 
@@ -66,21 +71,24 @@ class SettingsCellView: UIView {
     }
 
     private func configure() {
+        addSubview(wrapperView)
+        wrapperView.addSubview(titleLabel)
+        wrapperView.addSubview(actionButton)
+        wrapperView.addSubview(switchAction)
+
         context
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self else { return }
-                if self.model.type == .bookmarks, context.value.state == .bookmarks {
+                if model.type == .bookmarks, context.value.state == .bookmarks {
                     let bookmars = BookmarkManager()
-                    self.actionButton.setTitle("\(bookmars.count)", for: .normal)
+                    actionButton.setTitle("\(bookmars.count)", for: .normal)
+                }
+                if model.type == .swipeNotifications, context.value.state == .notifications {
+                    switchAction.isOn = CacheManager.shared.getNotifications()
                 }
             }
             .store(in: &cancellables)
-
-        addSubview(wrapperView)
-        wrapperView.addSubview(titleLabel)
-        wrapperView.addSubview(actionButton)
-
         NSLayoutConstraint.activate([
             wrapperView.topAnchor.constraint(equalTo: topAnchor, constant: 7),
             wrapperView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -90,17 +98,36 @@ class SettingsCellView: UIView {
             titleLabel.topAnchor.constraint(equalTo: wrapperView.topAnchor, constant: 10),
             titleLabel.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor, constant: 15),
             titleLabel.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor, constant: -10),
-            titleLabel.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: -10),
-
-            actionButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            actionButton.heightAnchor.constraint(equalToConstant: 25),
-            actionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+            titleLabel.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: -10)
         ])
 
+        if model.type == .general || model.type == .bookmarks {
+            actionButton.isHidden = false
+            NSLayoutConstraint.activate([
+                actionButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+                actionButton.heightAnchor.constraint(equalToConstant: 25),
+                actionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+            ])
+        }
+        if model.type == .swipeNotifications || model.type == .swipeSpeech || model.type == .swipeSounds{
+            switchAction.isHidden = false
+            NSLayoutConstraint.activate([
+                switchAction.centerYAnchor.constraint(equalTo: centerYAnchor),
+                switchAction.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+            ])
+        }
         backgroundColor = .clear
     }
 
     @objc private func actionButtonTapped() {
         model.action?()
+    }
+
+    @objc private func swipeActionTapped() {
+        if switchAction.isOn {
+            model.swipeActionTrue?()
+        } else {
+            model.swipeActionFalse?()
+        }
     }
 }

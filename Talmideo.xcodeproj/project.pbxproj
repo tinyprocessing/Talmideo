@@ -78,6 +78,7 @@
 		3086DA622BCA8EB200779F98 /* cardSwipeCalm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3086DA612BCA8EB200779F98 /* cardSwipeCalm.mp3 */; };
 		3086DA652BCA93A000779F98 /* NotificationManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3086DA642BCA93A000779F98 /* NotificationManger.swift */; };
 		30BD50922BD27C0E008C2D01 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD50912BD27C0E008C2D01 /* Analytics.swift */; };
+		30BD50952BD3D003008C2D01 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD50942BD3D003008C2D01 /* CacheManager.swift */; };
 		30E5C0A22BC4176B0032D7B3 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C0A12BC4176B0032D7B3 /* UIButton+Extensions.swift */; };
 		30E5C41D2BC41E7D0032D7B3 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C41C2BC41E7D0032D7B3 /* CardViewController.swift */; };
 		30E5C41F2BC41E9B0032D7B3 /* CardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C41E2BC41E9B0032D7B3 /* CardCoordinator.swift */; };
@@ -198,6 +199,7 @@
 		3086DA612BCA8EB200779F98 /* cardSwipeCalm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cardSwipeCalm.mp3; sourceTree = "<group>"; };
 		3086DA642BCA93A000779F98 /* NotificationManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManger.swift; sourceTree = "<group>"; };
 		30BD50912BD27C0E008C2D01 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		30BD50942BD3D003008C2D01 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		30E5C0A12BC4176B0032D7B3 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		30E5C41C2BC41E7D0032D7B3 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		30E5C41E2BC41E9B0032D7B3 /* CardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCoordinator.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 		3072C86A2BBFFFA600381BDF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				30BD50932BD3CFF0008C2D01 /* Cache */,
 				30BD50902BD27C00008C2D01 /* Analytics */,
 				3086DA632BCA939000779F98 /* Notifications */,
 				30E5C4252BC469C20032D7B3 /* Shuffle */,
@@ -695,6 +698,14 @@
 			path = Analytics;
 			sourceTree = "<group>";
 		};
+		30BD50932BD3CFF0008C2D01 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				30BD50942BD3D003008C2D01 /* CacheManager.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		30E5C4252BC469C20032D7B3 /* Shuffle */ = {
 			isa = PBXGroup;
 			children = (
@@ -971,6 +982,7 @@
 				3072D6D72BC02ADD00381BDF /* SearchHeaderView.swift in Sources */,
 				3072C8902BBFFFC100381BDF /* UserDefaults+Extension.swift in Sources */,
 				304455882BCC5E9A00B52FCD /* UIFont+Extensions.swift in Sources */,
+				30BD50952BD3D003008C2D01 /* CacheManager.swift in Sources */,
 				30E5C44E2BC469DA0032D7B3 /* SwipeCardStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1156,7 +1168,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = GAH72SPMY9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Resources/Info.plist;
@@ -1187,7 +1199,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = GAH72SPMY9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = App/Resources/Info.plist;
