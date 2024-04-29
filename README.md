@@ -2,7 +2,7 @@
 
 Explore the richness of Hebrew vocabulary with our **Multilingual Word Explorer**, a sleek and user-friendly language learning app. This compact digital tool offers an engaging way to translate Hebrew words into English and Russian, making it a versatile companion for language enthusiasts and learners alike.
 
-![](github.jpg)     
+![](images/github.jpg)     
 
 ## Key Features:
 
